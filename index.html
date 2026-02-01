@@ -708,7 +708,7 @@
                 <div class="skill-icon"><i class="fas fa-database"></i></div>
                 <div class="skill-info">
                     <h4>Data Engineering</h4>
-                    <span>MySQL, MongoDB, EDA, Airflow, Spark</span>
+                    <span>MySQL, MongoDB, EDA, Airflow, Spark, dbt</span>
                 </div>
             </div>
             <div class="skill-item">
@@ -743,7 +743,7 @@
             <h1>I'm Utkarsh Saraogi,<br><span>Data Scientist | Data Engineer</span><br>Based in Boston, MA</h1>
             <p>MS Computer Science student at Northeastern University, transitioning from 3 years as a Cloud Developer at HPE into Data Engineering and Data Science.
 My background gives me an edge most data engineers don't have: I've seen what breaks in production. I've traced data anomalies through distributed services, pinpointed pipeline failures, and learned that the best systems aren't the cleverest—they're the ones that fail gracefully and recover automatically.
-I aim at building data pipelines that don't just work on demo day. They work at scale, on schedule, with monitoring, with tests, and with detailed documentation.</p>
+I aim at building data pipelines that are production grade.</p>
             
             <div class="hero-stats">
                 <div class="stat">
@@ -848,14 +848,32 @@ I aim at building data pipelines that don't just work on demo day. They work at 
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Stock Portfolio Management System</h3>
-                        <p class="project-desc">Built an end-to-end ETL pipeline: extracted real-time market data from the Finnhubb API, transformed via SQL stored procedures, loaded normalized schema (3NF) into MySQL warehouse supporting portfolio analytics.</p>
+                        <p class="project-desc">Built an end-to-end data pipeline: extracted real-time market data from the Finnhubb API, transformed via stored procedures, loaded normalized schema into MySQL workbench supporting portfolio analytics.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">ETL</span>
-                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">SQL</span>
                             <span class="tech-tag">React</span>
                         </div>
                         <a href="https://github.com/utkarsh1610-s/Stock-Portfolio-Manager" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card">    
+                    <div class="project-img">
+                        <img src="Music_dashboard.png" alt="SoundStream Analytics" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0%;">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">SoundStream Analytics Platform</h3>
+                        <p class="project-desc">End-to-end ELT platform processing 46M+ music records using medallion architecture. Automated the pipeline using Airflow DAGs with interactive analytics dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PySpark</span>
+                            <span class="tech-tag">dbt</span>
+                            <span class="tech-tag">Airflow</span>
+                            <span class="tech-tag">DuckDB</span>
+                        </div>
+                        <a href="https://github.com/utkarsh1610-s/SoundStream-Analytics" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://soundstream-analytics.streamlit.app" class="project-link" style="margin-left: 10px;">Dashboard <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
             </div>
