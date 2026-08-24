@@ -628,6 +628,7 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   flex: 1;
 }
 .proj .blurb strong { color: var(--cyan); font-weight: 500; }
+.proj .blurb em { font-family: var(--serif); font-style: italic; color: var(--cyan); font-size: 1.1em; }
 
 .proj-stats {
   display: grid;
@@ -694,6 +695,12 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   min-height: 200px;
   position: relative;
   overflow: hidden;
+}
+/* vis stacked on top inside a half-width card */
+.proj.half .proj-vis {
+  min-height: 0;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
 
 /* ───────────── RESEARCH ───────────── */
@@ -1301,8 +1308,8 @@ footer .dot { color: var(--cyan); }
 <div class="boot" id="boot">
   <div class="boot-line" data-d="0">      <span class="dim">$</span> <span class="label">init</span> utkarsh.saraogi <span class="dim">--target=portfolio</span></div>
   <div class="boot-line" data-d="200">    <span class="ok">[ ok ]</span> mounting <span class="label">/skills</span>           <span class="dim">82 chips loaded</span></div>
-  <div class="boot-line" data-d="380">    <span class="ok">[ ok ]</span> connecting <span class="label">github://utkarsh1610-s</span>  <span class="dim">5 repos</span></div>
-  <div class="boot-line" data-d="540">    <span class="ok">[ ok ]</span> bootstrapping <span class="label">lineage.dag</span>  <span class="dim">4 layers, 28 nodes</span></div>
+  <div class="boot-line" data-d="380">    <span class="ok">[ ok ]</span> connecting <span class="label">github://utkarsh1610-s</span>  <span class="dim">6 repos</span></div>
+  <div class="boot-line" data-d="540">    <span class="ok">[ ok ]</span> bootstrapping <span class="label">lineage.dag</span>  <span class="dim">4 layers, 31 nodes</span></div>
   <div class="boot-line" data-d="700">    <span class="ok">[ ok ]</span> warming <span class="label">stream.console</span>      <span class="dim">subscribed → 6 topics</span></div>
   <div class="boot-line" data-d="860">    <span class="ok">[ ok ]</span> ready. <span class="dim">press</span> <span class="label">/</span> <span class="dim">to query.</span></div>
 </div>
@@ -1317,7 +1324,7 @@ footer .dot { color: var(--cyan); }
   <div class="sb-sep hide-sm">/</div>
   <div class="sb-item" id="sb-time">—</div>
   <div class="sb-spacer"></div>
-  <div class="sb-item hide-sm">open to co-op · Fall '26</div>
+  <div class="sb-item hide-sm">open to co-op · Spring '27</div>
   <div class="sb-cmdk" onclick="openCmdk()">
     <span>query</span>
     <kbd>/</kbd>
@@ -1341,7 +1348,7 @@ footer .dot { color: var(--cyan); }
 <section class="hero" id="top">
   <div class="hero-grid">
     <div class="hero-left">
-      <div class="eyebrow"><span class="pulse"></span> open to Fall '26 · Spring/Summer '27 co-op</div>
+      <div class="eyebrow"><span class="pulse"></span> open to Spring/Summer '27 co-op</div>
       <div class="name-row">
         <img class="hero-photo" src="image-final.jpeg" alt="Utkarsh Saraogi" />
         <h1>Utkarsh<br>Saraogi<span class="it">.</span></h1>
@@ -1392,9 +1399,14 @@ footer .dot { color: var(--cyan); }
   </div>
   <div class="fund-grid r d1">
     <div class="fund-cell">
-      <span class="label">recovered</span>
-      <span class="num">$7.8<span class="u">M</span></span>
-      <span class="desc">counterfactual A/B · credit risk · 113K loans</span>
+      <span class="label">facts ingested</span>
+      <span class="num">181<span class="u">M</span></span>
+      <span class="desc">SEC XBRL · 69 quarters · bitemporal warehouse</span>
+    </div>
+    <div class="fund-cell">
+      <span class="label">look-ahead bias</span>
+      <span class="num">3.3<span class="u">%</span></span>
+      <span class="desc">top-decile picks that differ · 49 quarters</span>
     </div>
     <div class="fund-cell">
       <span class="label">records processed</span>
@@ -1402,19 +1414,14 @@ footer .dot { color: var(--cyan); }
       <span class="desc">ELT · 3 raw sources · 70+ countries</span>
     </div>
     <div class="fund-cell">
+      <span class="label">recovered</span>
+      <span class="num">$7.8<span class="u">M</span></span>
+      <span class="desc">counterfactual A/B · credit risk · 113K loans</span>
+    </div>
+    <div class="fund-cell">
       <span class="label">MTTR reduction</span>
       <span class="num">−40<span class="u">%</span></span>
       <span class="desc">15+ microservices · telemetry triage</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">flip prediction</span>
-      <span class="num">3-4<span class="u">turns</span></span>
-      <span class="desc">sycophancy paper · hidden state probing</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">storage compression</span>
-      <span class="num">60<span class="u">%</span></span>
-      <span class="desc">partitioned parquet · medallion</span>
     </div>
     <div class="fund-cell">
       <span class="label">streaming latency</span>
@@ -1437,7 +1444,7 @@ footer .dot { color: var(--cyan); }
       <!-- paths drawn by JS -->
     </svg>
 
-    <div class="lineage" id="lineage">
+    <div class="lineage" id="lineage-dag">
       <div class="lin-col">
         <div class="lin-head">raw <span class="layer-tag">BRONZE</span></div>
         <div class="lin-node" data-node="hpe">▢ HPE · 3 yr cloud dev <span class="meta">2022–25</span></div>
@@ -1452,11 +1459,13 @@ footer .dot { color: var(--cyan); }
         <div class="lin-node" data-node="devops">⊡ DevOps · GCP · AWS</div>
         <div class="lin-node" data-node="streaming">⊡ Kafka · Spark Streaming</div>
         <div class="lin-node" data-node="batch">⊡ PySpark · dbt · Airflow</div>
+        <div class="lin-node" data-node="databricks">⊡ Databricks · Lakeflow</div>
         <div class="lin-node" data-node="interp">⊡ Hidden-state probing</div>
         <div class="lin-node" data-node="modelling">⊡ Causal · A/B · SHAP</div>
       </div>
       <div class="lin-col">
         <div class="lin-head">projects <span class="layer-tag">SILVER</span></div>
+        <div class="lin-node" data-node="hindsight">▣ Hindsight</div>
         <div class="lin-node" data-node="marketpulse">▣ MarketPulse</div>
         <div class="lin-node" data-node="soundstream">▣ SoundStream Analytics</div>
         <div class="lin-node" data-node="credit">▣ Credit Risk Engine</div>
@@ -1465,6 +1474,7 @@ footer .dot { color: var(--cyan); }
       </div>
       <div class="lin-col">
         <div class="lin-head">outcomes <span class="layer-tag">GOLD</span></div>
+        <div class="lin-node" data-node="pit">★ 21.8M PIT intervals</div>
         <div class="lin-node" data-node="mttr">★ −40% MTTR</div>
         <div class="lin-node" data-node="prod">★ shipped to prod</div>
         <div class="lin-node" data-node="labels">★ 4K+ failure labels</div>
@@ -1490,11 +1500,72 @@ footer .dot { color: var(--cyan); }
   </div>
 
   <div class="proj-grid">
-    <!-- MARKETPULSE (featured) -->
-    <article class="proj feat r" data-tech="kafka spark dbt streaming gcp bigquery delta" data-track="de" data-name="MarketPulse">
+
+    <!-- HINDSIGHT -->
+    <article class="proj half r" data-tech="databricks lakeflow delta spark sql bitemporal sec finance" data-track="de" data-name="Hindsight">
       <div class="proj-vis">
         <svg viewBox="0 0 360 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
-          <!-- pipeline blocks -->
+          <defs>
+            <linearGradient id="pitFade" x1="0" x2="1">
+              <stop offset="0" stop-color="#7dffce" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#7dffce" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <text x="180" y="22" text-anchor="middle" fill="#ece8de" font-family="Instrument Serif" font-size="14">one fact, two truths</text>
+          <text x="180" y="38" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6.5">AT&amp;T · FY2021 revenue · as the market knew it</text>
+          <g opacity="0.05">
+            <line x1="30" y1="80"  x2="340" y2="80"  stroke="#fff"/>
+            <line x1="30" y1="120" x2="340" y2="120" stroke="#fff"/>
+            <line x1="30" y1="160" x2="340" y2="160" stroke="#fff"/>
+          </g>
+          <rect x="52" y="72" width="103" height="128" fill="url(#pitFade)" opacity="0.25"/>
+          <path d="M 52 78 L 155 78 L 155 158 L 336 158" fill="none" stroke="#7dffce" stroke-width="2"/>
+          <line x1="155" y1="58" x2="155" y2="200" stroke="#f4c95d" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+          <circle cx="155" cy="78" r="3.5" fill="#0a0d0f" stroke="#f4c95d" stroke-width="1.5"/>
+          <text x="160" y="54" fill="#f4c95d" font-family="JetBrains Mono" font-size="6.5">restated 2023-02-13</text>
+          <text x="160" y="64" fill="#6a7378" font-family="JetBrains Mono" font-size="6">FY2022 10-K · WarnerMedia spin-off</text>
+          <text x="58" y="70" fill="#7dffce" font-family="JetBrains Mono" font-size="9" font-weight="600">$168.9B</text>
+          <text x="284" y="172" fill="#7dffce" font-family="JetBrains Mono" font-size="9" font-weight="600">$134.0B</text>
+          <circle cx="100" cy="78" r="2.5" fill="#7dffce"/>
+          <line x1="100" y1="78" x2="100" y2="200" stroke="#7dffce" stroke-width="0.75" stroke-dasharray="2,3" opacity="0.5"/>
+          <text x="100" y="212" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6">as_of('2022-06-01')</text>
+          <circle cx="310" cy="158" r="2.5" fill="#7dffce"/>
+          <line x1="310" y1="158" x2="310" y2="200" stroke="#7dffce" stroke-width="0.75" stroke-dasharray="2,3" opacity="0.5"/>
+          <text x="310" y="212" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6">as_of(today)</text>
+          <line x1="30" y1="200" x2="340" y2="200" stroke="#fff" stroke-opacity="0.12"/>
+          <text x="52"  y="192" text-anchor="middle" fill="#444c52" font-family="JetBrains Mono" font-size="6">2022</text>
+          <text x="200" y="192" text-anchor="middle" fill="#444c52" font-family="JetBrains Mono" font-size="6">2024</text>
+          <text x="336" y="192" text-anchor="middle" fill="#444c52" font-family="JetBrains Mono" font-size="6">2026</text>
+          <text x="180" y="232" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6.5">21.8M knowledge intervals · 14,885 companies · 6 invariants asserted</text>
+        </svg>
+      </div>
+      <div class="proj-meta">
+        <span class="badge de">Data Engineering</span>
+        <span class="status"><span class="dot"></span> shipped</span>
+      </div>
+      <h3>Hindsight — a warehouse that remembers what people knew, and when</h3>
+      <p class="blurb">
+        Companies quietly correct their past financial results, and every database overwrites the original. Backtest on that and you're trading on numbers nobody had at the time. Hindsight ingests <strong>69 quarters of SEC XBRL filings (181M facts)</strong> through a Lakeflow medallion pipeline, then resolves per-fact filing precedence into <strong>21.8M knowledge intervals</strong> — so any historical date returns only what was publicly knowable then. Measured the resulting <em>look-ahead bias</em> at <strong>3.3% of top-decile stock selections</strong> across 49 quarters.
+      </p>
+      <div class="proj-stats">
+        <div class="ps"><span class="v">181M</span><span class="l">facts</span></div>
+        <div class="ps"><span class="v">21.8M</span><span class="l">intervals</span></div>
+        <div class="ps"><span class="v">0.001%</span><span class="l">broken rows</span></div>
+      </div>
+      <div class="proj-tech">
+        <span class="chip hi">databricks</span><span class="chip hi">lakeflow</span><span class="chip hi">delta lake</span>
+        <span class="chip">auto loader</span><span class="chip">unity catalog</span><span class="chip">pyspark</span><span class="chip">pytest</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ source</a>
+        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ read the writeup</a>
+      </div>
+    </article>
+
+    <!-- MARKETPULSE -->
+    <article class="proj half r d1" data-tech="kafka spark dbt streaming gcp bigquery delta" data-track="de" data-name="MarketPulse">
+      <div class="proj-vis">
+        <svg viewBox="0 0 360 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
           <defs>
             <linearGradient id="streamFlow" x1="0" x2="1">
               <stop offset="0" stop-color="#7dffce" stop-opacity="0"/>
@@ -1502,35 +1573,29 @@ footer .dot { color: var(--cyan); }
               <stop offset="1" stop-color="#7dffce" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <!-- grid -->
           <g opacity="0.05">
             <line x1="0" y1="60"  x2="360" y2="60"  stroke="#fff"/>
             <line x1="0" y1="120" x2="360" y2="120" stroke="#fff"/>
             <line x1="0" y1="180" x2="360" y2="180" stroke="#fff"/>
           </g>
-          <!-- node: kafka -->
           <rect x="14"  y="92" width="60" height="56" rx="6" fill="none" stroke="#7dffce" stroke-opacity="0.5"/>
           <text x="44" y="115" text-anchor="middle" fill="#7dffce" font-family="JetBrains Mono" font-size="8" font-weight="600">KAFKA</text>
           <text x="44" y="128" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6.5">trade.events</text>
           <text x="44" y="139" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6">ticker-keyed</text>
-          <!-- arrow 1 -->
           <line x1="74" y1="120" x2="98" y2="120" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1s" repeatCount="indefinite"/>
           </line>
           <polygon points="98,116 104,120 98,124" fill="#7dffce" opacity="0.7"/>
-          <!-- node: spark -->
           <rect x="106" y="80" width="76" height="80" rx="6" fill="none" stroke="#7dffce" stroke-opacity="0.5"/>
           <text x="144" y="100" text-anchor="middle" fill="#7dffce" font-family="JetBrains Mono" font-size="8" font-weight="600">SPARK</text>
           <text x="144" y="112" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6.5">structured</text>
           <text x="144" y="123" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6.5">streaming</text>
           <text x="144" y="138" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6">VWAP 1min · 30s wm</text>
           <text x="144" y="150" text-anchor="middle" fill="#f4c95d" font-family="JetBrains Mono" font-size="6.5">3 detection signals</text>
-          <!-- arrow 2 -->
           <line x1="182" y1="120" x2="210" y2="120" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.2s" repeatCount="indefinite"/>
           </line>
           <polygon points="210,116 216,120 210,124" fill="#7dffce" opacity="0.7"/>
-          <!-- node: gcs medallion -->
           <rect x="218" y="64" width="80" height="36" rx="4" fill="rgba(125,255,206,0.04)" stroke="#7dffce" stroke-opacity="0.4"/>
           <text x="258" y="78" text-anchor="middle" fill="#7dffce" font-family="JetBrains Mono" font-size="7" font-weight="600">bronze</text>
           <text x="258" y="92" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6">raw trades</text>
@@ -1540,47 +1605,41 @@ footer .dot { color: var(--cyan); }
           <rect x="218" y="144" width="80" height="36" rx="4" fill="rgba(244,201,93,0.1)" stroke="#f4c95d" stroke-opacity="0.55"/>
           <text x="258" y="158" text-anchor="middle" fill="#f4c95d" font-family="JetBrains Mono" font-size="7" font-weight="600">gold</text>
           <text x="258" y="172" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="6">anomalies</text>
-          <!-- arrow 3 -->
           <line x1="298" y1="162" x2="320" y2="162" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.4s" repeatCount="indefinite"/>
           </line>
           <polygon points="320,158 326,162 320,166" fill="#f4c95d" opacity="0.7"/>
-          <!-- node: bigquery + dbt -->
-          <text x="335" y="158" text-anchor="middle" fill="#f4c95d" font-family="JetBrains Mono" font-size="7" font-weight="600" transform="rotate(0 335 158)">BQ</text>
+          <text x="335" y="158" text-anchor="middle" fill="#f4c95d" font-family="JetBrains Mono" font-size="7" font-weight="600">BQ</text>
           <text x="335" y="170" text-anchor="middle" fill="#aab2b6" font-family="JetBrains Mono" font-size="6">dbt</text>
-          <!-- latency callout -->
           <text x="180" y="32" text-anchor="middle" fill="#7dffce" font-family="JetBrains Mono" font-size="10" font-weight="600">p99 ≈ 58ms · 5 instruments · sub-60s end-to-end</text>
           <line x1="50" y1="40" x2="320" y2="40" stroke="#7dffce" stroke-opacity="0.18" stroke-dasharray="2,2"/>
           <text x="180" y="220" text-anchor="middle" fill="#6a7378" font-family="JetBrains Mono" font-size="7">3 detection signals · 8 dbt tests · fault-tolerant checkpointing</text>
         </svg>
       </div>
-      <div>
-        <div class="proj-meta">
-          <span class="badge de">Data Engineering</span>
-          <span class="status"><span class="dot"></span> live</span>
-        </div>
-        <h3>MarketPulse — real-time market anomaly pipeline</h3>
-        <p class="blurb">
-          Equity trade events stream through <strong>Aiven Kafka</strong> (SSL/TLS, ticker-keyed) into PySpark Structured Streaming with 1-min tumbling VWAP windows and 30s watermarking. Medallion lakehouse on GCS with 3 detection signals — Z-score volume spike, intra-window price deviation, wash trading — each with per-signal confidence. Gold lands in BigQuery via 3 dbt models with <strong>8 passing data quality tests</strong>.
-        </p>
-        <div class="proj-stats">
-          <div class="ps"><span class="v">&lt;60s</span><span class="l">latency</span></div>
-          <div class="ps"><span class="v">5</span><span class="l">instruments</span></div>
-          <div class="ps"><span class="v">8/8</span><span class="l">dbt tests</span></div>
-        </div>
-        <div class="proj-tech">
-          <span class="chip hi">kafka</span><span class="chip hi">spark structured streaming</span><span class="chip hi">delta lake</span>
-          <span class="chip">gcs</span><span class="chip">bigquery</span><span class="chip">dbt</span><span class="chip">docker</span>
-        </div>
-        <div class="proj-links">
-          <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ source</a>
-          <a href="#research">→ read more</a>
-        </div>
+      <div class="proj-meta">
+        <span class="badge de">Data Engineering</span>
+        <span class="status"><span class="dot"></span> live</span>
+      </div>
+      <h3>MarketPulse — real-time market anomaly pipeline</h3>
+      <p class="blurb">
+        Equity trade events stream through <strong>Aiven Kafka</strong> (SSL/TLS, ticker-keyed) into PySpark Structured Streaming with 1-min tumbling VWAP windows and 30s watermarking. Medallion lakehouse on GCS with 3 detection signals — Z-score volume spike, intra-window price deviation, wash trading — each with per-signal confidence. Gold lands in BigQuery via 3 dbt models with <strong>8 passing data quality tests</strong>.
+      </p>
+      <div class="proj-stats">
+        <div class="ps"><span class="v">&lt;60s</span><span class="l">latency</span></div>
+        <div class="ps"><span class="v">5</span><span class="l">instruments</span></div>
+        <div class="ps"><span class="v">8/8</span><span class="l">dbt tests</span></div>
+      </div>
+      <div class="proj-tech">
+        <span class="chip hi">kafka</span><span class="chip hi">spark structured streaming</span><span class="chip hi">delta lake</span>
+        <span class="chip">gcs</span><span class="chip">bigquery</span><span class="chip">dbt</span><span class="chip">docker</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ source</a>
       </div>
     </article>
 
-    <!-- SYCOPHANCY (featured, sits next to research deep-dive) -->
-    <article class="proj half r d1" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection">
+    <!-- SYCOPHANCY -->
+    <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection">
       <div class="proj-meta">
         <span class="badge ml">NLP · Research</span>
         <span class="status"><span class="dot"></span> ACL ARR May'26</span>
@@ -1605,7 +1664,7 @@ footer .dot { color: var(--cyan); }
     </article>
 
     <!-- SOUNDSTREAM -->
-    <article class="proj half r d2" data-tech="pyspark dbt airflow duckdb batch elt" data-track="de" data-name="SoundStream">
+    <article class="proj half r d1" data-tech="pyspark dbt airflow duckdb batch elt" data-track="de" data-name="SoundStream">
       <div class="proj-meta">
         <span class="badge de">Data Engineering</span>
         <span class="status"><span class="dot"></span> live demo</span>
@@ -1675,7 +1734,7 @@ footer .dot { color: var(--cyan); }
       </div>
     </article>
 
-    <!-- BENCH / portfolio site -->
+    <!-- PORTFOLIO -->
     <article class="proj third r d2" data-tech="html css js portfolio" data-track="de" data-name="This Portfolio">
       <div class="proj-meta">
         <span class="badge de">Build</span>
@@ -1798,10 +1857,10 @@ footer .dot { color: var(--cyan); }
           <span class="loc">Bangalore, IN</span>
         </div>
         <ul>
-          <li>Monitored distributed telemetry flows across <strong>15+ microservices</strong> ingesting VLAN/VXLAN switch metrics; root-caused upstream payload drift across enricher → predictor → sink connectors <span class="metric">→ −40% MTTR</span></li>
+          <li>Traced data loss across <strong>15+ microservices</strong> ingesting VLAN/VXLAN switch telemetry, following records through enricher → predictor → sink connectors to pinpoint the failing service and root cause <span class="metric">→ −40% MTTR</span></li>
           <li>Built training dataset from <strong>4,000+ failure logs</strong>, designed annotation schema for an ML triage assistant <span class="metric">→ +15% classification accuracy</span>, removed manual escalations</li>
           <li>Designed a parallel execution framework distributing validation scripts across heterogeneous switch fleets <span class="metric">→ −55% end-to-end cycle time</span></li>
-          <li>Owned Jenkins CI/CD lifecycle; implemented data-contract validation gates before production promotion</li>
+          <li>Owned Jenkins CI for the platform's test suite and lab environments; kept validation coverage current as GraphQL APIs and deployed services drifted from test expectations</li>
           <li>Mentored <strong>3 interns</strong> on automation workflows; documentation reduced onboarding by 1–2 months</li>
         </ul>
       </div>
@@ -1899,7 +1958,7 @@ footer .dot { color: var(--cyan); }
   <div class="r">
     <h2>let's <span class="it">build</span> something<span class="it">.</span></h2>
     <p class="sub">
-      Open to Fall '26 and Spring/Summer '27 co-op + internship roles<br>
+      Open to Spring '27 and Summer '27 co-op + internship roles<br>
       in Data Engineering, Data Science, and ML Engineering.
     </p>
     <div class="contact-actions">
@@ -1924,7 +1983,7 @@ footer .dot { color: var(--cyan); }
 </section>
 
 <footer>
-  <span>utkarsh<span class="dot">.</span>saraogi // build 2026.06.10</span>
+  <span>utkarsh<span class="dot">.</span>saraogi // build 2026.08.24</span>
   <span>boston, ma · open to co-op</span>
 </footer>
 
@@ -1933,7 +1992,7 @@ footer .dot { color: var(--cyan); }
   <div class="cmdk-box" role="dialog" aria-label="Command palette">
     <div class="cmdk-input-wrap">
       <span class="prompt">▸</span>
-      <input id="cmdk-input" class="cmdk-input" placeholder="type SELECT * FROM projects and press ↵, or try: research · resume · marketpulse" autocomplete="off" autocorrect="off" spellcheck="false" />
+      <input id="cmdk-input" class="cmdk-input" placeholder="type SELECT * FROM projects and press ↵, or try: hindsight · research · resume" autocomplete="off" autocorrect="off" spellcheck="false" />
     </div>
     <div class="cmdk-results" id="cmdk-results"></div>
     <div class="cmdk-query-result" id="cmdk-query-result" style="display:none"></div>
@@ -1973,7 +2032,7 @@ updateTime(); setInterval(updateTime, 1000);
 /*  HERO — role rotator                    */
 /* ─────────────────────────────────────── */
 (() => {
-  const roles = ['data engineer', 'data scientist', 'pipeline architect', 'ml interpretability researcher'];
+  const roles = ['data engineer', 'data scientist', 'cloud developer'];
   const el = document.getElementById('role-text');
   let i = 0, j = 0, del = false;
   function tick() {
@@ -2003,6 +2062,10 @@ updateTime(); setInterval(updateTime, 1000);
   const templates = [
     { l: 'info', m: () => `<span class="topic">utkarsh.skills.streaming</span> <span class="arrow">→</span> kafka<span class="arrow">.</span>v3.x <span class="arrow">|</span> state: <span class="v">ACTIVE</span>` },
     { l: 'flow', m: () => `<span class="topic">utkarsh.projects.marketpulse</span> <span class="arrow">→</span> latency_p99=<span class="v">58ms</span> anomalies=<span class="v2">${Math.floor(Math.random()*16)+8}</span>` },
+    { l: 'ok',   m: () => `<span class="topic">utkarsh.hindsight.invariants</span> <span class="arrow">→</span> I1-I6 <span class="v">PASS</span> · keys=<span class="v">20,556,586</span>` },
+    { l: 'flow', m: () => `<span class="topic">utkarsh.hindsight.as_of</span> <span class="arrow">→</span> cik=732717 t=<span class="v">2022-06-01</span> revenue=<span class="v2">$168.9B</span>` },
+    { l: 'warn', m: () => `<span class="topic">utkarsh.hindsight.restatement</span> <span class="arrow">→</span> detected Δ=<span class="v2">-${(5+Math.random()*35).toFixed(1)}%</span> class=<span class="v">RESTATEMENT</span>` },
+    { l: 'evnt', m: () => `<span class="topic">utkarsh.hindsight.silver</span> <span class="arrow">→</span> quarantine_rate=<span class="v">0.001%</span> kept=<span class="v">45.1M</span>` },
     { l: 'evnt', m: () => `<span class="topic">utkarsh.research.sycophancy</span> <span class="arrow">→</span> layer_28 norm_shift=<span class="v">${(0.7 + Math.random()*0.3).toFixed(3)}</span>` },
     { l: 'ok',   m: () => `<span class="topic">utkarsh.pipelines.soundstream</span> <span class="arrow">→</span> dag_run=<span class="v">SUCCESS</span> dur=<span class="v">${(Math.random()*30+45).toFixed(1)}s</span>` },
     { l: 'info', m: () => `<span class="topic">utkarsh.skills.sql</span> window<span class="arrow">.</span>fn <span class="arrow">→</span> <span class="v">RANK / ROW_NUMBER / LAG</span>` },
@@ -2010,15 +2073,15 @@ updateTime(); setInterval(updateTime, 1000);
     { l: 'flow', m: () => `<span class="topic">utkarsh.experience.hpe</span> <span class="arrow">→</span> mttr_reduction=<span class="v">40%</span> microservices=<span class="v">15</span>` },
     { l: 'evnt', m: () => `<span class="topic">utkarsh.user.scroll</span> <span class="arrow">→</span> y=<span class="v">${window.scrollY|0}px</span> section=<span class="v">${currentSection()}</span>` },
     { l: 'ok',   m: () => `<span class="topic">utkarsh.dbt.tests</span> <span class="arrow">→</span> passed=<span class="v">8/8</span> · gold_layer <span class="arrow">✓</span>` },
-    { l: 'info', m: () => `<span class="topic">utkarsh.applications</span> co-op <span class="arrow">→</span> <span class="v">open · Fall 2026</span>` },
-    { l: 'flow', m: () => `<span class="topic">utkarsh.commits.github</span> <span class="arrow">→</span> repo=<span class="v">utkarsh1610-s/SoundStream</span> Δ=<span class="v">+${Math.floor(Math.random()*240)+30}</span>/-${Math.floor(Math.random()*80)}` },
+    { l: 'info', m: () => `<span class="topic">utkarsh.applications</span> co-op <span class="arrow">→</span> <span class="v">open · Spring 2027</span>` },
+    { l: 'flow', m: () => `<span class="topic">utkarsh.commits.github</span> <span class="arrow">→</span> repo=<span class="v">utkarsh1610-s/hindsight</span> Δ=<span class="v">+${Math.floor(Math.random()*240)+30}</span>/-${Math.floor(Math.random()*80)}` },
     { l: 'evnt', m: () => `<span class="topic">utkarsh.referee.football</span> <span class="arrow">→</span> match.weekend <span class="arrow">|</span> <span class="v">scheduled</span>` },
     { l: 'ok',   m: () => `<span class="topic">utkarsh.spark.checkpoint</span> <span class="arrow">→</span> committed offset=<span class="v">${1000+Math.floor(Math.random()*5000)}</span>` },
   ];
 
   function currentSection() {
-    const sections = ['hero','snapshot','lineage','projects','research','experience','contact'];
-    let best = 'hero';
+    const sections = ['top','snapshot','lineage','projects','research','experience','contact'];
+    let best = 'top';
     for (const id of sections) {
       const el = document.getElementById(id);
       if (el && el.getBoundingClientRect().top < window.innerHeight / 2) best = id;
@@ -2070,12 +2133,13 @@ updateTime(); setInterval(updateTime, 1000);
   const edges = {
     // ─── Raw (Bronze) ────────────────────────────────────────────
     hpe:          ['devops','jenkins','docker','crowdstrike','mttr','prod','labels'],
-    northeastern: ['streaming','batch','devops','marketpulse','soundstream','syco','stock'],
+    northeastern: ['streaming','batch','devops','databricks','marketpulse','soundstream','hindsight','syco','stock'],
     research:     ['interp','modelling','syco','paper'],
 
     // ─── Skills (Silver) ─────────────────────────────────────────
     streaming:    ['northeastern','marketpulse','latency'],
-    batch:        ['northeastern','soundstream'],
+    batch:        ['northeastern','soundstream','hindsight'],
+    databricks:   ['northeastern','hindsight','pit'],
     devops:       ['hpe','northeastern','marketpulse','stock','prod'],
     jenkins:      ['hpe','prod'],
     docker:       ['hpe','marketpulse'],
@@ -2084,6 +2148,7 @@ updateTime(); setInterval(updateTime, 1000);
     modelling:    ['research','credit','dollars'],
 
     // ─── Projects (Silver) ───────────────────────────────────────
+    hindsight:    ['northeastern','batch','databricks','pit'],
     marketpulse:  ['northeastern','streaming','devops','docker','latency'],
     soundstream:  ['northeastern','batch'],
     credit:       ['modelling','dollars'],
@@ -2091,6 +2156,7 @@ updateTime(); setInterval(updateTime, 1000);
     stock:        ['northeastern','devops'],
 
     // ─── Outcomes (Gold) ─────────────────────────────────────────
+    pit:          ['hindsight','databricks'],
     dollars:      ['credit','modelling'],
     latency:      ['streaming','marketpulse'],
     paper:        ['research','interp','syco'],
@@ -2100,25 +2166,28 @@ updateTime(); setInterval(updateTime, 1000);
   };
 
   const detail = {
-    hpe:          'HPE Cloud Developer · 3yr · CrowdStrike telemetry across 15+ microservices · Jenkins CI/CD · Docker',
-    northeastern: 'MSCS · Northeastern · streaming + batch + devops skills · 4 portfolio projects built here',
+    hpe:          'HPE Cloud Developer · 3yr · CrowdStrike telemetry across 15+ microservices · Jenkins CI · Docker',
+    northeastern: 'MSCS · Northeastern · streaming + batch + databricks skills · 5 portfolio projects built here',
     research:     'Alikhani Labs · NLP interpretability · multi-turn sycophancy under pressure',
 
     streaming:    'Kafka · Spark Structured Streaming · windowing · watermarking · checkpointing',
     batch:        'PySpark · Airflow DAGs · dbt models · medallion architecture',
+    databricks:   'Databricks · Lakeflow Declarative Pipelines · Auto Loader · Unity Catalog · Delta Lake with liquid clustering',
     devops:       'GCP (GCS, BigQuery) · AWS (S3, Lambda) · cloud-native deploy patterns',
-    jenkins:      'CI/CD ownership at HPE · automated validation gates · data contract integrity before prod promotion',
+    jenkins:      'CI ownership at HPE · test suite and lab environments · validation coverage as services drifted',
     docker:       'Containerised services · Docker Compose stacks for MarketPulse · reproducible local pipelines',
     crowdstrike:  'CrowdStrike observability stack at HPE · distributed telemetry ingestion · root-cause across enricher → predictor → sink',
     interp:       'Hidden-state probing · cosine similarity · layer-wise activation analysis',
     modelling:    'A/B testing · causal inference · counterfactuals · SHAP explainability',
 
+    hindsight:    'Hindsight · bitemporal SEC warehouse · 181M facts → 21.8M knowledge intervals · 6 invariants + dual-implementation equivalence test',
     marketpulse:  'MarketPulse · streaming anomaly detection · 5 instruments · sub-60s end-to-end',
     soundstream:  'SoundStream · 46M+ records · 60% storage compression · live Streamlit demo',
     credit:       'Credit Risk Engine · 113K loans · counterfactual A/B · $7.8M recovered · 20% default reduction',
     syco:         'Sycophancy paper · L28 dominant · L17-19 predictive · 75.5% probe accuracy',
     stock:        'Stock Portfolio Mgr · Finnhub API → MySQL → Flask REST → React',
 
+    pit:          '21.8M point-in-time intervals across 14,885 companies · look-ahead bias measured at 3.3% of top-decile selections',
     dollars:      '$7.8M recovered (Credit Risk Strategy Engine)',
     latency:      'sub-60s anomaly detection (MarketPulse)',
     paper:        'ACL ARR May 2026 · targeting EMNLP · BlackboxNLP backup',
@@ -2163,7 +2232,6 @@ updateTime(); setInterval(updateTime, 1000);
       const tx = tR.left - wrapR.left;
       const ty = tR.top + tR.height/2 - wrapR.top;
       const midX = (sx + tx) / 2;
-      const dir = tx > sx ? 1 : -1;
       const path = document.createElementNS('http://www.w3.org/2000/svg','path');
       path.setAttribute('d', `M ${sx} ${sy} C ${midX} ${sy}, ${midX} ${ty}, ${tx} ${ty}`);
       path.setAttribute('class','active');
@@ -2285,23 +2353,28 @@ const cmdkResults = document.getElementById('cmdk-results');
 const cmdkQueryResult = document.getElementById('cmdk-query-result');
 
 const commands = [
-  { kw: ['snapshot','metrics','stats','numbers'], label: 'Jump to snapshot', desc: 'topline metrics', action: () => goto('#snapshot') },
-  { kw: ['lineage','dag','pipeline','flow','graph'], label: 'Open lineage view', desc: 'experience → skills → outcomes', action: () => goto('#lineage') },
-  { kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '5 builds, instrumented', action: () => goto('#projects') },
-  { kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL ARR — sycophancy', action: () => goto('#research') },
-  { kw: ['experience','xp','work history','hpe','role'], label: 'Show experience log', desc: '3 years at HPE + lab', action: () => goto('#experience') },
-  { kw: ['contact','email','reach','hire','co-op','coop','intern'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
-  { kw: ['resume','cv','pdf','download'], label: 'Open resume', desc: 'DE / DS versions', action: () => window.open('Utkarsh_resume.pdf','_blank') },
-  { kw: ['github','source','gh','repo'], label: 'Open GitHub', desc: 'github.com/utkarsh1610-s', action: () => window.open('https://github.com/utkarsh1610-s','_blank') },
-  { kw: ['linkedin','li'], label: 'Open LinkedIn', desc: '/in/us1610', action: () => window.open('https://linkedin.com/in/us1610','_blank') },
-  { kw: ['marketpulse','market','kafka','spark','streaming'], label: 'Find: MarketPulse', desc: 'real-time anomaly detection', action: () => highlightProject('MarketPulse') },
-  { kw: ['soundstream','music','spotify','46m'], label: 'Find: SoundStream Analytics', desc: '46M+ records ELT', action: () => highlightProject('SoundStream') },
-  { kw: ['credit','risk','78','loan','default'], label: 'Find: Credit Risk Engine', desc: '$7.8M recovered', action: () => highlightProject('Credit Risk') },
-  { kw: ['stock','portfolio','finnhub'], label: 'Find: Stock Portfolio Manager', desc: 'Finnhub → MySQL → Flask', action: () => highlightProject('Stock Portfolio Manager') },
-  { kw: ['help','?'], label: 'Help — what can I query?', desc: 'show examples', action: () => showHelp() },
+  { g:'jump to', kw: ['snapshot','metrics','stats','numbers'], label: 'Jump to snapshot', desc: 'topline metrics', action: () => goto('#snapshot') },
+  { g:'jump to', kw: ['lineage','dag','pipeline','flow','graph'], label: 'Open lineage view', desc: 'experience → skills → outcomes', action: () => goto('#lineage') },
+  { g:'jump to', kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '6 builds, instrumented', action: () => goto('#projects') },
+  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL ARR — sycophancy', action: () => goto('#research') },
+  { g:'jump to', kw: ['experience','xp','work history','hpe','role'], label: 'Show experience log', desc: '3 years at HPE + lab', action: () => goto('#experience') },
+  { g:'jump to', kw: ['contact','email','reach','hire','co-op','coop','intern'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
+
+  { g:'find a project', kw: ['hindsight','bitemporal','sec','xbrl','point-in-time','pit','finance','databricks'], label: 'Find: Hindsight', desc: '181M facts · point-in-time', action: () => highlightProject('Hindsight') },
+  { g:'find a project', kw: ['marketpulse','market','kafka','spark','streaming'], label: 'Find: MarketPulse', desc: 'real-time anomaly detection', action: () => highlightProject('MarketPulse') },
+  { g:'find a project', kw: ['soundstream','music','spotify','46m'], label: 'Find: SoundStream Analytics', desc: '46M+ records ELT', action: () => highlightProject('SoundStream') },
+  { g:'find a project', kw: ['credit','risk','78','loan','default'], label: 'Find: Credit Risk Engine', desc: '$7.8M recovered', action: () => highlightProject('Credit Risk') },
+  { g:'find a project', kw: ['stock','portfolio','finnhub'], label: 'Find: Stock Portfolio Manager', desc: 'Finnhub → MySQL → Flask', action: () => highlightProject('Stock Portfolio Manager') },
+
+  { g:'external', kw: ['github','source','gh','repo'], label: 'Open GitHub', desc: 'github.com/utkarsh1610-s', action: () => window.open('https://github.com/utkarsh1610-s','_blank') },
+  { g:'external', kw: ['linkedin','li'], label: 'Open LinkedIn', desc: '/in/us1610', action: () => window.open('https://linkedin.com/in/us1610','_blank') },
+
+  { g:'utility', kw: ['resume','cv','pdf','download'], label: 'Open resume', desc: 'DE / DS versions', action: () => window.open('Utkarsh_resume.pdf','_blank') },
+  { g:'utility', kw: ['help','?'], label: 'Help — what can I query?', desc: 'show examples', action: () => showHelp() },
 ];
 
 const projectData = {
+  'Hindsight': { tech: ['databricks','lakeflow','delta lake','pyspark','unity catalog'], track: 'DE', impact: '181M facts · 3.3% look-ahead bias measured', stack: 'bitemporal warehouse' },
   'MarketPulse': { tech: ['kafka','spark','dbt','delta lake','gcs','bigquery'], track: 'DE', impact: 'sub-60s latency', stack: 'streaming' },
   'SoundStream': { tech: ['pyspark','dbt','airflow','duckdb','parquet'], track: 'DE', impact: '46M+ records · 60% compression', stack: 'batch' },
   'Credit Risk': { tech: ['scikit-learn','shap','statsmodels','causal'], track: 'DS', impact: '$7.8M recovered · 20% default↓', stack: 'modelling' },
@@ -2355,14 +2428,11 @@ function renderResults(q) {
 
   // Empty input: grouped defaults
   if (!q) {
-    const grouped = {
-      'jump to': commands.slice(0,6),
-      'find a project': commands.slice(9,14),
-      'external': commands.slice(7,9),
-      'utility': [commands[6], commands[14]],
-    };
+    const order = ['jump to','find a project','external','utility'];
     let html = '';
-    Object.entries(grouped).forEach(([k, arr]) => {
+    order.forEach(k => {
+      const arr = commands.filter(c => c.g === k);
+      if (!arr.length) return;
       html += `<div class="cmdk-group"><div class="gh">${k}</div>`;
       arr.forEach(c => {
         html += `<div class="cmdk-row" data-cmd="${commands.indexOf(c)}"><span class="ico">▸</span><span>${c.label}</span><span class="desc">${c.desc}</span></div>`;
@@ -2446,7 +2516,6 @@ function runQuery(q) {
     <div class="qr-meta">${rows.length} row${rows.length===1?'':'s'} returned${whereSummary}</div>
     ${bodies}
   `;
-  // scroll result into view inside the panel
   cmdkQueryResult.scrollTop = 0;
 }
 
@@ -2470,9 +2539,9 @@ function showHelp() {
     <div class="cmdk-group">
       <div class="gh">try these queries</div>
       <div class="cmdk-row" onclick="cmdkInput.value='SELECT * FROM projects'; renderResults('SELECT * FROM projects')"><span class="ico">▸</span>SELECT * FROM projects</div>
-      <div class="cmdk-row" onclick="cmdkInput.value=\"SELECT tech FROM projects WHERE track='DE'\"; renderResults(cmdkInput.value)"><span class="ico">▸</span>SELECT tech FROM projects WHERE track='DE'</div>
-      <div class="cmdk-row" onclick="cmdkInput.value=\"SELECT * FROM projects WHERE tech CONTAINS 'kafka'\"; renderResults(cmdkInput.value)"><span class="ico">▸</span>SELECT * FROM projects WHERE tech CONTAINS 'kafka'</div>
-      <div class="cmdk-row" onclick="cmdkInput.value='show research'; renderResults('show research')"><span class="ico">▸</span>show research</div>
+      <div class="cmdk-row" onclick="cmdkInput.value=&quot;SELECT tech FROM projects WHERE track='DE'&quot;; renderResults(cmdkInput.value)"><span class="ico">▸</span>SELECT tech FROM projects WHERE track='DE'</div>
+      <div class="cmdk-row" onclick="cmdkInput.value=&quot;SELECT * FROM projects WHERE tech CONTAINS 'databricks'&quot;; renderResults(cmdkInput.value)"><span class="ico">▸</span>SELECT * FROM projects WHERE tech CONTAINS 'databricks'</div>
+      <div class="cmdk-row" onclick="cmdkInput.value='hindsight'; renderResults('hindsight')"><span class="ico">▸</span>hindsight</div>
       <div class="cmdk-row" onclick="cmdkInput.value='resume'; renderResults('resume')"><span class="ico">▸</span>resume</div>
     </div>
   `;
