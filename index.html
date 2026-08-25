@@ -956,6 +956,110 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 .exp-body li strong { color: var(--txt); font-weight: 500; }
 .exp-body li .metric { color: var(--cyan); font-family: var(--mono); font-weight: 500; font-size: 0.92em; }
 
+/* company block */
+.exp-logo {
+  width: 150px; height: 90px;
+  border-radius: 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.exp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 7px; }
+.exp-body .company-line {
+  display: flex; align-items: center; gap: 0.85rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.exp-body .company-name {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  color: var(--txt);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.exp-body .loc-line {
+  margin-left: auto;
+  text-align: right;
+  font-size: 0.68rem;
+  color: var(--txt-4);
+  line-height: 1.5;
+}
+.role-span {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.exp-scope {
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  color: var(--txt-3);
+  line-height: 1.6;
+  padding: 0.7rem 0.9rem;
+  background: var(--bg);
+  border-left: 2px solid var(--line-2);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 1rem;
+}
+.exp-scope strong { color: var(--txt-2); font-weight: 500; }
+.exp-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.8rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.exp-stats .es { display: flex; flex-direction: column; gap: 3px; }
+.exp-stats .es .v {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--txt);
+  line-height: 1;
+}
+.exp-stats .es .l {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--txt-4);
+}
+.subrole {
+  border-left: 1px solid var(--line-2);
+  padding-left: 1rem;
+  margin-bottom: 1.1rem;
+}
+.subrole:last-of-type { margin-bottom: 0.5rem; }
+.subrole-head {
+  display: flex; align-items: baseline; gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.1rem;
+}
+.subrole-head .title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--txt);
+  letter-spacing: -0.01em;
+}
+.subrole-head .span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--cyan);
+  letter-spacing: 0.02em;
+}
+.subrole-head .span .yrs { color: var(--txt-3); }
+.exp-chips {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+}
+
 /* ───────────── EDU + ACH ───────────── */
 .edu-ach { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; }
 .edu-card, .ach-card {
@@ -1291,6 +1395,8 @@ footer .dot { color: var(--cyan); }
   .contact-channels { grid-template-columns: 1fr; }
   .contact-channels a { border-right: none; border-bottom: 1px solid var(--line); }
   .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  .exp-stats { grid-template-columns: repeat(2, 1fr); }
+  .exp-body .loc-line { margin-left: 0; text-align: left; width: 100%; }
   .lineage { grid-template-columns: 1fr; }
 }
 
@@ -1449,7 +1555,7 @@ footer .dot { color: var(--cyan); }
         <div class="lin-head">raw <span class="layer-tag">BRONZE</span></div>
         <div class="lin-node" data-node="hpe">▢ HPE · 3 yr cloud dev <span class="meta">2022–25</span></div>
         <div class="lin-node" data-node="northeastern">▢ Northeastern MSCS <span class="meta">2025–27</span></div>
-        <div class="lin-node" data-node="research">▢ Alikhani Lab · NLP <span class="meta">2026</span></div>
+        <div class="lin-node" data-node="research">▢ NLP <span class="meta">2026</span></div>
       </div>
       <div class="lin-col">
         <div class="lin-head">skills <span class="layer-tag">SILVER</span></div>
@@ -1642,7 +1748,7 @@ footer .dot { color: var(--cyan); }
     <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection">
       <div class="proj-meta">
         <span class="badge ml">NLP · Research</span>
-        <span class="status"><span class="dot"></span> ACL ARR May'26</span>
+        <span class="status">ACL ARR · EACL 2026</span>
       </div>
       <h3>Sycophancy under pressure — predicting LLM capitulation</h3>
       <p class="blurb">
@@ -1766,7 +1872,7 @@ footer .dot { color: var(--cyan); }
     <div class="research-text r d1">
       <div class="paper-meta">
         <span class="tag">ACL ARR · May '26</span>
-        <span>Alikhani Lab · Northeastern</span>
+        <span> Northeastern</span>
       </div>
       <h3>"Before the Model Caves<span class="it"> —</span><br>Detecting Pre-Capitulation States in Multi-Turn Sycophancy"</h3>
       <p>
@@ -1780,7 +1886,7 @@ footer .dot { color: var(--cyan); }
         cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns in advance</strong>, with no probe training required. RBF SVM + KNN classifiers reach 75.5% accuracy — +11.7 over chance.
       </div>
       <p style="font-size:0.85rem; color:var(--txt-3);">
-        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting EMNLP main · BlackboxNLP backup.
+        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting EACL 2026.
       </p>
     </div>
 
@@ -1830,55 +1936,96 @@ footer .dot { color: var(--cyan); }
     <div class="exp-row">
       <div class="exp-date">
         Sep 2025 — present<br>
-        <span class="now">in progress</span>
+        <span style="color:var(--txt-4)">Boston, MA</span>
       </div>
       <div class="exp-body">
-        <div class="role-line">
-          <span class="role">Graduate Researcher</span>
-          <span class="at">@</span>
-          <span class="company">Alikhani Labs · Northeastern</span>
-          <span class="loc">Boston, MA</span>
+        <div class="company-line">
+          <span class="exp-logo"><img src="neu.jpg" alt=""></span>
+          <span class="company-name">Graduate Researcher</span>
+          <span class="role-span">Sep 2025 — present</span>
         </div>
+
+        <div class="exp-scope">
+          NLP interpretability group. <strong>Multi-turn sycophancy</strong> — why language models
+          abandon a correct position under conversational pressure, and whether the collapse is
+          visible in hidden states before it reaches the output.
+        </div>
+
+        <div class="exp-stats">
+          <div class="es"><span class="v">5</span><span class="l">architectures</span></div>
+          <div class="es"><span class="v">150+</span><span class="l">probes</span></div>
+          <div class="es"><span class="v">75.5%</span><span class="l">probe acc.</span></div>
+          <div class="es"><span class="v">3–4</span><span class="l">turn lead</span></div>
+        </div>
+
         <ul>
-          <li>First-authored <strong>ACL ARR submission</strong> on detecting pre-capitulation states in multi-turn LLM sycophancy <span class="metric">— targeting EMNLP main, BlackboxNLP backup</span></li>
+          <li>First-authored <strong>ACL ARR submission</strong> on detecting pre-capitulation states in multi-turn LLM sycophancy <span class="metric">— targeting EACL 2026</span></li>
           <li>Engineered the <strong>monotonically escalating pressure schedule</strong> that became the paper's central novelty; ran the experiment matrix across 5 architectures × 150+ probes</li>
           <li>Localised the predictive signal: <strong>Layer 28</strong> dominant in Qwen2.5-7B, layers <span class="metric">17–19 globally predictive</span> — a dissociation unreported in prior sycophancy literature</li>
         </ul>
+
+        <div class="exp-chips">
+          <span class="chip hi">pytorch</span><span class="chip hi">qwen2.5-7b</span>
+          <span class="chip">transformers</span><span class="chip">rbf svm</span><span class="chip">numpy</span><span class="chip">hidden-state probing</span>
+        </div>
       </div>
     </div>
 
     <div class="exp-row">
-      <div class="exp-date">Aug 2022 — Aug 2025</div>
-      <div class="exp-body">
-        <div class="role-line">
-          <span class="role">Cloud Developer</span>
-          <span class="at">@</span>
-          <span class="company">Hewlett Packard Enterprise</span>
-          <span class="loc">Bangalore, IN</span>
-        </div>
-        <ul>
-          <li>Traced data loss across <strong>15+ microservices</strong> ingesting VLAN/VXLAN switch telemetry, following records through enricher → predictor → sink connectors to pinpoint the failing service and root cause <span class="metric">→ −40% MTTR</span></li>
-          <li>Built training dataset from <strong>4,000+ failure logs</strong>, designed annotation schema for an ML triage assistant <span class="metric">→ +15% classification accuracy</span>, removed manual escalations</li>
-          <li>Designed a parallel execution framework distributing validation scripts across heterogeneous switch fleets <span class="metric">→ −55% end-to-end cycle time</span></li>
-          <li>Owned Jenkins CI for the platform's test suite and lab environments; kept validation coverage current as GraphQL APIs and deployed services drifted from test expectations</li>
-          <li>Mentored <strong>3 interns</strong> on automation workflows; documentation reduced onboarding by 1–2 months</li>
-        </ul>
+      <div class="exp-date">
+        Jan 2022 — Aug 2025<br>
+        <span style="color:var(--txt-4)">Bangalore, IN</span>
       </div>
-    </div>
-
-    <div class="exp-row">
-      <div class="exp-date">Jan 2022 — Jul 2022</div>
       <div class="exp-body">
-        <div class="role-line">
-          <span class="role">Software Engineer Intern</span>
-          <span class="at">@</span>
-          <span class="company">Hewlett Packard Enterprise</span>
-          <span class="loc">Bangalore, IN</span>
+        <div class="company-line">
+          <span class="exp-logo"><img src="hpe.jpg" alt=""></span>
+          <span class="company-name">Cloud Developer - Hewlett Packard Enterprise</span>
+          <span class="role-span">Jan 2022 — Aug 2025 <span style="color:var(--txt-4)">·</span> 3 yr 8 mo</span>
         </div>
-        <ul>
-          <li>Built automated feature-validation scripts integrated into the CI pipeline; eliminated lint-related production rejections</li>
-          <li>Authored Confluence reference used across the team for switch monitoring stack onboarding</li>
-        </ul>
+
+        <div class="exp-scope">
+          <strong>Switch Data Monitoring</strong> — the telemetry platform ingesting hardware health
+          and network metrics from HPE's enterprise switch fleet across 10+ models, through an
+          enricher → predictor → sink connector chain. I worked the reliability side: where data
+          broke, why, and keeping validation honest as the platform moved underneath it.
+        </div>
+
+        <div class="exp-stats">
+          <div class="es"><span class="v">15+</span><span class="l">microservices</span></div>
+          <div class="es"><span class="v">−40%</span><span class="l">mttr</span></div>
+          <div class="es"><span class="v">−55%</span><span class="l">cycle time</span></div>
+          <div class="es"><span class="v">4K+</span><span class="l">failure labels</span></div>
+        </div>
+
+        <div class="subrole">
+          <div class="subrole-head">
+            <span class="title">Cloud Developer</span>
+            <span class="span">Aug 2022 — Aug 2025 <span class="yrs">· 3 yr 1 mo</span></span>
+          </div>
+          <ul>
+            <li>Traced data loss across <strong>15+ microservices</strong> ingesting VLAN/VXLAN switch telemetry, following records through enricher → predictor → sink connectors to pinpoint the failing service and root cause <span class="metric">→ −40% MTTR</span></li>
+            <li>Built training dataset from <strong>4,000+ failure logs</strong>, designed annotation schema for an ML triage assistant <span class="metric">→ +15% classification accuracy</span>, removed manual escalations</li>
+            <li>Designed a parallel execution framework distributing validation scripts across heterogeneous switch fleets <span class="metric">→ −55% end-to-end cycle time</span></li>
+            <li>Owned Jenkins CI for the platform's test suite and lab environments; kept validation coverage current as GraphQL APIs and deployed services drifted from test expectations</li>
+            <li>Mentored <strong>3 interns</strong> on automation workflows; documentation reduced onboarding by 1–2 months</li>
+          </ul>
+        </div>
+
+        <div class="subrole">
+          <div class="subrole-head">
+            <span class="title">Software Engineer Intern</span>
+            <span class="span">Jan 2022 — Jul 2022 <span class="yrs">· 7 mo</span></span>
+          </div>
+          <ul>
+            <li>Built automated feature-validation scripts integrated into the CI pipeline across <strong>10+ switch models</strong>; eliminated recurring production rejections from malformed telemetry payloads</li>
+            <li>Cross-referenced <strong>500+ historical debugging logs</strong> to verify log-extraction accuracy; authored the Confluence reference adopted for stack onboarding</li>
+          </ul>
+        </div>
+
+        <div class="exp-chips">
+          <span class="chip hi">python</span><span class="chip hi">jenkins ci</span>
+          <span class="chip">sql</span><span class="chip">graphql</span><span class="chip">crowdstrike</span><span class="chip">docker</span><span class="chip">confluence</span>
+        </div>
       </div>
     </div>
 
@@ -2032,7 +2179,7 @@ updateTime(); setInterval(updateTime, 1000);
 /*  HERO — role rotator                    */
 /* ─────────────────────────────────────── */
 (() => {
-  const roles = ['data engineer', 'data scientist', 'cloud developer'];
+  const roles = ['data engineer', 'data scientist', 'pipeline architect', 'ml interpretability researcher'];
   const el = document.getElementById('role-text');
   let i = 0, j = 0, del = false;
   function tick() {
@@ -2168,7 +2315,7 @@ updateTime(); setInterval(updateTime, 1000);
   const detail = {
     hpe:          'HPE Cloud Developer · 3yr · CrowdStrike telemetry across 15+ microservices · Jenkins CI · Docker',
     northeastern: 'MSCS · Northeastern · streaming + batch + databricks skills · 5 portfolio projects built here',
-    research:     'Alikhani Labs · NLP interpretability · multi-turn sycophancy under pressure',
+    research:     ' NLP interpretability · multi-turn sycophancy under pressure',
 
     streaming:    'Kafka · Spark Structured Streaming · windowing · watermarking · checkpointing',
     batch:        'PySpark · Airflow DAGs · dbt models · medallion architecture',
@@ -2190,7 +2337,7 @@ updateTime(); setInterval(updateTime, 1000);
     pit:          '21.8M point-in-time intervals across 14,885 companies · look-ahead bias measured at 3.3% of top-decile selections',
     dollars:      '$7.8M recovered (Credit Risk Strategy Engine)',
     latency:      'sub-60s anomaly detection (MarketPulse)',
-    paper:        'ACL ARR May 2026 · targeting EMNLP · BlackboxNLP backup',
+    paper:        'ACL ARR May 2026 · targeting EACL 2026',
     mttr:         '−40% MTTR via systematic root-cause triage at HPE',
     prod:         'shipped to production · automated validation gates · data contract integrity',
     labels:       '4,000+ failure scenarios annotated at HPE · annotation schema for ML triage assistant · +15% classification accuracy',
@@ -2356,7 +2503,7 @@ const commands = [
   { g:'jump to', kw: ['snapshot','metrics','stats','numbers'], label: 'Jump to snapshot', desc: 'topline metrics', action: () => goto('#snapshot') },
   { g:'jump to', kw: ['lineage','dag','pipeline','flow','graph'], label: 'Open lineage view', desc: 'experience → skills → outcomes', action: () => goto('#lineage') },
   { g:'jump to', kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '6 builds, instrumented', action: () => goto('#projects') },
-  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL ARR — sycophancy', action: () => goto('#research') },
+  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'EACL 2026 — sycophancy', action: () => goto('#research') },
   { g:'jump to', kw: ['experience','xp','work history','hpe','role'], label: 'Show experience log', desc: '3 years at HPE + lab', action: () => goto('#experience') },
   { g:'jump to', kw: ['contact','email','reach','hire','co-op','coop','intern'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
 
