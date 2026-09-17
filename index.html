@@ -1462,7 +1462,7 @@ footer .dot { color: var(--acc); }
       <p class="lead">
         Three years at HPE taught me that data systems don't fail because of bad ideas — they fail because of bad data. That experience shaped how I think as a data engineer. I have worked on the reliability side of a production data platform — tracing where data broke and why. Now I aim at building data systems end to end.
         <br><br>
-        As an alternate interest area, I have done substantial research on <em>why LLMs quietly fold</em> when you push back on them. Now, aiming EACL 2026 submission.
+        As an alternate interest area, I have done substantial research on <em>why LLMs quietly fold</em> when you push back on them. Now, aiming ACL 2027 submission.
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">view work →</a>
@@ -1745,7 +1745,7 @@ footer .dot { color: var(--acc); }
     <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection">
       <div class="proj-meta">
         <span class="badge ml">NLP · Research</span>
-        <span class="status">ACL ARR · EACL 2026</span>
+        <span class="status">ACL ARR · ACL 2027</span>
       </div>
       <h3>Sycophancy under pressure — predicting LLM capitulation</h3>
       <p class="blurb">
@@ -1883,7 +1883,7 @@ footer .dot { color: var(--acc); }
         cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns in advance</strong>, with no probe training required. RBF SVM + KNN classifiers reach 75.5% accuracy — +11.7 over chance.
       </div>
       <p style="font-size:0.85rem; color:var(--txt-3);">
-        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting EACL 2026.
+        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting ACL 2027.
       </p>
     </div>
 
@@ -1986,7 +1986,7 @@ footer .dot { color: var(--acc); }
         </div>
 
         <ul>
-          <li>First-authored <strong>ACL ARR submission</strong> on detecting pre-capitulation states in multi-turn LLM sycophancy <span class="metric">— targeting EACL 2026</span></li>
+          <li>First-authored <strong>ACL ARR submission</strong> on detecting pre-capitulation states in multi-turn LLM sycophancy <span class="metric">— targeting ACL 2027</span></li>
           <li>Engineered the <strong>monotonically escalating pressure schedule</strong> that became the paper's central novelty; ran the experiment matrix across 5 architectures × 150+ probes</li>
           <li>Localised the predictive signal: <strong>Layer 28</strong> dominant in Qwen2.5-7B, layers <span class="metric">17–19 globally predictive</span> — a dissociation unreported in prior sycophancy literature</li>
         </ul>
@@ -2206,7 +2206,7 @@ updateTime(); setInterval(updateTime, 1000);
 /*  HERO — role rotator                    */
 /* ─────────────────────────────────────── */
 (() => {
-  const roles = ['data engineer', 'data scientist', 'pipeline architect', 'ml interpretability researcher'];
+  const roles = ['data engineer', 'data scientist', 'ml interpretability researcher', 'devOps and QA developer'];
   const el = document.getElementById('role-text');
   let i = 0, j = 0, del = false;
   function tick() {
@@ -2365,7 +2365,7 @@ updateTime(); setInterval(updateTime, 1000);
     pit:          '21.8M point-in-time intervals across 14,885 companies · look-ahead bias measured at 3.3% of top-decile selections',
     dollars:      '$7.8M recovered (Credit Risk Strategy Engine)',
     latency:      'sub-60s anomaly detection (MarketPulse)',
-    paper:        'ACL ARR May 2026 · targeting EACL 2026',
+    paper:        'ACL ARR May 2026 · targeting ACL 2027',
     mttr:         '−40% MTTR via systematic root-cause triage at HPE',
     prod:         'shipped to production · automated validation gates · data contract integrity',
     labels:       '4,000+ failure scenarios annotated at HPE · annotation schema for ML triage assistant · +15% classification accuracy',
@@ -2531,7 +2531,7 @@ const commands = [
   { g:'jump to', kw: ['snapshot','metrics','stats','numbers'], label: 'Jump to snapshot', desc: 'topline metrics', action: () => goto('#snapshot') },
   { g:'jump to', kw: ['lineage','dag','pipeline','flow','graph'], label: 'Open lineage view', desc: 'experience → skills → outcomes', action: () => goto('#lineage') },
   { g:'jump to', kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '6 builds, instrumented', action: () => goto('#projects') },
-  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'EACL 2026 — sycophancy', action: () => goto('#research') },
+  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL 2027 — sycophancy', action: () => goto('#research') },
   { g:'jump to', kw: ['experience','xp','work history','hpe','role','teaching','ta'], label: 'Show experience log', desc: 'TA + lab + 3 years at HPE', action: () => goto('#experience') },
   { g:'jump to', kw: ['contact','email','reach','hire','full time','fulltime','fte','new grad','hiring'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
 
