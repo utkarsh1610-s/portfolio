@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>utkarsh.saraogi — pipelines under pressure</title>
-<meta name="description" content="Data Engineer + Data Scientist. Northeastern MSCS. Pipelines that hold under load, models that are honest about what they don't know." />
+<meta name="description" content="Data Engineer + ML/AI Engineer. Northeastern MSCS. Pipelines that hold under load, models that are honest about what they don't know." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ───────────── TOKENS ───────────── */
 :root {
-  --bg:        #ece6dc;
+  --bg:        #ffffff;
   --bg-1:      #f8f5ef;
   --bg-2:      #f2eee5;
   --bg-3:      #e6dfd2;
@@ -31,9 +31,9 @@
   --acc2-dim:  rgba(140,109,47,0.12);
   --crimson:   #b3453f;
 
-  --mono:      'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans:      'Inter', system-ui, -apple-system, sans-serif;
-  --serif:     'Instrument Serif', 'Times New Roman', serif;
+  --mono:      'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans:      'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --serif:     'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 
   --pad:       max(1.5rem, 5vw);
 }
@@ -96,7 +96,7 @@ body::before {
 .statusbar {
   position: fixed; top: 0; left: 0; right: 0;
   height: 28px;
-  background: rgba(236,230,220,0.88);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center;
@@ -144,7 +144,7 @@ body::before {
 nav.topnav {
   position: fixed; top: 28px; left: 0; right: 0;
   height: 56px;
-  background: rgba(236,230,220,0.82);
+  background: rgba(255,255,255,0.82);
   backdrop-filter: blur(16px) saturate(1.2);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; justify-content: space-between;
@@ -234,8 +234,8 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 
 .hero h1 {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--txt);
@@ -244,23 +244,34 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 .hero h1 .it { font-style: italic; color: var(--acc); }
 .hero h1 .ws { font-family: var(--sans); font-weight: 300; font-size: 0.85em; color: var(--txt-2); letter-spacing: -0.02em; }
 
-.hero .role {
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--txt-3);
+.hero .roles {
+  display: flex;
+  align-items: stretch;
   margin-bottom: 2rem;
-  display: flex; align-items: center; gap: 0.5rem;
 }
-.hero .role .prompt { color: var(--acc); }
-.hero .role .cursor {
-  display: inline-block;
-  width: 8px; height: 1em;
-  background: var(--acc);
-  margin-left: 3px;
-  vertical-align: text-bottom;
-  animation: blink 1s steps(2) infinite;
+.hero .role-col { padding-right: 1.5rem; }
+.hero .role-col + .role-col {
+  padding-left: 1.5rem;
+  padding-right: 0;
+  border-left: 1px solid var(--line-2);
 }
-@keyframes blink { 50% { opacity: 0; } }
+.hero .role-col .title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--txt);
+}
+.hero .role-col .stack {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--txt-3);
+  margin-top: 0.25rem;
+}
+@media (max-width: 480px) {
+  .hero .roles { flex-direction: column; gap: 0.75rem; }
+  .hero .role-col + .role-col { padding-left: 0; border-left: none; }
+}
 
 .hero .lead {
   font-size: 1.05rem;
@@ -377,14 +388,7 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 }
 .console-footer .stat .v { color: var(--acc); }
 
-/* ───────────── FUNDAMENTALS ───────────── */
-.fundamentals {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.012));
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
+/* ───────────── SECTION HEADS ───────────── */
 .section-head {
   display: flex; align-items: baseline; gap: 1.25rem;
   margin-bottom: 2.5rem;
@@ -398,8 +402,8 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 }
 .section-head h2 {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   letter-spacing: -0.02em;
   color: var(--txt);
   line-height: 1;
@@ -412,152 +416,105 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   margin-left: auto;
 }
 
-.fund-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
+/* ───────────── HERO IMPACT STRIP ───────────── */
+.hero-impact {
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-2);
+  max-width: 560px;
 }
-.fund-cell {
-  background: var(--bg);
-  padding: 1.5rem 1.25rem;
-  display: flex; flex-direction: column; gap: 0.45rem;
-  transition: background 0.25s;
-  position: relative;
-}
-.fund-cell:hover { background: var(--bg-1); }
-.fund-cell .label {
+.hero-impact .hi-head {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--txt-3);
-}
-.fund-cell .num {
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  color: var(--txt);
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-.fund-cell .num .u { font-family: var(--sans); font-size: 0.55em; color: var(--acc); font-weight: 500; margin-left: 2px; vertical-align: 6px; }
-.fund-cell .desc {
-  font-family: var(--mono);
-  font-size: 0.65rem;
   color: var(--txt-4);
-  line-height: 1.5;
+  margin-bottom: 0.75rem;
 }
-.fund-cell .spark {
-  position: absolute; right: 1rem; top: 1rem;
+.hero-impact .hi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.hero-impact a {
+  display: block;
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  border-right: 1px solid var(--line);
+  transition: color 0.2s;
+}
+.hero-impact a:last-child { border-right: none; }
+.hero-impact .v {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: var(--txt);
+  transition: color 0.2s;
+}
+.hero-impact .l {
   font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--acc);
+  font-size: 0.64rem;
+  line-height: 1.4;
+  color: var(--txt-3);
+  margin-top: 0.3rem;
+}
+.hero-impact a:hover .v { color: var(--acc); }
+@media (max-width: 520px) {
+  .hero-impact .hi-grid { grid-template-columns: repeat(2, 1fr); row-gap: 1rem; }
+  .hero-impact a:nth-child(2) { border-right: none; }
 }
 
-/* ───────────── PIPELINE / LINEAGE ───────────── */
-.pipeline-wrap {
+/* ───────────── SKILLS ───────────── */
+.skills-wrap {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--bg-1);
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
+  padding: 0.5rem 2rem;
 }
-.lineage {
+.sk-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 0.5rem;
-  align-items: start;
-  position: relative;
-}
-.lin-col {
-  display: flex; flex-direction: column;
-  gap: 0.5rem;
-}
-.lin-head {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--txt-4);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  grid-template-columns: 240px 1fr;
+  gap: 2rem;
+  padding: 1.4rem 0;
   border-bottom: 1px dashed var(--line-2);
-  display: flex; justify-content: space-between;
 }
-.lin-head .layer-tag {
+.sk-row:last-child { border-bottom: none; }
+.sk-idx {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
   color: var(--acc);
-  font-weight: 600;
 }
-.lin-node {
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  padding: 0.6rem 0.75rem;
+.sk-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--txt);
+  margin-top: 0.15rem;
+}
+.sk-sub {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--txt-4);
+  margin-top: 0.3rem;
+}
+.sk-chips {
+  display: flex; flex-wrap: wrap;
+  gap: 0.45rem;
+  align-content: center;
+}
+.sk-chip {
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--txt-2);
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  display: flex; align-items: center; gap: 0.5rem;
-}
-.lin-node::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--txt-4); flex-shrink: 0;
-  transition: background 0.2s, box-shadow 0.2s;
-}
-.lin-node:hover, .lin-node.active {
-  border-color: var(--acc-mid);
-  background: var(--bg-3);
-  color: var(--txt);
-  transform: translateX(2px);
-}
-.lin-node:hover::before, .lin-node.active::before {
-  background: var(--acc);
-}
-.lin-node.lit::before { background: var(--acc); }
-.lin-node.lit { border-color: var(--acc-mid); color: var(--txt); }
-.lin-node .meta {
-  font-size: 0.62rem;
-  color: var(--txt-4);
-  margin-left: auto;
-}
-
-.lineage-svg {
-  position: absolute; inset: 0;
-  pointer-events: none;
-  width: 100%; height: 100%;
-}
-.lineage-svg path {
-  fill: none;
-  stroke: var(--line-2);
-  stroke-width: 1;
-  transition: stroke 0.3s, stroke-width 0.3s;
-}
-.lineage-svg path.active {
-  stroke: var(--acc);
-  stroke-width: 1.5;
-}
-
-.lineage-detail {
-  margin-top: 1.5rem;
-  padding: 1rem 1.25rem;
-  background: var(--bg);
+  background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 7px;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--txt-2);
-  min-height: 56px;
-  display: flex; align-items: center;
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  transition: border-color 0.2s, color 0.2s;
 }
-.lineage-detail .ld-label { color: var(--acc); margin-right: 0.5rem; }
-.lineage-detail .ld-hint { color: var(--txt-4); font-style: italic; }
+.sk-chip:hover { border-color: var(--acc-mid); color: var(--txt); }
 
 /* ───────────── PROJECTS ───────────── */
 .proj-grid {
@@ -576,6 +533,19 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   overflow: hidden;
 }
 .proj:hover { border-color: var(--acc-mid); background: var(--bg-2); transform: translateY(-2px); }
+
+/* per-project tints — light enough to keep text contrast, distinct enough to separate cards */
+.proj[data-tint]       { background: var(--tint); border-color: var(--tint-line); }
+.proj[data-tint]:hover { background: var(--tint-hover); border-color: var(--tint-edge); }
+.proj[data-tint] .proj-vis   { background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.2)); border-color: var(--tint-line); }
+.proj[data-tint] .proj-stats { background: rgba(255,255,255,0.45); border-color: var(--tint-line); }
+.proj[data-tint="slate"]    { --tint: #e3e8f6; --tint-hover: #d8dff3; --tint-line: rgba(70,80,140,0.22); --tint-edge: rgba(70,80,140,0.42); }
+.proj[data-tint="sage"]     { --tint: #e0eeda; --tint-hover: #d4e7cc; --tint-line: rgba(80,120,70,0.22); --tint-edge: rgba(80,120,70,0.42); }
+.proj[data-tint="lavender"] { --tint: #ebe2f6; --tint-hover: #e1d5f2; --tint-line: rgba(107,79,168,0.22); --tint-edge: rgba(107,79,168,0.42); }
+.proj[data-tint="sand"]     { --tint: #f7e5d0; --tint-hover: #f2dabf; --tint-line: rgba(160,110,50,0.24); --tint-edge: rgba(160,110,50,0.44); }
+.proj[data-tint="teal"]     { --tint: #dbeeeb; --tint-hover: #cde7e3; --tint-line: rgba(40,120,115,0.22); --tint-edge: rgba(40,120,115,0.42); }
+.proj[data-tint="ochre"]    { --tint: #f5eac6; --tint-hover: #f0e1b2; --tint-line: rgba(140,109,47,0.25); --tint-edge: rgba(140,109,47,0.45); }
+.proj[data-tint="rose"]     { --tint: #f6dfdf; --tint-hover: #f0d1d1; --tint-line: rgba(160,80,80,0.22); --tint-edge: rgba(160,80,80,0.42); }
 .proj.feat { grid-column: span 6; display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: stretch; }
 .proj.half { grid-column: span 3; }
 .proj.third { grid-column: span 2; }
@@ -609,14 +579,14 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 }
 .proj h3 {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
   line-height: 1.15;
   color: var(--txt);
   letter-spacing: -0.01em;
   margin-bottom: 0.75rem;
 }
-.proj.feat h3 { font-size: 2rem; }
+.proj.feat h3 { font-size: 1.6rem; }
 .proj .blurb {
   font-size: 0.86rem;
   color: var(--txt-2);
@@ -698,6 +668,163 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   min-height: 0;
   margin-bottom: 1.25rem;
   flex-shrink: 0;
+}
+
+/* ───────────── MOTIVATION MODAL ───────────── */
+.mot-btn {
+  font: inherit;
+  color: var(--acc);
+  background: none;
+  border: 1px solid var(--tint-edge, var(--acc-mid));
+  border-radius: 100px;
+  padding: 0.1rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mot-btn:hover { background: var(--acc); color: var(--bg-1); border-color: var(--acc); }
+
+.mot-overlay {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  background: rgba(30,28,24,0.42);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.mot-overlay.open { opacity: 1; pointer-events: auto; }
+.mot-panel {
+  position: relative;
+  width: min(780px, 100%);
+  max-height: 86vh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  transform: translateY(14px) scale(0.985);
+  transition: transform 0.3s ease;
+}
+.mot-overlay.open .mot-panel { transform: none; }
+.mot-content { overflow-y: auto; overscroll-behavior: contain; }
+.mot-close:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.mot-head {
+  background: var(--mot-tint, var(--bg-2));
+  border-bottom: 1px solid var(--line);
+  padding: 2rem 2.25rem 1.5rem;
+}
+.mot-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.mot-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  line-height: 1.1;
+  color: var(--txt);
+  margin: 0.4rem 2.5rem 0.6rem 0;
+}
+.mot-hook {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--txt-2);
+}
+.mot-close {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: var(--bg-1);
+  color: var(--txt-2);
+  font-size: 1.2rem; line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  z-index: 2;
+}
+.mot-close:hover { background: var(--txt); color: var(--bg-1); transform: rotate(90deg); }
+.mot-body { padding: 1.75rem 2.25rem 2rem; }
+.mot-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.mot-stat {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  background: var(--bg-2);
+}
+.mot-stat .v { font-family: var(--serif); font-size: 1.45rem; color: var(--txt); line-height: 1.1; }
+.mot-stat .l { font-family: var(--mono); font-size: 0.6rem; color: var(--txt-3); margin-top: 0.25rem; letter-spacing: 0.04em; }
+.mot-sec + .mot-sec { margin-top: 1.5rem; }
+.mot-sec h4 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--txt-4);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--line-2);
+}
+.mot-sec p, .mot-sec li {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--txt-2);
+}
+.mot-sec p + p { margin-top: 0.6rem; }
+.mot-sec b { color: var(--txt); font-weight: 600; }
+.mot-sec ul { list-style: none; padding: 0; margin: 0; }
+.mot-sec li { position: relative; padding-left: 1.1rem; }
+.mot-sec li + li { margin-top: 0.45rem; }
+.mot-sec li::before { content: '→'; position: absolute; left: 0; color: var(--acc); font-family: var(--mono); font-size: 0.8em; top: 0.15em; }
+.mot-sec code {
+  font-family: var(--mono);
+  font-size: 0.8em;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  color: var(--txt);
+}
+.mot-quote {
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--acc);
+  background: var(--bg-2);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--txt);
+}
+.mot-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  margin-top: 1.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--txt-4);
+}
+.mot-foot a { color: var(--acc); }
+@media (max-width: 600px) {
+  .mot-head { padding: 1.5rem 1.25rem 1.25rem; }
+  .mot-body { padding: 1.25rem 1.25rem 1.5rem; }
+  .mot-stats { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ───────────── RESEARCH ───────────── */
@@ -1365,9 +1492,7 @@ footer .dot { color: var(--acc); }
 /* ───────────── RESPONSIVE ───────────── */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .fund-grid { grid-template-columns: repeat(3, 1fr); }
-  .lineage { grid-template-columns: repeat(2, 1fr); }
-  .lineage-svg { display: none; }
+  .sk-row { grid-template-columns: 1fr; gap: 0.9rem; }
   .proj-grid { grid-template-columns: repeat(4, 1fr); }
   .proj.feat { grid-column: span 4; grid-template-columns: 1fr; }
   .proj.half { grid-column: span 4; }
@@ -1386,7 +1511,6 @@ footer .dot { color: var(--acc); }
   .hero { padding-top: calc(28px + 56px + 2rem); }
   .name-row { gap: 0.9rem; }
   .hero-photo { height: 5.5rem; border-radius: 10px; }
-  .fund-grid { grid-template-columns: repeat(2, 1fr); }
   .proj-grid { grid-template-columns: 1fr; }
   .proj.feat, .proj.half, .proj.third { grid-column: span 1; }
   .contact-channels { grid-template-columns: 1fr; }
@@ -1394,7 +1518,7 @@ footer .dot { color: var(--acc); }
   .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
   .exp-stats { grid-template-columns: repeat(2, 1fr); }
   .exp-body .loc-line { margin-left: 0; text-align: left; width: 100%; }
-  .lineage { grid-template-columns: 1fr; }
+  .skills-wrap { padding: 0.25rem 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1410,9 +1534,8 @@ footer .dot { color: var(--acc); }
 <!-- BOOT SEQUENCE -->
 <div class="boot" id="boot">
   <div class="boot-line" data-d="0">      <span class="dim">$</span> <span class="label">init</span> utkarsh.saraogi <span class="dim">--target=portfolio</span></div>
-  <div class="boot-line" data-d="200">    <span class="ok">[ ok ]</span> mounting <span class="label">/skills</span>           <span class="dim">82 chips loaded</span></div>
+  <div class="boot-line" data-d="200">    <span class="ok">[ ok ]</span> mounting <span class="label">/skills</span>           <span class="dim">35 tools · 4 areas</span></div>
   <div class="boot-line" data-d="380">    <span class="ok">[ ok ]</span> connecting <span class="label">github://utkarsh1610-s</span>  <span class="dim">6 repos</span></div>
-  <div class="boot-line" data-d="540">    <span class="ok">[ ok ]</span> bootstrapping <span class="label">lineage.dag</span>  <span class="dim">4 layers, 31 nodes</span></div>
   <div class="boot-line" data-d="700">    <span class="ok">[ ok ]</span> warming <span class="label">stream.console</span>      <span class="dim">subscribed → 6 topics</span></div>
   <div class="boot-line" data-d="860">    <span class="ok">[ ok ]</span> ready. <span class="dim">press</span> <span class="label">/</span> <span class="dim">to query.</span></div>
 </div>
@@ -1438,8 +1561,7 @@ footer .dot { color: var(--acc); }
 <nav class="topnav">
   <a href="#top" class="brand">utkarsh<span class="dot">.</span>saraogi</a>
   <div class="links">
-    <a href="#snapshot">snapshot</a>
-    <a href="#lineage">lineage</a>
+    <a href="#skills">skills</a>
     <a href="#projects">projects</a>
     <a href="#research">research</a>
     <a href="#experience">experience</a>
@@ -1456,8 +1578,15 @@ footer .dot { color: var(--acc); }
         <img class="hero-photo" src="image-final.jpeg" alt="Utkarsh Saraogi" />
         <h1>Utkarsh<br>Saraogi<span class="it">.</span></h1>
       </div>
-      <div class="role">
-        <span class="prompt">$</span> role <span style="color:var(--txt-4)">=</span> <span id="role-text" style="color:var(--txt)"></span><span class="cursor"></span>
+      <div class="roles">
+        <div class="role-col">
+          <div class="title">Data Engineer</div>
+          <div class="stack">pipelines · streaming · warehousing</div>
+        </div>
+        <div class="role-col">
+          <div class="title">ML / AI Engineer</div>
+          <div class="stack">models · LLM evaluation · interpretability</div>
+        </div>
       </div>
       <p class="lead">
         Three years at HPE taught me that data systems don't fail because of bad ideas — they fail because of bad data. That experience shaped how I think as a data engineer. I have worked on the reliability side of a production data platform — tracing where data broke and why. Now I aim at building data systems end to end.
@@ -1468,6 +1597,16 @@ footer .dot { color: var(--acc); }
         <a href="#projects" class="btn btn-primary">view work →</a>
         <a href="#" onclick="openCmdk(); return false;" class="btn btn-ghost">/ query portfolio</a>
         <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener" class="btn btn-ghost">github ↗</a>
+        <a href="resume.pdf" download="Utkarsh_Saraogi_Resume.pdf" class="btn btn-ghost">resume ↓</a>
+      </div>
+      <div class="hero-impact">
+        <div class="hi-head">impact at HPE · production</div>
+        <div class="hi-grid">
+          <a href="#experience"><div class="v">−40%</div><div class="l">mean time to resolve incidents</div></a>
+          <a href="#experience"><div class="v">−55%</div><div class="l">validation cycle time</div></a>
+          <a href="#experience"><div class="v">+15%</div><div class="l">ML triage accuracy</div></a>
+          <a href="#experience"><div class="v">15+</div><div class="l">microservices debugged</div></a>
+        </div>
       </div>
     </div>
 
@@ -1493,111 +1632,54 @@ footer .dot { color: var(--acc); }
   </div>
 </section>
 
-<!-- FUNDAMENTALS -->
-<section class="fundamentals" id="snapshot">
+<!-- SKILLS -->
+<section class="skills-sec" id="skills">
   <div class="section-head r">
     <span class="num">01</span>
-    <h2>snapshot<span class="it">.</span></h2>
-    <span class="sub">what the numbers say</span>
-  </div>
-  <div class="fund-grid r d1">
-    <div class="fund-cell">
-      <span class="label">facts ingested</span>
-      <span class="num">181<span class="u">M</span></span>
-      <span class="desc">SEC XBRL · 69 quarters · bitemporal warehouse</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">look-ahead bias</span>
-      <span class="num">3.3<span class="u">%</span></span>
-      <span class="desc">top-decile picks that differ · 49 quarters</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">records processed</span>
-      <span class="num">46<span class="u">M+</span></span>
-      <span class="desc">ELT · 3 raw sources · 70+ countries</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">recovered</span>
-      <span class="num">$7.8<span class="u">M</span></span>
-      <span class="desc">counterfactual A/B · credit risk · 113K loans</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">MTTR reduction</span>
-      <span class="num">−40<span class="u">%</span></span>
-      <span class="desc">15+ microservices · telemetry triage</span>
-    </div>
-    <div class="fund-cell">
-      <span class="label">streaming latency</span>
-      <span class="num">&lt;60<span class="u">s</span></span>
-      <span class="desc">MarketPulse · Kafka → Spark → BigQuery</span>
-    </div>
-  </div>
-</section>
-
-<!-- LINEAGE / PIPELINE -->
-<section class="lineage-sec" id="lineage">
-  <div class="section-head r">
-    <span class="num">02</span>
-    <h2>lineage<span class="it">.</span></h2>
-    <span class="sub">how raw experience flows to gold</span>
+    <h2>skills<span class="it">.</span></h2>
+    <span class="sub">toolkit, grouped by area</span>
   </div>
 
-  <div class="pipeline-wrap r d1">
-    <svg class="lineage-svg" viewBox="0 0 1000 320" preserveAspectRatio="none" aria-hidden="true">
-      <!-- paths drawn by JS -->
-    </svg>
-
-    <div class="lineage" id="lineage-dag">
-      <div class="lin-col">
-        <div class="lin-head">raw <span class="layer-tag">BRONZE</span></div>
-        <div class="lin-node" data-node="hpe">▢ HPE · 3 yr cloud dev <span class="meta">2022–25</span></div>
-        <div class="lin-node" data-node="northeastern">▢ Northeastern MSCS <span class="meta">2025–27</span></div>
-        <div class="lin-node" data-node="research">▢ NLP <span class="meta">2026</span></div>
+  <div class="skills-wrap r d1">
+      <div class="sk-row">
+        <div class="sk-area">
+          <span class="sk-idx">01</span>
+          <div class="sk-name">Data Engineering</div>
+          <div class="sk-sub">batch, streaming & lakehouse</div>
+        </div>
+        <div class="sk-chips"><span class="sk-chip">Apache Spark</span><span class="sk-chip">PySpark</span><span class="sk-chip">Spark Structured Streaming</span><span class="sk-chip">Kafka</span><span class="sk-chip">Airflow</span><span class="sk-chip">dbt</span><span class="sk-chip">Databricks</span><span class="sk-chip">Lakeflow</span><span class="sk-chip">Auto Loader</span><span class="sk-chip">Delta Lake</span><span class="sk-chip">Unity Catalog</span><span class="sk-chip">DuckDB</span><span class="sk-chip">Parquet</span><span class="sk-chip">PostgreSQL</span><span class="sk-chip">MySQL</span></div>
       </div>
-      <div class="lin-col">
-        <div class="lin-head">skills <span class="layer-tag">SILVER</span></div>
-        <div class="lin-node" data-node="jenkins">⊡ Jenkins CI/CD</div>
-        <div class="lin-node" data-node="docker">⊡ Docker · containers</div>
-        <div class="lin-node" data-node="crowdstrike">⊡ CrowdStrike telemetry</div>
-        <div class="lin-node" data-node="devops">⊡ DevOps · GCP · AWS</div>
-        <div class="lin-node" data-node="streaming">⊡ Kafka · Spark Streaming</div>
-        <div class="lin-node" data-node="batch">⊡ PySpark · dbt · Airflow</div>
-        <div class="lin-node" data-node="databricks">⊡ Databricks · Lakeflow</div>
-        <div class="lin-node" data-node="interp">⊡ Hidden-state probing</div>
-        <div class="lin-node" data-node="modelling">⊡ Causal · A/B · SHAP</div>
+      <div class="sk-row">
+        <div class="sk-area">
+          <span class="sk-idx">02</span>
+          <div class="sk-name">ML / AI</div>
+          <div class="sk-sub">modelling & deep learning</div>
+        </div>
+        <div class="sk-chips"><span class="sk-chip">PyTorch</span><span class="sk-chip">Hugging Face Transformers</span><span class="sk-chip">scikit-learn</span><span class="sk-chip">statsmodels</span><span class="sk-chip">NumPy</span><span class="sk-chip">SHAP</span><span class="sk-chip">pandas</span><span class="sk-chip">MLflow</span></div>
       </div>
-      <div class="lin-col">
-        <div class="lin-head">projects <span class="layer-tag">SILVER</span></div>
-        <div class="lin-node" data-node="hindsight">▣ Hindsight</div>
-        <div class="lin-node" data-node="marketpulse">▣ MarketPulse</div>
-        <div class="lin-node" data-node="soundstream">▣ SoundStream Analytics</div>
-        <div class="lin-node" data-node="credit">▣ Credit Risk Engine</div>
-        <div class="lin-node" data-node="syco">▣ Sycophancy Detection</div>
-        <div class="lin-node" data-node="stock">▣ Stock Portfolio Mgr</div>
+      <div class="sk-row">
+        <div class="sk-area">
+          <span class="sk-idx">03</span>
+          <div class="sk-name">Cloud & DevOps</div>
+          <div class="sk-sub">cloud platforms, containers & CI</div>
+        </div>
+        <div class="sk-chips"><span class="sk-chip">GCP</span><span class="sk-chip">BigQuery</span><span class="sk-chip">GCS</span><span class="sk-chip">AWS</span><span class="sk-chip">S3</span><span class="sk-chip">Lambda</span><span class="sk-chip">Docker</span><span class="sk-chip">Docker Compose</span><span class="sk-chip">Jenkins</span><span class="sk-chip">CrowdStrike</span></div>
       </div>
-      <div class="lin-col">
-        <div class="lin-head">outcomes <span class="layer-tag">GOLD</span></div>
-        <div class="lin-node" data-node="pit">★ 21.8M PIT intervals</div>
-        <div class="lin-node" data-node="mttr">★ −40% MTTR</div>
-        <div class="lin-node" data-node="prod">★ shipped to prod</div>
-        <div class="lin-node" data-node="labels">★ 4K+ failure labels</div>
-        <div class="lin-node" data-node="paper">★ ACL ARR submission</div>
-        <div class="lin-node" data-node="dollars">★ $7.8M recovered</div>
-        <div class="lin-node" data-node="latency">★ sub-60s latency</div>
+      <div class="sk-row">
+        <div class="sk-area">
+          <span class="sk-idx">04</span>
+          <div class="sk-name">Languages</div>
+          <div class="sk-sub">core languages</div>
+        </div>
+        <div class="sk-chips"><span class="sk-chip">Python</span><span class="sk-chip">SQL</span></div>
       </div>
-    </div>
-
-    <div class="lineage-detail" id="lin-detail">
-      <span class="ld-label">tip</span>
-      <span class="ld-hint">hover any node to trace its upstream + downstream dependencies →</span>
-    </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-head r">
-    <span class="num">03</span>
+    <span class="num">02</span>
     <h2>projects<span class="it">.</span></h2>
     <span class="sub">deployable, instrumented, in production</span>
   </div>
@@ -1605,7 +1687,7 @@ footer .dot { color: var(--acc); }
   <div class="proj-grid">
 
     <!-- HINDSIGHT -->
-    <article class="proj half r" data-tech="databricks lakeflow delta spark sql bitemporal sec finance" data-track="de" data-name="Hindsight">
+    <article class="proj half r" data-tech="databricks lakeflow delta spark sql bitemporal sec finance" data-track="de" data-name="Hindsight" data-tint="slate">
       <div class="proj-vis">
         <svg viewBox="0 0 360 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
           <defs>
@@ -1614,8 +1696,8 @@ footer .dot { color: var(--acc); }
               <stop offset="1" stop-color="#46508c" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <text x="180" y="22" text-anchor="middle" fill="#1e1c18" font-family="Instrument Serif" font-size="14">one fact, two truths</text>
-          <text x="180" y="38" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6.5">AT&amp;T · FY2021 revenue · as the market knew it</text>
+          <text x="180" y="22" text-anchor="middle" fill="#1e1c18" font-family="IBM Plex Sans" font-weight="600" font-size="14">one fact, two truths</text>
+          <text x="180" y="38" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6.5">AT&amp;T · FY2021 revenue · as the market knew it</text>
           <g opacity="0.05">
             <line x1="30" y1="80"  x2="340" y2="80"  stroke="#111"/>
             <line x1="30" y1="120" x2="340" y2="120" stroke="#111"/>
@@ -1625,21 +1707,21 @@ footer .dot { color: var(--acc); }
           <path d="M 52 78 L 155 78 L 155 158 L 336 158" fill="none" stroke="#b3aea4" stroke-width="2"/>
           <line x1="155" y1="58" x2="155" y2="200" stroke="#8c6d2f" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
           <circle cx="155" cy="78" r="3.5" fill="#f8f5ef" stroke="#8c6d2f" stroke-width="1.5"/>
-          <text x="160" y="54" fill="#8c6d2f" font-family="JetBrains Mono" font-size="6.5">restated 2023-02-13</text>
-          <text x="160" y="64" fill="#726d63" font-family="JetBrains Mono" font-size="6">FY2022 10-K · WarnerMedia spin-off</text>
-          <text x="58" y="70" fill="#726d63" font-family="JetBrains Mono" font-size="9" font-weight="600">$168.9B</text>
-          <text x="284" y="172" fill="#46508c" font-family="JetBrains Mono" font-size="9" font-weight="600">$134.0B</text>
+          <text x="160" y="54" fill="#8c6d2f" font-family="IBM Plex Mono" font-size="6.5">restated 2023-02-13</text>
+          <text x="160" y="64" fill="#726d63" font-family="IBM Plex Mono" font-size="6">FY2022 10-K · WarnerMedia spin-off</text>
+          <text x="58" y="70" fill="#726d63" font-family="IBM Plex Mono" font-size="9" font-weight="600">$168.9B</text>
+          <text x="284" y="172" fill="#46508c" font-family="IBM Plex Mono" font-size="9" font-weight="600">$134.0B</text>
           <circle cx="100" cy="78" r="2.5" fill="#b3aea4"/>
           <line x1="100" y1="78" x2="100" y2="200" stroke="#c7c1b6" stroke-width="0.75" stroke-dasharray="2,3" opacity="0.9"/>
-          <text x="100" y="212" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">as_of('2022-06-01')</text>
+          <text x="100" y="212" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">as_of('2022-06-01')</text>
           <circle cx="310" cy="158" r="2.5" fill="#46508c"/>
           <line x1="310" y1="158" x2="310" y2="200" stroke="#c7c1b6" stroke-width="0.75" stroke-dasharray="2,3" opacity="0.9"/>
-          <text x="310" y="212" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">as_of(today)</text>
+          <text x="310" y="212" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">as_of(today)</text>
           <line x1="30" y1="200" x2="340" y2="200" stroke="#111" stroke-opacity="0.12"/>
-          <text x="52"  y="192" text-anchor="middle" fill="#9a958a" font-family="JetBrains Mono" font-size="6">2022</text>
-          <text x="200" y="192" text-anchor="middle" fill="#9a958a" font-family="JetBrains Mono" font-size="6">2024</text>
-          <text x="336" y="192" text-anchor="middle" fill="#9a958a" font-family="JetBrains Mono" font-size="6">2026</text>
-          <text x="180" y="232" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6.5">21.8M knowledge intervals · 14,885 companies · 6 invariants asserted</text>
+          <text x="52"  y="192" text-anchor="middle" fill="#9a958a" font-family="IBM Plex Mono" font-size="6">2022</text>
+          <text x="200" y="192" text-anchor="middle" fill="#9a958a" font-family="IBM Plex Mono" font-size="6">2024</text>
+          <text x="336" y="192" text-anchor="middle" fill="#9a958a" font-family="IBM Plex Mono" font-size="6">2026</text>
+          <text x="180" y="232" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6.5">21.8M knowledge intervals · 14,885 companies · 6 invariants asserted</text>
         </svg>
       </div>
       <div class="proj-meta">
@@ -1660,13 +1742,13 @@ footer .dot { color: var(--acc); }
         <span class="chip">auto loader</span><span class="chip">unity catalog</span><span class="chip">pyspark</span><span class="chip">pytest</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ source</a>
-        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ read the writeup</a>
+        <a href="https://github.com/utkarsh1610-s/Hindsight" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="Hindsight">✦ motivation</button>
       </div>
     </article>
 
     <!-- MARKETPULSE -->
-    <article class="proj half r d1" data-tech="kafka spark dbt streaming gcp bigquery delta" data-track="de" data-name="MarketPulse">
+    <article class="proj half r d1" data-tech="kafka spark dbt streaming gcp bigquery delta" data-track="de" data-name="MarketPulse" data-tint="sage">
       <div class="proj-vis">
         <svg viewBox="0 0 360 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
           <defs>
@@ -1682,41 +1764,41 @@ footer .dot { color: var(--acc); }
             <line x1="0" y1="180" x2="360" y2="180" stroke="#111"/>
           </g>
           <rect x="14"  y="92" width="60" height="56" rx="6" fill="none" stroke="#cdc7bb" stroke-opacity="1"/>
-          <text x="44" y="115" text-anchor="middle" fill="#1e1c18" font-family="JetBrains Mono" font-size="8" font-weight="600">KAFKA</text>
-          <text x="44" y="128" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="6.5">trade.events</text>
-          <text x="44" y="139" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">ticker-keyed</text>
+          <text x="44" y="115" text-anchor="middle" fill="#1e1c18" font-family="IBM Plex Mono" font-size="8" font-weight="600">KAFKA</text>
+          <text x="44" y="128" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="6.5">trade.events</text>
+          <text x="44" y="139" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">ticker-keyed</text>
           <line x1="74" y1="120" x2="98" y2="120" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1s" repeatCount="indefinite"/>
           </line>
           <polygon points="98,116 104,120 98,124" fill="#b3aea4"/>
           <rect x="106" y="80" width="76" height="80" rx="6" fill="none" stroke="#cdc7bb" stroke-opacity="1"/>
-          <text x="144" y="100" text-anchor="middle" fill="#1e1c18" font-family="JetBrains Mono" font-size="8" font-weight="600">SPARK</text>
-          <text x="144" y="112" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="6.5">structured</text>
-          <text x="144" y="123" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="6.5">streaming</text>
-          <text x="144" y="138" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">VWAP 1min · 30s wm</text>
-          <text x="144" y="150" text-anchor="middle" fill="#8c6d2f" font-family="JetBrains Mono" font-size="6.5">3 detection signals</text>
+          <text x="144" y="100" text-anchor="middle" fill="#1e1c18" font-family="IBM Plex Mono" font-size="8" font-weight="600">SPARK</text>
+          <text x="144" y="112" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="6.5">structured</text>
+          <text x="144" y="123" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="6.5">streaming</text>
+          <text x="144" y="138" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">VWAP 1min · 30s wm</text>
+          <text x="144" y="150" text-anchor="middle" fill="#8c6d2f" font-family="IBM Plex Mono" font-size="6.5">3 detection signals</text>
           <line x1="182" y1="120" x2="210" y2="120" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.2s" repeatCount="indefinite"/>
           </line>
           <polygon points="210,116 216,120 210,124" fill="#b3aea4"/>
           <rect x="218" y="64" width="80" height="36" rx="4" fill="#f1ede4" stroke="#d5cfc4" stroke-opacity="1"/>
-          <text x="258" y="78" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="7" font-weight="600">bronze</text>
-          <text x="258" y="92" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">raw trades</text>
+          <text x="258" y="78" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="7" font-weight="600">bronze</text>
+          <text x="258" y="92" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">raw trades</text>
           <rect x="218" y="104" width="80" height="36" rx="4" fill="#e9e3d8" stroke="#cdc7bb" stroke-opacity="1"/>
-          <text x="258" y="118" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="7" font-weight="600">silver</text>
-          <text x="258" y="132" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">vwap windows</text>
+          <text x="258" y="118" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="7" font-weight="600">silver</text>
+          <text x="258" y="132" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">vwap windows</text>
           <rect x="218" y="144" width="80" height="36" rx="4" fill="rgba(140,109,47,0.1)" stroke="#8c6d2f" stroke-opacity="0.55"/>
-          <text x="258" y="158" text-anchor="middle" fill="#8c6d2f" font-family="JetBrains Mono" font-size="7" font-weight="600">gold</text>
-          <text x="258" y="172" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="6">anomalies</text>
+          <text x="258" y="158" text-anchor="middle" fill="#8c6d2f" font-family="IBM Plex Mono" font-size="7" font-weight="600">gold</text>
+          <text x="258" y="172" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="6">anomalies</text>
           <line x1="298" y1="162" x2="320" y2="162" stroke="url(#streamFlow)" stroke-width="2">
             <animate attributeName="stroke-dashoffset" from="0" to="20" dur="1.4s" repeatCount="indefinite"/>
           </line>
           <polygon points="320,158 326,162 320,166" fill="#8c6d2f" opacity="0.7"/>
-          <text x="335" y="158" text-anchor="middle" fill="#8c6d2f" font-family="JetBrains Mono" font-size="7" font-weight="600">BQ</text>
-          <text x="335" y="170" text-anchor="middle" fill="#514d45" font-family="JetBrains Mono" font-size="6">dbt</text>
-          <text x="180" y="32" text-anchor="middle" fill="#46508c" font-family="JetBrains Mono" font-size="10" font-weight="600">p99 ≈ 58ms · 5 instruments · sub-60s end-to-end</text>
+          <text x="335" y="158" text-anchor="middle" fill="#8c6d2f" font-family="IBM Plex Mono" font-size="7" font-weight="600">BQ</text>
+          <text x="335" y="170" text-anchor="middle" fill="#514d45" font-family="IBM Plex Mono" font-size="6">dbt</text>
+          <text x="180" y="32" text-anchor="middle" fill="#46508c" font-family="IBM Plex Mono" font-size="10" font-weight="600">p99 ≈ 58ms · 5 instruments · sub-60s end-to-end</text>
           <line x1="50" y1="40" x2="320" y2="40" stroke="#46508c" stroke-opacity="0.25" stroke-dasharray="2,2"/>
-          <text x="180" y="220" text-anchor="middle" fill="#726d63" font-family="JetBrains Mono" font-size="7">3 detection signals · 8 dbt tests · fault-tolerant checkpointing</text>
+          <text x="180" y="220" text-anchor="middle" fill="#726d63" font-family="IBM Plex Mono" font-size="7">3 detection signals · 8 dbt tests · fault-tolerant checkpointing</text>
         </svg>
       </div>
       <div class="proj-meta">
@@ -1737,12 +1819,13 @@ footer .dot { color: var(--acc); }
         <span class="chip">gcs</span><span class="chip">bigquery</span><span class="chip">dbt</span><span class="chip">docker</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ source</a>
+        <a href="https://github.com/utkarsh1610-s/marketpulse" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="MarketPulse">✦ motivation</button>
       </div>
     </article>
 
     <!-- SYCOPHANCY -->
-    <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection">
+    <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection" data-tint="lavender">
       <div class="proj-meta">
         <span class="badge ml">NLP · Research</span>
         <span class="status">ACL ARR · ACL 2027</span>
@@ -1762,12 +1845,13 @@ footer .dot { color: var(--acc); }
       </div>
       <div class="proj-links">
         <a href="#research">↓ research deep-dive</a>
-        <a href="https://github.com/utkarsh1610-s" target="_blank" rel="noopener">→ github</a>
+        <a href="https://github.com/utkarsh1610-s/Sycophancy-Detection-CustomDataset" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="Sycophancy Detection">✦ motivation</button>
       </div>
     </article>
 
     <!-- SOUNDSTREAM -->
-    <article class="proj half r d1" data-tech="pyspark dbt airflow duckdb batch elt" data-track="de" data-name="SoundStream">
+    <article class="proj half r d1" data-tech="pyspark dbt airflow duckdb batch elt" data-track="de" data-name="SoundStream" data-tint="sand">
       <div class="proj-meta">
         <span class="badge de">Data Engineering</span>
         <span class="status"><span class="dot"></span> live demo</span>
@@ -1786,13 +1870,13 @@ footer .dot { color: var(--acc); }
         <span class="chip">duckdb</span><span class="chip">star schema</span><span class="chip">streamlit</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/utkarsh1610-s/SoundStream-Analytics" target="_blank" rel="noopener">→ source</a>
-        <a href="https://soundstream-analytics.streamlit.app" target="_blank" rel="noopener">→ live demo ↗</a>
+        <a href="https://github.com/utkarsh1610-s/SoundStream-Analytics" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="SoundStream">✦ motivation</button>
       </div>
     </article>
 
     <!-- CREDIT RISK -->
-    <article class="proj third r" data-tech="statsmodels ab causal shap python" data-track="ds" data-name="Credit Risk">
+    <article class="proj third r" data-tech="statsmodels ab causal shap python" data-track="ds" data-name="Credit Risk" data-tint="teal">
       <div class="proj-meta">
         <span class="badge ds">Data Science</span>
       </div>
@@ -1810,12 +1894,13 @@ footer .dot { color: var(--acc); }
         <span class="chip">counterfactual a/b</span><span class="chip">kaplan-meier</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/utkarsh1610-s/Verifiable-Input-Risk-Model-with-Counterfactual-A-B-Testing" target="_blank" rel="noopener">→ source</a>
+        <a href="https://github.com/utkarsh1610-s/Verifiable-Input-Risk-Model-with-Counterfactual-A-B-Testing" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="Credit Risk">✦ motivation</button>
       </div>
     </article>
 
     <!-- STOCK PORTFOLIO -->
-    <article class="proj third r d1" data-tech="python mysql flask react finnhub etl" data-track="de" data-name="Stock Portfolio Manager">
+    <article class="proj third r d1" data-tech="python mysql flask react finnhub etl" data-track="de" data-name="Stock Portfolio Manager" data-tint="ochre">
       <div class="proj-meta">
         <span class="badge de">Data Engineering</span>
       </div>
@@ -1833,24 +1918,26 @@ footer .dot { color: var(--acc); }
         <span class="chip">flask</span><span class="chip">react</span><span class="chip">finnhub</span>
       </div>
       <div class="proj-links">
-        <a href="https://github.com/utkarsh1610-s/Stock-Portfolio-Manager" target="_blank" rel="noopener">→ source</a>
+        <a href="https://github.com/utkarsh1610-s/Stock-Portfolio-Manager" target="_blank" rel="noopener">→ source code</a>
+        <button type="button" class="mot-btn" data-mot="Stock Portfolio Manager">✦ motivation</button>
       </div>
     </article>
 
     <!-- PORTFOLIO -->
-    <article class="proj third r d2" data-tech="html css js portfolio" data-track="de" data-name="This Portfolio">
+    <article class="proj third r d2" data-tech="html css js portfolio" data-track="de" data-name="This Portfolio" data-tint="rose">
       <div class="proj-meta">
         <span class="badge de">Build</span>
         <span class="status"><span class="dot"></span> you're here</span>
       </div>
       <h3>this site — a queryable portfolio</h3>
       <p class="blurb">
-        The site you're reading is itself a small experiment: a portfolio that behaves like one of my pipelines. Stream console replaying real visitor events, interactive lineage DAG, live interpretability widget, and a SQL-ish <strong>command palette</strong> that actually queries the page. <em>Press / to try.</em>
+        The site you're reading is itself a small experiment: a portfolio that behaves like one of my pipelines. Stream console replaying real visitor events, live interpretability widget, and a SQL-ish <strong>command palette</strong> that actually queries the page. <em>Press / to try.</em>
       </p>
       <div class="proj-tech">
         <span class="chip hi">html</span><span class="chip hi">css</span><span class="chip">vanilla js</span><span class="chip">no framework</span>
       </div>
       <div class="proj-links">
+        <a href="https://github.com/utkarsh1610-s/portfolio" target="_blank" rel="noopener">→ source code</a>
         <a href="#" onclick="openCmdk(); return false;">→ open console</a>
       </div>
     </article>
@@ -1860,7 +1947,7 @@ footer .dot { color: var(--acc); }
 <!-- RESEARCH -->
 <section class="research" id="research">
   <div class="section-head r">
-    <span class="num">04</span>
+    <span class="num">03</span>
     <h2>research<span class="it">.</span></h2>
     <span class="sub">when the model caves — and how to see it coming</span>
   </div>
@@ -1923,7 +2010,7 @@ footer .dot { color: var(--acc); }
 <!-- EXPERIENCE LOG -->
 <section id="experience">
   <div class="section-head r">
-    <span class="num">05</span>
+    <span class="num">04</span>
     <h2>experience<span class="it">.</span></h2>
     <span class="sub">log // tail -f career.events</span>
   </div>
@@ -1939,7 +2026,6 @@ footer .dot { color: var(--acc); }
         <div class="company-line">
           <span class="exp-logo"><img src="neu.jpg" alt=""></span>
           <span class="company-name">Graduate Teaching Assistant</span>
-          <span class="role-span">Sep 2026 — present</span>
         </div>
 
         <div class="exp-scope">
@@ -1950,50 +2036,13 @@ footer .dot { color: var(--acc); }
         <ul>
           <li>Run weekly <strong>office hours and concept reviews</strong> on NLP fundamentals: tokenization, embeddings, attention, and why the loss curve flatlined</li>
           <li>Walk students through homework problems and debug their code with them, without handing over the solution</li>
-          <li>Grade against a shared rubric and report recurring failure modes back to the instructor. Same root-cause triage as switch telemetry, different failing node</li>
+          <li>Help write homework assignments on NLP foundations: feedforward neural networks, SVD, word embeddings and transformers</li>
+          <li>Grade assignments and share common mistakes with the instructor</li>
         </ul>
 
         <div class="exp-chips">
           <span class="chip hi">nlp</span><span class="chip hi">teaching</span>
           <span class="chip">pytorch</span><span class="chip">transformers</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-row">
-      <div class="exp-date">
-        Apr 2026 — present<br>
-        <span style="color:var(--txt-4)">Boston, MA</span>
-      </div>
-      <div class="exp-body">
-        <div class="company-line">
-          <span class="exp-logo"><img src="neu.jpg" alt=""></span>
-          <span class="company-name">Graduate Researcher</span>
-          <span class="role-span">Apr 2026 — present</span>
-        </div>
-
-        <div class="exp-scope">
-          NLP interpretability group. <strong>Multi-turn sycophancy</strong> — why language models
-          abandon a correct position under conversational pressure, and whether the collapse is
-          visible in hidden states before it reaches the output.
-        </div>
-
-        <div class="exp-stats">
-          <div class="es"><span class="v">5</span><span class="l">architectures</span></div>
-          <div class="es"><span class="v">150+</span><span class="l">probes</span></div>
-          <div class="es"><span class="v">75.5%</span><span class="l">probe acc.</span></div>
-          <div class="es"><span class="v">3–4</span><span class="l">turn lead</span></div>
-        </div>
-
-        <ul>
-          <li>First-authored <strong>ACL ARR submission</strong> on detecting pre-capitulation states in multi-turn LLM sycophancy <span class="metric">— targeting ACL 2027</span></li>
-          <li>Engineered the <strong>monotonically escalating pressure schedule</strong> that became the paper's central novelty; ran the experiment matrix across 5 architectures × 150+ probes</li>
-          <li>Localised the predictive signal: <strong>Layer 28</strong> dominant in Qwen2.5-7B, layers <span class="metric">17–19 globally predictive</span> — a dissociation unreported in prior sycophancy literature</li>
-        </ul>
-
-        <div class="exp-chips">
-          <span class="chip hi">pytorch</span><span class="chip hi">qwen2.5-7b</span>
-          <span class="chip">transformers</span><span class="chip">rbf svm</span><span class="chip">numpy</span><span class="chip">hidden-state probing</span>
         </div>
       </div>
     </div>
@@ -2007,7 +2056,6 @@ footer .dot { color: var(--acc); }
         <div class="company-line">
           <span class="exp-logo"><img src="hpe.jpg" alt=""></span>
           <span class="company-name">Cloud Developer - Hewlett Packard Enterprise</span>
-          <span class="role-span">Jan 2022 — Aug 2025 <span style="color:var(--txt-4)">·</span> 3 yr 8 mo</span>
         </div>
 
         <div class="exp-scope">
@@ -2062,7 +2110,7 @@ footer .dot { color: var(--acc); }
 <!-- EDU + ACHIEVEMENTS -->
 <section>
   <div class="section-head r">
-    <span class="num">06</span>
+    <span class="num">05</span>
     <h2>education &amp; off-screen<span class="it">.</span></h2>
     <span class="sub">how I got here and what I do when the laptop is closed</span>
   </div>
@@ -2137,6 +2185,7 @@ footer .dot { color: var(--acc); }
     </p>
     <div class="contact-actions">
       <a href="mailto:saraogi.u@northeastern.edu" class="btn btn-primary">→ email me</a>
+      <a href="resume.pdf" download="Utkarsh_Saraogi_Resume.pdf" class="btn btn-ghost">↓ download resume</a>
       <a href="#" onclick="openCmdk(); return false;" class="btn btn-ghost">/ open query console</a>
     </div>
     <div class="contact-channels">
@@ -2203,24 +2252,6 @@ function updateTime() {
 updateTime(); setInterval(updateTime, 1000);
 
 /* ─────────────────────────────────────── */
-/*  HERO — role rotator                    */
-/* ─────────────────────────────────────── */
-(() => {
-  const roles = ['data engineer', 'data scientist', 'ml interpretability researcher', 'devOps and QA developer'];
-  const el = document.getElementById('role-text');
-  let i = 0, j = 0, del = false;
-  function tick() {
-    const w = roles[i];
-    el.textContent = '"' + w.slice(0, j) + '"';
-    if (!del && j < w.length) { j++; setTimeout(tick, 75); }
-    else if (!del && j === w.length) { del = true; setTimeout(tick, 1800); }
-    else if (del && j > 0) { j--; setTimeout(tick, 35); }
-    else { del = false; i = (i+1) % roles.length; setTimeout(tick, 250); }
-  }
-  setTimeout(tick, 1700);
-})();
-
-/* ─────────────────────────────────────── */
 /*  STREAM CONSOLE — fake-but-real events  */
 /* ─────────────────────────────────────── */
 (() => {
@@ -2255,7 +2286,7 @@ updateTime(); setInterval(updateTime, 1000);
   ];
 
   function currentSection() {
-    const sections = ['top','snapshot','lineage','projects','research','experience','contact'];
+    const sections = ['top','skills','projects','research','experience','contact'];
     let best = 'top';
     for (const id of sections) {
       const el = document.getElementById(id);
@@ -2298,127 +2329,6 @@ updateTime(); setInterval(updateTime, 1000);
     const now = Date.now();
     if (now - lastScrollEvt > 2200) { lastScrollEvt = now; pushEvent(); }
   });
-})();
-
-/* ─────────────────────────────────────── */
-/*  LINEAGE — interactive DAG              */
-/* ─────────────────────────────────────── */
-(() => {
-  // mapping: which nodes light up together (bidirectional)
-  const edges = {
-    // ─── Raw (Bronze) ────────────────────────────────────────────
-    hpe:          ['devops','jenkins','docker','crowdstrike','mttr','prod','labels'],
-    northeastern: ['streaming','batch','devops','databricks','marketpulse','soundstream','hindsight','syco','stock'],
-    research:     ['interp','modelling','syco','paper'],
-
-    // ─── Skills (Silver) ─────────────────────────────────────────
-    streaming:    ['northeastern','marketpulse','latency'],
-    batch:        ['northeastern','soundstream','hindsight'],
-    databricks:   ['northeastern','hindsight','pit'],
-    devops:       ['hpe','northeastern','marketpulse','stock','prod'],
-    jenkins:      ['hpe','prod'],
-    docker:       ['hpe','marketpulse'],
-    crowdstrike:  ['hpe','mttr','labels'],
-    interp:       ['research','syco','paper'],
-    modelling:    ['research','credit','dollars'],
-
-    // ─── Projects (Silver) ───────────────────────────────────────
-    hindsight:    ['northeastern','batch','databricks','pit'],
-    marketpulse:  ['northeastern','streaming','devops','docker','latency'],
-    soundstream:  ['northeastern','batch'],
-    credit:       ['modelling','dollars'],
-    syco:         ['northeastern','research','interp','paper'],
-    stock:        ['northeastern','devops'],
-
-    // ─── Outcomes (Gold) ─────────────────────────────────────────
-    pit:          ['hindsight','databricks'],
-    dollars:      ['credit','modelling'],
-    latency:      ['streaming','marketpulse'],
-    paper:        ['research','interp','syco'],
-    mttr:         ['hpe','crowdstrike'],
-    prod:         ['hpe','jenkins','devops'],
-    labels:       ['hpe','crowdstrike'],
-  };
-
-  const detail = {
-    hpe:          'HPE Cloud Developer · 3yr · CrowdStrike telemetry across 15+ microservices · Jenkins CI · Docker',
-    northeastern: 'MSCS · Northeastern · streaming + batch + databricks skills · 5 portfolio projects built here',
-    research:     ' NLP interpretability · multi-turn sycophancy under pressure',
-
-    streaming:    'Kafka · Spark Structured Streaming · windowing · watermarking · checkpointing',
-    batch:        'PySpark · Airflow DAGs · dbt models · medallion architecture',
-    databricks:   'Databricks · Lakeflow Declarative Pipelines · Auto Loader · Unity Catalog · Delta Lake with liquid clustering',
-    devops:       'GCP (GCS, BigQuery) · AWS (S3, Lambda) · cloud-native deploy patterns',
-    jenkins:      'CI ownership at HPE · test suite and lab environments · validation coverage as services drifted',
-    docker:       'Containerised services · Docker Compose stacks for MarketPulse · reproducible local pipelines',
-    crowdstrike:  'CrowdStrike observability stack at HPE · distributed telemetry ingestion · root-cause across enricher → predictor → sink',
-    interp:       'Hidden-state probing · cosine similarity · layer-wise activation analysis',
-    modelling:    'A/B testing · causal inference · counterfactuals · SHAP explainability',
-
-    hindsight:    'Hindsight · bitemporal SEC warehouse · 181M facts → 21.8M knowledge intervals · 6 invariants + dual-implementation equivalence test',
-    marketpulse:  'MarketPulse · streaming anomaly detection · 5 instruments · sub-60s end-to-end',
-    soundstream:  'SoundStream · 46M+ records · 60% storage compression · live Streamlit demo',
-    credit:       'Credit Risk Engine · 113K loans · counterfactual A/B · $7.8M recovered · 20% default reduction',
-    syco:         'Sycophancy paper · L28 dominant · L17-19 predictive · 75.5% probe accuracy',
-    stock:        'Stock Portfolio Mgr · Finnhub API → MySQL → Flask REST → React',
-
-    pit:          '21.8M point-in-time intervals across 14,885 companies · look-ahead bias measured at 3.3% of top-decile selections',
-    dollars:      '$7.8M recovered (Credit Risk Strategy Engine)',
-    latency:      'sub-60s anomaly detection (MarketPulse)',
-    paper:        'ACL ARR May 2026 · targeting ACL 2027',
-    mttr:         '−40% MTTR via systematic root-cause triage at HPE',
-    prod:         'shipped to production · automated validation gates · data contract integrity',
-    labels:       '4,000+ failure scenarios annotated at HPE · annotation schema for ML triage assistant · +15% classification accuracy',
-  };
-
-  const nodes = document.querySelectorAll('.lin-node');
-  const detailEl = document.getElementById('lin-detail');
-  const svg = document.querySelector('.lineage-svg');
-
-  function lightUp(name) {
-    nodes.forEach(n => n.classList.remove('lit'));
-    const related = new Set([name, ...(edges[name] || [])]);
-    nodes.forEach(n => {
-      if (related.has(n.dataset.node)) n.classList.add('lit');
-    });
-    detailEl.innerHTML = `<span class="ld-label">${name}</span> ${detail[name] || ''}`;
-    drawEdges(name);
-  }
-  function reset() {
-    nodes.forEach(n => n.classList.remove('lit'));
-    detailEl.innerHTML = `<span class="ld-label">tip</span><span class="ld-hint">hover any node to trace its upstream + downstream dependencies →</span>`;
-    svg.innerHTML = '';
-  }
-  function drawEdges(name) {
-    svg.innerHTML = '';
-    const related = edges[name] || [];
-    const wrap = document.querySelector('.pipeline-wrap');
-    const wrapR = wrap.getBoundingClientRect();
-    svg.setAttribute('viewBox', `0 0 ${wrapR.width} ${wrapR.height}`);
-    const src = document.querySelector(`.lin-node[data-node="${name}"]`);
-    if (!src) return;
-    const sR = src.getBoundingClientRect();
-    const sx = sR.left + sR.width - wrapR.left;
-    const sy = sR.top + sR.height/2 - wrapR.top;
-    related.forEach(r => {
-      const tgt = document.querySelector(`.lin-node[data-node="${r}"]`);
-      if (!tgt) return;
-      const tR = tgt.getBoundingClientRect();
-      const tx = tR.left - wrapR.left;
-      const ty = tR.top + tR.height/2 - wrapR.top;
-      const midX = (sx + tx) / 2;
-      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-      path.setAttribute('d', `M ${sx} ${sy} C ${midX} ${sy}, ${midX} ${ty}, ${tx} ${ty}`);
-      path.setAttribute('class','active');
-      svg.appendChild(path);
-    });
-  }
-
-  nodes.forEach(n => {
-    n.addEventListener('mouseenter', () => lightUp(n.dataset.node));
-    n.addEventListener('focus', () => lightUp(n.dataset.node));
-  });
-  document.querySelector('.pipeline-wrap').addEventListener('mouseleave', reset);
 })();
 
 /* ─────────────────────────────────────── */
@@ -2528,11 +2438,10 @@ const cmdkResults = document.getElementById('cmdk-results');
 const cmdkQueryResult = document.getElementById('cmdk-query-result');
 
 const commands = [
-  { g:'jump to', kw: ['snapshot','metrics','stats','numbers'], label: 'Jump to snapshot', desc: 'topline metrics', action: () => goto('#snapshot') },
-  { g:'jump to', kw: ['lineage','dag','pipeline','flow','graph'], label: 'Open lineage view', desc: 'experience → skills → outcomes', action: () => goto('#lineage') },
+  { g:'jump to', kw: ['skills','stack','tools','tech','lineage'], label: 'Show skills', desc: 'toolkit grouped by area', action: () => goto('#skills') },
   { g:'jump to', kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '6 builds, instrumented', action: () => goto('#projects') },
   { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL 2027 — sycophancy', action: () => goto('#research') },
-  { g:'jump to', kw: ['experience','xp','work history','hpe','role','teaching','ta'], label: 'Show experience log', desc: 'TA + lab + 3 years at HPE', action: () => goto('#experience') },
+  { g:'jump to', kw: ['experience','xp','work history','hpe','role','teaching','ta'], label: 'Show experience log', desc: 'TA + 3 years at HPE', action: () => goto('#experience') },
   { g:'jump to', kw: ['contact','email','reach','hire','full time','fulltime','fte','new grad','hiring'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
 
   { g:'find a project', kw: ['hindsight','bitemporal','sec','xbrl','point-in-time','pit','finance','databricks'], label: 'Find: Hindsight', desc: '181M facts · point-in-time', action: () => highlightProject('Hindsight') },
@@ -2544,7 +2453,7 @@ const commands = [
   { g:'external', kw: ['github','source','gh','repo'], label: 'Open GitHub', desc: 'github.com/utkarsh1610-s', action: () => window.open('https://github.com/utkarsh1610-s','_blank') },
   { g:'external', kw: ['linkedin','li'], label: 'Open LinkedIn', desc: '/in/us1610', action: () => window.open('https://linkedin.com/in/us1610','_blank') },
 
-  { g:'utility', kw: ['resume','cv','pdf','download'], label: 'Open resume', desc: 'DE / DS versions', action: () => window.open('Utkarsh_resume.pdf','_blank') },
+  { g:'utility', kw: ['resume','cv','pdf','download'], label: 'Open resume', desc: 'PDF · latest version', action: () => window.open('resume.pdf','_blank') },
   { g:'utility', kw: ['help','?'], label: 'Help — what can I query?', desc: 'show examples', action: () => showHelp() },
 ];
 
@@ -2779,6 +2688,236 @@ window.addEventListener('keydown', e => {
 
 window.openCmdk = openCmdk;
 window.closeCmdk = closeCmdk;
+
+/* ─────────────────────────────────────── */
+/*  MOTIVATION MODAL — per-project story   */
+/* ─────────────────────────────────────── */
+(() => {
+  const GH = 'https://github.com/utkarsh1610-s/';
+  const M = {
+    'Hindsight': {
+      repo: 'Hindsight',
+      eyebrow: 'data engineering · point-in-time warehouse',
+      title: 'Hindsight',
+      hook: 'Every financial database rewrites history. I wanted one that remembers what was actually known — and when.',
+      stats: [['5.58 GB','raw SEC filings'],['907K','material revisions surfaced'],['20.6M','keys · one open interval each'],['10.8%','companies with a corrected input']],
+      secs: [
+        ['Why I built it', `
+          <p>In February 2022, AT&amp;T reported 2021 revenue of <b>$168.9B</b>. A year later, after spinning off WarnerMedia, it restated the same year as <b>$134.0B</b>. Nobody lied — accounting rules require it. But every financial database today shows only the second number; the original is gone.</p>
+          <p>That quietly breaks every backtest. Test a strategy on corrected data and you're asking <i>"what would I have picked if I could see two years into the future?"</i> Worse, the companies that get restated are disproportionately the ones a profitability screen selects. Compustat and FactSet sell expensive point-in-time products to fix this. I wanted to build a free one from public SEC data — and measure how large the bias really is.</p>`],
+        ['Three times the data nearly lied to me', `
+          <ul>
+            <li><b>"Half of all facts get restated."</b> First pass said 51%. A missing <code>segments</code> key was comparing company totals against business-unit line items. Fixing it: 51% → 6%, impossible sign flips 2,179 → 78.</li>
+            <li><b>"Revenue only covers 37% of companies."</b> A 2018 accounting change split revenue across four tags. A concept-mapping layer took coverage to 69% and removed a fake coverage cliff mid-window.</li>
+            <li><b>"Restatements are declining since 2024."</b> They aren't — recent filings just haven't had time to be corrected. The test window stops at 2024Q1 for this reason.</li>
+          </ul>`],
+        ['How I know it\'s right', `
+          <p>The six filing-precedence rules live as plain Python, unit-tested on hand-built rows in two seconds. The Spark pipeline implements the same rules over 22M rows — and the main test <b>asserts the two agree</b> on 300 sampled keys with revisions. Six structural invariants (no overlaps, exactly one open interval per key, no gaps, intervals start at filing acceptance…) run on the full table.</p>
+          <p>Both layers caught real bugs: a zero-width interval from two filings accepted in the same second, and a 10-Q reporting revenue under two tags that invented a revision which never happened.</p>`],
+        ['Design calls', `
+          <ul>
+            <li><b>Bronze keeps everything</b> — every opinion is applied downstream, so changing one is a query edit, not a 5.58 GB re-download.</li>
+            <li><b>Quarantine ≠ exclusion.</b> Broken data is quarantined; valid-but-out-of-scope data is excluded. Separating them dropped the quarantine rate from useless to 0.001% — low enough that a spike now means something.</li>
+            <li><b>Liquid clustering on (cik, ddate)</b> instead of period partitioning, because a 2026 filing writes rows dated 2019. No rewrite amplification on late-arriving data.</li>
+          </ul>`],
+      ],
+      quote: 'Before treating any trend as real, rule out a coverage or timing explanation. The 3.3% bias is a floor, not a ceiling.',
+    },
+
+    'MarketPulse': {
+      repo: 'marketpulse',
+      eyebrow: 'data engineering · real-time streaming',
+      title: 'MarketPulse',
+      hook: 'An anomaly flagged an hour late is a footnote. I wanted the full real-time path — broker to dashboard — inside a one-minute budget.',
+      stats: [['<60s','event → Gold latency'],['~3,900','events per market day'],['0.3%','false-positive rate at z > 3'],['$0','free-tier cloud cost']],
+      secs: [
+        ['Why I built it', `
+          <p>Market surveillance is fundamentally a streaming problem: volume surges, flash moves and circular trading only matter while they're happening. Batch pipelines answer yesterday's questions.</p>
+          <p>I wanted to build every stage of a production streaming stack myself — managed Kafka, stateful stream processing, a transactional lakehouse, a warehouse, tested transformations, and a public dashboard — on free-tier cloud, and hold the whole chain to a sub-minute latency budget.</p>`],
+        ['What it detects', `
+          <ul>
+            <li><b>Volume spike</b> — <code>z = (vol − μ₂₀) / σ₂₀ &gt; 3.0</code> against a 20-window rolling baseline per ticker; confidence scales with z.</li>
+            <li><b>Price deviation</b> — intra-minute range above <code>2%</code> of VWAP: volatility bursts and algorithmic swings.</li>
+            <li><b>Wash signal</b> — volume above <code>1.5×</code> baseline while price moves less than <code>0.1%</code>: heavy trading that goes nowhere, a classic circular-trading pattern.</li>
+          </ul>`],
+        ['How it flows', `
+          <p>Trade events for AAPL, NVDA, TSLA, SPY and AMD → <b>Aiven Kafka</b> (SSL/TLS, keyed by ticker to preserve per-instrument ordering) → three <b>Spark Structured Streaming</b> jobs in Docker: a Bronze writer for raw ticks, a Silver aggregator building 1-minute tumbling VWAP windows, and a Gold detector that writes only anomalies → <b>Delta Lake on GCS</b> with checkpoints → <b>BigQuery</b> → three <b>dbt</b> models → a live <b>Streamlit</b> feed.</p>`],
+        ['Design calls', `
+          <ul>
+            <li><b>Delta + checkpointing</b> so a crashed job restarts exactly where it stopped — no double-counted windows.</li>
+            <li><b>Gold stores anomalies only</b>, keeping the warehouse under 1 MB and every dashboard query instant.</li>
+            <li><b>A <code>ticker_health</code> model with a freshness SLA</b> — the pipeline reports when a feed goes quiet, not just when it fires.</li>
+            <li><b>8 dbt tests</b> (not-null, uniqueness) gate every model before it reaches the dashboard.</li>
+          </ul>`],
+      ],
+      quote: 'Real-time isn\'t a feature you add later — latency, ordering and fault tolerance have to be designed in from the first message.',
+    },
+
+    'Sycophancy Detection': {
+      repo: 'Sycophancy-Detection-CustomDataset',
+      eyebrow: 'nlp · interpretability research',
+      title: 'Before the model caves',
+      hook: 'LLMs abandon correct answers when users simply push back. I wanted to see whether the decision is visible inside the model — turns before it happens.',
+      stats: [['5','open-weight LLMs'],['0.596–0.636','zero-shot peak AUC'],['+6.6 pp','nonlinear over linear'],['3–4','turns of early warning']],
+      secs: [
+        ['Why I built it', `
+          <p>Sycophancy is usually measured at the output: did the model flip or not? But a model that drops a correct answer under nothing more than <i>persistence</i> — no new evidence — is a reliability and alignment problem, and by the time you see the flip it's too late.</p>
+          <p>My question was mechanistic: <b>does the model's internal state shift before it capitulates?</b> If it does, capitulation becomes something you can detect, monitor, and eventually prevent.</p>`],
+        ['How I studied it', `
+          <ul>
+            <li>Extended <b>SYCON-Bench</b> with a <b>monotonically escalating pressure schedule</b> — each turn applies strictly stronger disagreement — and true multi-turn dialogue with full history.</li>
+            <li>Three question categories (base, critical, false-presupposition) that test different resistance mechanisms.</li>
+            <li>Five models: DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B, Llama-3.1-8B, Qwen3.5-9B and Gemma-2-9B. Layer-wise hidden states extracted at every turn on V100 GPUs via SLURM.</li>
+            <li>Flips labelled both by keyword rules and an LLM-as-judge, then compared.</li>
+          </ul>`],
+        ['What I found', `
+          <ul>
+            <li><b>Early cosine disruption predicts eventual flips.</b> The similarity between Turn 0 and Turn 1 hidden states predicts capitulation across all four probed models — with no classifier training at all.</li>
+            <li><b>The signal is model-specific.</b> Predictive layers differ by architecture, and probes fail to transfer even between models of the same family.</li>
+            <li><b>Pre-flip geometry is nonlinear.</b> Linear probes fail at every layer; nonlinear classifiers beat them by 6.6 pp on average, and near-zero Fisher ratios confirm there's no separating hyperplane.</li>
+            <li><b>Activation magnitude builds up.</b> L2 norm rises monotonically over 3–4 pressure turns before the flip in three of four models.</li>
+          </ul>`],
+      ],
+      quote: 'The model starts to give way internally long before it says so — which means capitulation can be caught before it reaches the user.',
+    },
+
+    'SoundStream': {
+      repo: 'SoundStream-Analytics',
+      eyebrow: 'data engineering · batch elt',
+      title: 'SoundStream Analytics',
+      hook: 'Three music datasets that were never designed to meet, 46M rows, and one question: what would an analytics team actually want to query?',
+      stats: [['35.7M','chart-position facts'],['252K','unique artists'],['~22 min','full pipeline run'],['2017–21','time range']],
+      secs: [
+        ['Why I built it', `
+          <p>I wanted a batch pipeline at a scale where naive approaches start to break — tens of millions of rows, mixed formats, malformed dates, duplicates — and to model it the way it would really be consumed: a <b>star schema</b> behind a <b>daily, orchestrated DAG</b>, not a pile of notebooks.</p>
+          <p>Music data was the perfect stress test: chart positions, audio features and listening history come from different systems with no shared key you can trust.</p>`],
+        ['The sources', `
+          <ul>
+            <li><b>Spotify Charts</b> — 26M daily chart positions across 70+ countries.</li>
+            <li><b>Spotify Songs</b> — 1.2M tracks with audio features (danceability, energy, tempo…).</li>
+            <li><b>Last.fm</b> — 19M user listening events.</li>
+          </ul>`],
+        ['How it\'s built', `
+          <ul>
+            <li><b>Bronze (PySpark)</b> — explicit schemas instead of inference, CSV/TSV converted to Parquet (60% smaller), partitioned by region/year/month, with ingestion metadata on every row.</li>
+            <li><b>Silver (PySpark)</b> — <code>try_to_date</code> for malformed dates, 5,043 duplicate chart rows removed, null handling, and a charts ↔ audio-features join at a 36.7% match rate.</li>
+            <li><b>Gold (dbt + DuckDB)</b> — <code>dim_tracks</code> (1.2M), <code>dim_artists</code> (252K), <code>fct_chart_positions</code> (35.7M) and <code>fct_user_listens</code> (19.1M).</li>
+            <li><b>Airflow</b> — a daily DAG: bronze_ingestion → silver_transformation → gold_dbt_run.</li>
+          </ul>`],
+        ['What I took away', `
+          <ul>
+            <li>Explicit schemas prevent an entire class of silent type-inference bugs.</li>
+            <li>Partition by how data is queried (region, date), not by how it arrives.</li>
+            <li>Next steps: Great Expectations quality gates and incremental loads that process only new data.</li>
+          </ul>`],
+      ],
+      quote: 'A pipeline is only finished when the people downstream can ask their questions without knowing how messy the sources were.',
+    },
+
+    'Credit Risk': {
+      repo: 'Verifiable-Input-Risk-Model-with-Counterfactual-A-B-Testing',
+      eyebrow: 'data science · lending strategy',
+      title: 'Credit Risk Strategy Engine',
+      hook: 'Rigid lending rules are safe but wasteful. I wanted a glass-box model that finds the good borrowers they reject — and explains every decision.',
+      stats: [['3,593','applicants rejected by the hard rule'],['1,245','of them actually low-risk'],['68 → 75%','approval rate'],['15.2 → 12.1%','default rate']],
+      secs: [
+        ['Why I built it', `
+          <p>Lenders run on hard rules like <i>"reject anyone with debt-to-income above 25%."</i> They're safe, but they turn away borrowers who fail one metric and are strong everywhere else. Machine learning can find those borrowers — but black-box models can't be explained to a regulator, and models that trust self-reported data invite fraud.</p>
+          <p>So I set three constraints: use <b>only verifiable bureau data</b>, let a model find <b>compensating factors</b>, and generate a <b>legal reason code</b> for every decline.</p>`],
+        ['The evidence chain', `
+          <ul>
+            <li><b>t-test:</b> borrowers above 25% DTI default 60% more often (16.2% vs 10.1%) — the rule isn't wrong, just blunt.</li>
+            <li><b>z-test:</b> verified-income borrowers default 3.4% less. <b>Chi-square:</b> debt consolidation (12.3%) is far safer than small business (18.7%).</li>
+            <li><b>Kaplan-Meier:</b> 70% of eventual defaults show distress within the first 12 months — an early-warning window.</li>
+            <li><b>Champion / challenger:</b> the hard rule rejected 3,593 test applicants; gradient boosting showed <b>35% of them were low-risk</b> (e.g. high DTI offset by a credit score above 750) — <b>$7.8M</b> in recoverable loan volume.</li>
+          </ul>`],
+        ['Design calls', `
+          <ul>
+            <li>Self-reported fields deliberately excluded; the model sees only <b>14 verifiable bureau features</b>.</li>
+            <li>Decision thresholds tuned for <b>net profit</b>, not accuracy.</li>
+            <li>An <b>adverse-action generator</b> maps each prediction back to human-readable reasons for FCRA compliance.</li>
+            <li>Net profit margin 4.2% → 4.8%; loss given default $8,200 → $7,100.</li>
+          </ul>`],
+      ],
+      quote: 'The best model isn\'t the most accurate one — it\'s the one a business can trust, a regulator can audit, and a fraudster can\'t game.',
+    },
+
+    'Stock Portfolio Manager': {
+      repo: 'Stock-Portfolio-Manager',
+      eyebrow: 'data engineering · transactional systems',
+      title: 'Stock Portfolio Manager',
+      hook: 'In finance, a half-applied trade means money appears or vanishes. I wanted a system where correctness lives in the database itself.',
+      stats: [['13','stored procedures'],['8','tables in 3NF'],['45','live tickers · 6 sectors'],['15','REST endpoints']],
+      secs: [
+        ['Why I built it', `
+          <p>Financial data is where database theory stops being academic. If buying a stock debits cash but fails before recording the holding, the books no longer balance. I wanted to push integrity <b>down into the database</b> — atomic procedures, constraints and triggers — so that no client, however buggy, could leave it in an invalid state.</p>
+          <p>Then I put a live market-data feed and two independent front-ends on top, to prove the core held up under real use.</p>`],
+        ['How it\'s built', `
+          <ul>
+            <li><b>MySQL 8 core</b> — 8 normalised tables, 13 stored procedures, 4 views and a trigger that credits dividends automatically.</li>
+            <li><b>Atomic trades</b> — every buy or sell runs inside one procedure with explicit <code>BEGIN / COMMIT / ROLLBACK</code>: validate funds, update holdings, update balance, append an immutable transaction — all or nothing.</li>
+            <li><b>Live prices</b> — a background service refreshes 45 tickers from Finnhub every 2 minutes, spaced to stay inside the 60-calls/minute free tier, with retries and graceful degradation.</li>
+            <li><b>Two interfaces, one source of truth</b> — a 21-operation CLI and a React 18 + Material-UI web app over a Flask REST API, both calling the same procedures.</li>
+          </ul>`],
+        ['Design calls', `
+          <ul>
+            <li><code>DECIMAL(10,2)</code> for every amount — no floating-point drift in money.</li>
+            <li>Composite keys for state tables (holdings, watchlist); surrogate keys for event tables (transactions, dividends).</li>
+            <li>bcrypt-hashed credentials and a full activity audit log.</li>
+            <li>~4,700 lines across SQL, Python and React, built in about 70 hours.</li>
+          </ul>`],
+      ],
+      quote: 'If the database guarantees correctness, every interface built on top of it inherits that guarantee for free.',
+    },
+  };
+
+  const ov = document.createElement('div');
+  ov.className = 'mot-overlay';
+  ov.innerHTML = `<div class="mot-panel" role="dialog" aria-modal="true" aria-labelledby="mot-title">
+    <button type="button" class="mot-close" aria-label="Close">×</button>
+    <div class="mot-content"></div></div>`;
+  document.body.appendChild(ov);
+  const panel = ov.querySelector('.mot-panel');
+  const content = ov.querySelector('.mot-content');
+  const closeBtn = ov.querySelector('.mot-close');
+  let lastFocus = null;
+
+  function open(name, card) {
+    const d = M[name]; if (!d) return;
+    const tint = card ? getComputedStyle(card).getPropertyValue('--tint').trim() : '';
+    panel.style.setProperty('--mot-tint', tint || 'var(--bg-2)');
+    content.innerHTML = `
+      <div class="mot-head">
+        <div class="mot-eyebrow">motivation · ${d.eyebrow}</div>
+        <h3 class="mot-title" id="mot-title">${d.title}</h3>
+        <div class="mot-hook">${d.hook}</div>
+      </div>
+      <div class="mot-body">
+        <div class="mot-stats">${d.stats.map(([v,l]) => `<div class="mot-stat"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('')}</div>
+        ${d.secs.map(([h,b]) => `<div class="mot-sec"><h4>${h}</h4>${b}</div>`).join('')}
+        <div class="mot-quote">${d.quote}</div>
+        <div class="mot-foot"><span>esc to close</span><a href="${GH}${d.repo}" target="_blank" rel="noopener">→ source code</a></div>
+      </div>`;
+    content.scrollTop = 0;
+    lastFocus = document.activeElement;
+    ov.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close() {
+    if (!ov.classList.contains('open')) return;
+    ov.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.mot-btn').forEach(b => {
+    b.addEventListener('click', () => open(b.dataset.mot, b.closest('.proj')));
+  });
+  closeBtn.addEventListener('click', close);
+  ov.addEventListener('click', e => { if (e.target === ov) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 </script>
 </body>
 </html>
