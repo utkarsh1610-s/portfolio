@@ -1,0 +1,218 @@
+/* ───────────── GLASSMORPHISM THEME ─────────────
+   Layered over the base styles in index.html. Remove the <link> to glass.css to revert.
+   Indigo / blue family with one warm accent: enough colour behind the glass to refract. */
+
+:root {
+  --glass:        rgba(255,255,255,0.32);
+  --glass-strong: rgba(255,255,255,0.52);
+  --glass-soft:   rgba(255,255,255,0.28);
+  --glass-edge:   rgba(255,255,255,0.70);
+  --glass-rim:    rgba(120,135,170,0.18);
+  --glass-blur:   blur(24px) saturate(170%);
+  --glass-sheen:  linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.05) 100%);
+  --glass-shadow:
+    0 1px 1px rgba(20,30,60,0.04),
+    0 12px 40px -8px rgba(20,30,60,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    inset 0 0 0 1px rgba(255,255,255,0.25);
+
+  /* faint top-down reflection, gone by a third of the way down */
+  --glass-shine:  linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.10) 14%, rgba(255,255,255,0) 32%);
+  /* near-invisible grain so the frost reads as material, not smudge */
+  --glass-grain:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.55  0 0 0 0 0.65  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --glass-surface:        var(--glass-shine), var(--glass-sheen), var(--glass-grain), var(--glass);
+  --glass-surface-strong: var(--glass-shine), var(--glass-sheen), var(--glass-grain), var(--glass-strong);
+
+  --bg-1: rgba(255,255,255,0.38);
+  --bg-2: rgba(255,255,255,0.50);
+  --bg-3: rgba(255,255,255,0.75);
+  --line: rgba(255,255,255,0.60);
+  --line-2: rgba(60,75,110,0.13);
+
+  --txt:   #141a26;
+  --txt-2: #3d4556;
+  --txt-3: #5d6678;
+  --txt-4: #8a93a5;
+}
+
+/* backdrop: cool base, saturated indigo/blue light pools + one warm amber for the glass to refract */
+html {
+  background: linear-gradient(160deg, #eaeef8 0%, #e2e7f4 45%, #e6e4ef 100%);
+  background-attachment: fixed;
+}
+body { background: transparent; }
+body::before { opacity: 0.55; }
+body::after {
+  content: '';
+  position: fixed; inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 38% 34% at 8% 12%,  rgba(70,80,190,0.42) 0, transparent 70%),
+    radial-gradient(ellipse 36% 42% at 92% 28%, rgba(40,120,220,0.38) 0, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 62% 52%, rgba(110,90,210,0.22) 0, transparent 70%),
+    radial-gradient(ellipse 40% 32% at 85% 92%, rgba(230,160,80,0.30) 0, transparent 70%),
+    radial-gradient(ellipse 36% 34% at 15% 85%, rgba(60,140,200,0.30) 0, transparent 70%);
+  filter: blur(30px);
+  animation: glass-drift 40s ease-in-out infinite alternate;
+}
+@keyframes glass-drift {
+  0%   { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(2%, -2%, 0); }
+}
+
+/* shared glass surface */
+.statusbar, nav.topnav,
+.console, .skills-wrap, .proj, .activation-widget, .exp-log, .bring,
+.edu-card, .ach-card, .contact-channels, .boot {
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+}
+
+.statusbar {
+  background: rgba(255,255,255,0.32);
+  box-shadow: none;
+  border-width: 0 0 1px;
+  border-color: var(--glass-rim);
+}
+nav.topnav {
+  background: rgba(255,255,255,0.45);
+  box-shadow: 0 6px 24px -10px rgba(20,30,60,0.15), inset 0 -1px 0 rgba(255,255,255,0.6);
+  border-width: 0 0 1px;
+  border-color: var(--glass-rim);
+}
+.boot { background: linear-gradient(160deg, #eef1f6 0%, #e4e9f1 45%, #dde3ec 100%); border: none; box-shadow: none; }
+
+.skills-wrap, .proj, .activation-widget, .exp-log, .edu-card, .ach-card, .console, .bring { border-radius: 16px; }
+
+/* nested surfaces: frosted insets */
+.console-header, .proj-stats, .proj-vis, .exp-stats, .exp-scope, .exp-logo,
+.mot-stat, .sk-chip, .chip, .aw-row .bar, .aw-control .pressure-bar button {
+  background: var(--glass-soft);
+  border-color: rgba(255,255,255,0.65);
+}
+.proj-stats, .exp-stats, .proj-vis, .mot-stat {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(60,75,110,0.05);
+}
+.console-header { background: rgba(255,255,255,0.35); border-bottom-color: var(--glass-rim); }
+.console-body::before { background: linear-gradient(180deg, rgba(240,243,248,0.6), transparent); }
+.console-body::after  { background: linear-gradient(0deg,  rgba(240,243,248,0.6), transparent); }
+.proj-vis { background: linear-gradient(160deg, rgba(255,255,255,0.65), rgba(255,255,255,0.30)); }
+.sk-chip:hover, .chip.hi { background: var(--glass-strong); border-color: rgba(70,80,140,0.25); }
+
+/* hover: catch more light rather than change colour */
+.proj { transition: transform 0.3s, box-shadow 0.3s, background 0.3s; }
+.proj:hover {
+  background: var(--glass-surface-strong);
+  border-color: rgba(255,255,255,0.95);
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 1px rgba(20,30,60,0.05),
+    0 22px 50px -12px rgba(20,30,60,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+}
+
+/* drop the per-project rainbow tints: one neutral glass, accent comes from the badge */
+.proj[data-tint],
+.proj[data-tint]:hover { background: var(--glass-surface); border-color: var(--glass-edge); }
+.proj[data-tint]:hover { background: var(--glass-surface-strong); }
+.proj[data-tint] .proj-vis   { background: linear-gradient(160deg, rgba(255,255,255,0.65), rgba(255,255,255,0.30)); border-color: rgba(255,255,255,0.65); }
+.proj[data-tint] .proj-stats { background: var(--glass-soft); border-color: rgba(255,255,255,0.65); }
+
+/* section bands no longer need their own washes */
+.research, .contact { background: transparent; border-color: transparent; }
+
+/* buttons */
+.btn { border-radius: 10px; }
+.btn-primary {
+  background: linear-gradient(180deg, #525d9e, #3d4680);
+  box-shadow: 0 6px 18px -6px rgba(50,60,120,0.45), inset 0 1px 0 rgba(255,255,255,0.22);
+}
+.btn-primary:hover { background: linear-gradient(180deg, #47528f, #333b6c); }
+.btn-ghost {
+  background: var(--glass-sheen), var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-color: var(--glass-edge);
+  box-shadow: 0 4px 14px -6px rgba(20,30,60,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.btn-ghost:hover { background: var(--glass-sheen), var(--glass-strong); }
+nav.topnav .links a.cta { border-radius: 8px; box-shadow: 0 4px 14px -4px rgba(50,60,120,0.4); }
+.eyebrow {
+  background: var(--glass);
+  border-color: var(--glass-edge);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.hero-photo { border: 1px solid var(--glass-edge); border-radius: 16px; box-shadow: 0 12px 30px -10px rgba(20,30,60,0.3); }
+
+/* modals: the overlay is already a backdrop root, so keep panels near-opaque */
+.mot-overlay, .cmdk { background: rgba(25,32,50,0.30); backdrop-filter: blur(12px) saturate(120%); -webkit-backdrop-filter: blur(12px) saturate(120%); }
+.mot-panel, .cmdk-box {
+  background: rgba(246,248,251,0.86);
+  border: 1px solid var(--glass-edge);
+  border-radius: 18px;
+  box-shadow: 0 40px 90px -20px rgba(15,22,45,0.40), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.mot-head { background: rgba(225,231,242,0.7); }
+.mot-close { background: var(--glass-strong); }
+
+footer { border-top-color: var(--glass-rim); }
+
+/* lighter blur on small screens for scroll performance */
+@media (max-width: 720px) {
+  :root { --glass-blur: blur(14px) saturate(130%); }
+  body::after { animation: none; }
+}
+
+/* ───────────── GLOSS ───────────── */
+.console, .skills-wrap, .proj, .exp-log, .edu-card, .ach-card, .contact-channels, .bring {
+  position: relative;
+  isolation: isolate;
+}
+.activation-widget { isolation: isolate; }
+
+/* rim light: a 1px edge that catches light top-left and fades round the pane */
+.console::before, .skills-wrap::before, .proj::before, .activation-widget::before, .bring::before,
+.exp-log::before, .edu-card::before, .ach-card::before, .contact-channels::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(150deg,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0.35) 22%,
+    rgba(255,255,255,0) 50%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* cursor-follow highlight on project cards (position set by glass.js) */
+.proj::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,0.42), rgba(255,255,255,0) 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.proj:hover::after { opacity: 1; }
+@media (hover: none) { .proj::after { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+  .proj::after { transition: none; }
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>utkarsh.saraogi — pipelines under pressure</title>
+<title>utkarsh.saraogi · pipelines under pressure</title>
 <meta name="description" content="Data Engineer + ML/AI Engineer. Northeastern MSCS. Pipelines that hold under load, models that are honest about what they don't know." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -464,6 +464,62 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
   .hero-impact a:nth-child(2) { border-right: none; }
 }
 
+/* ───────────── WHAT I BRING ───────────── */
+.bring-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.bring {
+  --pc: 70,80,140;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-1);
+  padding: 1.6rem 1.5rem 1.4rem;
+  display: flex; flex-direction: column;
+}
+.bring[data-pillar="test"]  { --pc: 47,143,91; }
+.bring[data-pillar="mlops"] { --pc: 168,106,18; }
+.bring-idx {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(var(--pc));
+}
+.bring h3 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--txt);
+  margin: 0.5rem 0 0.75rem;
+}
+.bring p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--txt-2);
+  margin-bottom: 1.25rem;
+}
+.bring p strong { color: var(--txt); font-weight: 500; }
+.bring-tags {
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--txt-3);
+}
+.bring-close {
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--txt-3);
+}
+.bring-close a { color: var(--acc); }
+@media (max-width: 1024px) {
+  .bring-grid { grid-template-columns: 1fr; }
+}
+
 /* ───────────── SKILLS ───────────── */
 .skills-wrap {
   border: 1px solid var(--line);
@@ -534,7 +590,7 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 }
 .proj:hover { border-color: var(--acc-mid); background: var(--bg-2); transform: translateY(-2px); }
 
-/* per-project tints — light enough to keep text contrast, distinct enough to separate cards */
+/* per-project tints: light enough to keep text contrast, distinct enough to separate cards */
 .proj[data-tint]       { background: var(--tint); border-color: var(--tint-line); }
 .proj[data-tint]:hover { background: var(--tint-hover); border-color: var(--tint-edge); }
 .proj[data-tint] .proj-vis   { background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.2)); border-color: var(--tint-line); }
@@ -822,7 +878,7 @@ section { position: relative; z-index: 1; padding: 4rem var(--pad); }
 }
 .mot-foot a { color: var(--acc); }
 @media (max-width: 600px) {
-  .mot-head { padding: 1.5rem 1.25rem 1.25rem; }
+  .mot-head { padding: 1.5rem 3.75rem 1.25rem 1.25rem; }
   .mot-body { padding: 1.25rem 1.25rem 1.5rem; }
   .mot-stats { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1528,6 +1584,16 @@ footer .dot { color: var(--acc); }
   }
 }
 </style>
+<link rel="stylesheet" href="glass.css" />
+<link rel="stylesheet" href="glass-dark.css" />
+<script>
+  // apply the saved / requested theme before first paint; dark unless light was chosen
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    try { t = t || localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light') document.documentElement.dataset.theme = 'dark';
+  })();
+</script>
 </head>
 <body>
 
@@ -1548,7 +1614,7 @@ footer .dot { color: var(--acc); }
   <div class="sb-sep hide-sm">/</div>
   <div class="sb-item hide-sm">Boston, MA</div>
   <div class="sb-sep hide-sm">/</div>
-  <div class="sb-item" id="sb-time">—</div>
+  <div class="sb-item" id="sb-time">-</div>
   <div class="sb-spacer"></div>
   <div class="sb-item hide-sm">open to full-time · May 2027</div>
   <div class="sb-cmdk" onclick="openCmdk()">
@@ -1573,7 +1639,6 @@ footer .dot { color: var(--acc); }
 <section class="hero" id="top">
   <div class="hero-grid">
     <div class="hero-left">
-      <div class="eyebrow"><span class="pulse"></span> open to May 2027 full-time roles</div>
       <div class="name-row">
         <img class="hero-photo" src="image-final.jpeg" alt="Utkarsh Saraogi" />
         <h1>Utkarsh<br>Saraogi<span class="it">.</span></h1>
@@ -1585,13 +1650,13 @@ footer .dot { color: var(--acc); }
         </div>
         <div class="role-col">
           <div class="title">ML / AI Engineer</div>
-          <div class="stack">models · LLM evaluation · interpretability</div>
+          <div class="stack">models · training · data science</div>
         </div>
       </div>
       <p class="lead">
-        Three years at HPE taught me that data systems don't fail because of bad ideas — they fail because of bad data. That experience shaped how I think as a data engineer. I have worked on the reliability side of a production data platform — tracing where data broke and why. Now I aim at building data systems end to end.
+        Three years at HPE taught me that data systems don't fail because of bad ideas. They fail because of bad data. That experience shaped how I think as a data engineer. I have worked on the reliability side of a production data platform, tracing where data broke and why. Now I aim at building data systems end to end.
         <br><br>
-        As an alternate interest area, I have done substantial research on <em>why LLMs quietly fold</em> when you push back on them. Now, aiming ACL 2027 submission.
+        As an alternate interest area, I have done substantial research on <em>why LLMs quietly fold</em> when you push back on them. Now targeting ACL, January 2027.
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">view work →</a>
@@ -1633,9 +1698,43 @@ footer .dot { color: var(--acc); }
 </section>
 
 <!-- SKILLS -->
-<section class="skills-sec" id="skills">
+<!-- WHAT I BRING -->
+<section class="bring-sec" id="bring">
   <div class="section-head r">
     <span class="num">01</span>
+    <h2>what I bring<span class="it">.</span></h2>
+    <span class="sub">data engineering · testing · mlops</span>
+  </div>
+
+  <div class="bring-grid">
+    <article class="bring r" data-pillar="de">
+      <div class="bring-idx">01 · data engineering</div>
+      <h3>Pipelines that keep running.</h3>
+      <p>I build batch and streaming pipelines end to end, with <strong>Airflow DAGs and data contracts</strong> between every stage. When something breaks, I find where: at HPE I traced data loss across <strong>15+ microservices</strong> to the exact service at fault.</p>
+      <div class="bring-tags">airflow · spark · kafka · dbt · delta lake · bigquery</div>
+    </article>
+
+    <article class="bring r d1" data-pillar="test">
+      <div class="bring-idx">02 · testing &amp; data quality</div>
+      <h3>I test data like code.</h3>
+      <p><strong>Golden-file tests</strong> that check outputs byte for byte, schema and statistics checks, Great Expectations audits, and <strong>injected anomalies</strong> to prove the alerts actually fire. CI runs it all on every push.</p>
+      <div class="bring-tags">pytest · great expectations · github actions · jenkins</div>
+    </article>
+
+    <article class="bring r d2" data-pillar="mlops">
+      <div class="bring-idx">03 · mlops &amp; reproducibility</div>
+      <h3>Same input, same output. Everywhere.</h3>
+      <p>Data versioned with <strong>DVC</strong>, Docker images pinned, and every run keyed to a hash of its inputs and config. A weekly <strong>from-scratch rebuild</strong> has to match the daily run, or it alerts. At HPE I took ML triage into production.</p>
+      <div class="bring-tags">dvc · docker · airflow · fairlearn · mlflow</div>
+    </article>
+  </div>
+
+  <p class="bring-close r">Looking for data engineering, data platform or MLOps roles. <a href="#contact">Let's talk &rarr;</a></p>
+</section>
+
+<section class="skills-sec" id="skills">
+  <div class="section-head r">
+    <span class="num">02</span>
     <h2>skills<span class="it">.</span></h2>
     <span class="sub">toolkit, grouped by area</span>
   </div>
@@ -1679,7 +1778,7 @@ footer .dot { color: var(--acc); }
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-head r">
-    <span class="num">02</span>
+    <span class="num">03</span>
     <h2>projects<span class="it">.</span></h2>
     <span class="sub">deployable, instrumented, in production</span>
   </div>
@@ -1728,9 +1827,9 @@ footer .dot { color: var(--acc); }
         <span class="badge de">Data Engineering</span>
         <span class="status"><span class="dot"></span> shipped</span>
       </div>
-      <h3>Hindsight — a warehouse that remembers what people knew, and when</h3>
+      <h3>Hindsight: a warehouse that remembers what people knew, and when</h3>
       <p class="blurb">
-        Companies quietly correct their past financial results, and every database overwrites the original. Backtest on that and you're trading on numbers nobody had at the time. Hindsight ingests <strong>69 quarters of SEC XBRL filings (181M facts)</strong> through a Lakeflow medallion pipeline, then resolves per-fact filing precedence into <strong>21.8M knowledge intervals</strong> — so any historical date returns only what was publicly knowable then. Measured the resulting <em>look-ahead bias</em> at <strong>3.3% of top-decile stock selections</strong> across 49 quarters.
+        Companies quietly correct their past financial results, and every database overwrites the original. Backtest on that and you're trading on numbers nobody had at the time. Hindsight ingests <strong>69 quarters of SEC XBRL filings (181M facts)</strong> through a Lakeflow medallion pipeline, then resolves per-fact filing precedence into <strong>21.8M knowledge intervals</strong>, so any historical date returns only what was publicly knowable then. Measured the resulting <em>look-ahead bias</em> at <strong>3.3% of top-decile stock selections</strong> across 49 quarters.
       </p>
       <div class="proj-stats">
         <div class="ps"><span class="v">181M</span><span class="l">facts</span></div>
@@ -1805,9 +1904,9 @@ footer .dot { color: var(--acc); }
         <span class="badge de">Data Engineering</span>
         <span class="status"><span class="dot"></span> live</span>
       </div>
-      <h3>MarketPulse — real-time market anomaly pipeline</h3>
+      <h3>MarketPulse: real-time market anomaly pipeline</h3>
       <p class="blurb">
-        Equity trade events stream through <strong>Aiven Kafka</strong> (SSL/TLS, ticker-keyed) into PySpark Structured Streaming with 1-min tumbling VWAP windows and 30s watermarking. Medallion lakehouse on GCS with 3 detection signals — Z-score volume spike, intra-window price deviation, wash trading — each with per-signal confidence. Gold lands in BigQuery via 3 dbt models with <strong>8 passing data quality tests</strong>.
+        Equity trade events stream through <strong>Aiven Kafka</strong> (SSL/TLS, ticker-keyed) into PySpark Structured Streaming with 1-min tumbling VWAP windows and 30s watermarking. Medallion lakehouse on GCS with 3 detection signals (Z-score volume spike, intra-window price deviation, wash trading), each with per-signal confidence. Gold lands in BigQuery via 3 dbt models with <strong>8 passing data quality tests</strong>.
       </p>
       <div class="proj-stats">
         <div class="ps"><span class="v">&lt;60s</span><span class="l">latency</span></div>
@@ -1828,11 +1927,11 @@ footer .dot { color: var(--acc); }
     <article class="proj half r" data-tech="pytorch llm interpretability nlp research" data-track="ml" data-name="Sycophancy Detection" data-tint="lavender">
       <div class="proj-meta">
         <span class="badge ml">NLP · Research</span>
-        <span class="status">ACL ARR · ACL 2027</span>
+        <span class="status">ACL ARR · Jan 2027</span>
       </div>
-      <h3>Sycophancy under pressure — predicting LLM capitulation</h3>
+      <h3>Sycophancy under pressure: predicting LLM capitulation</h3>
       <p class="blurb">
-        First-authored paper investigating <strong>hidden-state representation shifts</strong> in LLMs before sycophantic flips. Novel monotonically escalating pressure schedule across 5 architectures and 150+ probes. Cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns ahead</strong> — without any probe training.
+        First-authored paper investigating <strong>hidden-state representation shifts</strong> in LLMs before sycophantic flips. Novel monotonically escalating pressure schedule across 5 architectures and 150+ probes. Cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns ahead</strong>, without any probe training.
       </p>
       <div class="proj-stats">
         <div class="ps"><span class="v">L28</span><span class="l">dominant layer</span></div>
@@ -1856,7 +1955,7 @@ footer .dot { color: var(--acc); }
         <span class="badge de">Data Engineering</span>
         <span class="status"><span class="dot"></span> live demo</span>
       </div>
-      <h3>SoundStream Analytics — 46M record music ELT</h3>
+      <h3>SoundStream Analytics: 46M record music ELT</h3>
       <p class="blurb">
         Batch ELT pipeline processing <strong>46M+ records</strong> from Spotify Charts, Spotify Songs and Last.fm. Medallion architecture orchestrated as an Airflow DAG; <strong>60% storage compression</strong> via partitioned parquet; Silver-layer quality checks dropped 5,043 duplicates across a 36.7% cross-source match rate.
       </p>
@@ -1929,7 +2028,7 @@ footer .dot { color: var(--acc); }
         <span class="badge de">Build</span>
         <span class="status"><span class="dot"></span> you're here</span>
       </div>
-      <h3>this site — a queryable portfolio</h3>
+      <h3>this site: a queryable portfolio</h3>
       <p class="blurb">
         The site you're reading is itself a small experiment: a portfolio that behaves like one of my pipelines. Stream console replaying real visitor events, live interpretability widget, and a SQL-ish <strong>command palette</strong> that actually queries the page. <em>Press / to try.</em>
       </p>
@@ -1947,30 +2046,30 @@ footer .dot { color: var(--acc); }
 <!-- RESEARCH -->
 <section class="research" id="research">
   <div class="section-head r">
-    <span class="num">03</span>
+    <span class="num">04</span>
     <h2>research<span class="it">.</span></h2>
-    <span class="sub">when the model caves — and how to see it coming</span>
+    <span class="sub">when the model caves, and how to see it coming</span>
   </div>
 
   <div class="research-grid">
     <div class="research-text r d1">
       <div class="paper-meta">
-        <span class="tag">ACL ARR · May '26</span>
+        <span class="tag">ACL ARR · Jan '27</span>
         <span> Northeastern</span>
       </div>
-      <h3>"Before the Model Caves<span class="it"> —</span><br>Detecting Pre-Capitulation States in Multi-Turn Sycophancy"</h3>
+      <h3>"Before the Model Caves:<br>Detecting Pre-Capitulation States in Multi-Turn Sycophancy"</h3>
       <p>
-        Sycophancy in LLMs is usually studied <em>after</em> the model flips. We asked the opposite question: can you tell, from the hidden states alone, that a flip is <strong>about to happen</strong> — before any visible change in the output?
+        Sycophancy in LLMs is usually studied <em>after</em> the model flips. We asked the opposite question: can you tell, from the hidden states alone, that a flip is <strong>about to happen</strong>, before any visible change in the output?
       </p>
       <p>
-        We built a monotonically escalating pressure schedule across five turns and traced hidden-state activations through every transformer layer. The signal was there, and it was loud. In Qwen2.5-7B, <strong>Layer 28 dominates</strong>; across all five models, layers 17–19 are globally predictive — a dissociation unreported in prior work.
+        We built a monotonically escalating pressure schedule across five turns and traced hidden-state activations through every transformer layer. The signal was there, and it was loud. In Qwen2.5-7B, <strong>Layer 28 dominates</strong>; across all five models, layers 17–19 are globally predictive, a dissociation unreported in prior work.
       </p>
       <div class="key-finding">
         <span class="lbl">key finding</span>
-        cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns in advance</strong>, with no probe training required. RBF SVM + KNN classifiers reach 75.5% accuracy — +11.7 over chance.
+        cosine similarity disruption at the <em>first</em> pressure turn predicts behavioural flip <strong>3–4 turns in advance</strong>, with no probe training required. RBF SVM + KNN classifiers reach 75.5% accuracy (+11.7 over chance).
       </div>
       <p style="font-size:0.85rem; color:var(--txt-3);">
-        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting ACL 2027.
+        First author with Soham Padia (equal contribution); with Tomas D'Avola, Vedant Shah; advised by Prof. Malihe Alikhani. Targeting ACL, January 2027.
       </p>
     </div>
 
@@ -2010,7 +2109,7 @@ footer .dot { color: var(--acc); }
 <!-- EXPERIENCE LOG -->
 <section id="experience">
   <div class="section-head r">
-    <span class="num">04</span>
+    <span class="num">05</span>
     <h2>experience<span class="it">.</span></h2>
     <span class="sub">log // tail -f career.events</span>
   </div>
@@ -2019,7 +2118,7 @@ footer .dot { color: var(--acc); }
 
     <div class="exp-row">
       <div class="exp-date">
-        Sep 2026 — present<br>
+        Sep 2026 – present<br>
         <span style="color:var(--txt-4)">Boston, MA</span>
       </div>
       <div class="exp-body">
@@ -2049,7 +2148,7 @@ footer .dot { color: var(--acc); }
 
     <div class="exp-row">
       <div class="exp-date">
-        Jan 2022 — Aug 2025<br>
+        Jan 2022 – Aug 2025<br>
         <span style="color:var(--txt-4)">Bangalore, IN</span>
       </div>
       <div class="exp-body">
@@ -2059,7 +2158,7 @@ footer .dot { color: var(--acc); }
         </div>
 
         <div class="exp-scope">
-          <strong>Switch Data Monitoring</strong> — the telemetry platform ingesting hardware health
+          <strong>Switch Data Monitoring</strong>: the telemetry platform ingesting hardware health
           and network metrics from HPE's enterprise switch fleet across 10+ models, through an
           enricher → predictor → sink connector chain. I worked the reliability side: where data
           broke, why, and keeping validation honest as the platform moved underneath it.
@@ -2075,7 +2174,7 @@ footer .dot { color: var(--acc); }
         <div class="subrole">
           <div class="subrole-head">
             <span class="title">Cloud Developer</span>
-            <span class="span">Aug 2022 — Aug 2025 <span class="yrs">· 3 yr 1 mo</span></span>
+            <span class="span">Aug 2022 – Aug 2025 <span class="yrs">· 3 yr 1 mo</span></span>
           </div>
           <ul>
             <li>Traced data loss across <strong>15+ microservices</strong> ingesting VLAN/VXLAN switch telemetry, following records through enricher → predictor → sink connectors to pinpoint the failing service and root cause <span class="metric">→ −40% MTTR</span></li>
@@ -2089,7 +2188,7 @@ footer .dot { color: var(--acc); }
         <div class="subrole">
           <div class="subrole-head">
             <span class="title">Software Engineer Intern</span>
-            <span class="span">Jan 2022 — Jul 2022 <span class="yrs">· 7 mo</span></span>
+            <span class="span">Jan 2022 – Jul 2022 <span class="yrs">· 7 mo</span></span>
           </div>
           <ul>
             <li>Built automated feature-validation scripts integrated into the CI pipeline across <strong>10+ switch models</strong>; eliminated recurring production rejections from malformed telemetry payloads</li>
@@ -2110,7 +2209,7 @@ footer .dot { color: var(--acc); }
 <!-- EDU + ACHIEVEMENTS -->
 <section>
   <div class="section-head r">
-    <span class="num">05</span>
+    <span class="num">06</span>
     <h2>education &amp; off-screen<span class="it">.</span></h2>
     <span class="sub">how I got here and what I do when the laptop is closed</span>
   </div>
@@ -2121,7 +2220,7 @@ footer .dot { color: var(--acc); }
         <div class="school">Northeastern University</div>
         <div class="deg">MS · Computer Science · Boston, MA</div>
         <div class="meta">
-          <span>Sep 2025 — May 2027 (expected)</span>
+          <span>Sep 2025 – May 2027 (expected)</span>
         </div>
         <div class="courses">
           <span class="courses-label">coursework</span>
@@ -2133,7 +2232,7 @@ footer .dot { color: var(--acc); }
         <div class="deg">BTech · Electronics &amp; Communication · India</div>
         <div class="meta">
           <span>May 2022</span>
-          <span style="color:var(--acc)">minor — data science &amp; modelling</span>
+          <span style="color:var(--acc)">minor · data science &amp; modelling</span>
         </div>
         <div class="courses">
           <span class="courses-label">coursework</span>
@@ -2146,7 +2245,7 @@ footer .dot { color: var(--acc); }
       <div class="ach-item">
         <span class="ico">[01]</span>
         <div>
-          <h4>football — vice-captain, weekend referee</h4>
+          <h4>football · vice-captain, weekend referee</h4>
           <p>Vice-captain of MIT Manipal's inter-college team (20+ players, regional tournaments). <strong>10+ years of playing.</strong></p>
         </div>
       </div>
@@ -2161,7 +2260,7 @@ footer .dot { color: var(--acc); }
         <span class="ico">[03]</span>
         <div>
           <h4>student governance</h4>
-          <p>Member of the Official Student Committee at MIT Manipal — campus initiatives, event ops, liaison between students and administration.</p>
+          <p>Member of the Official Student Committee at MIT Manipal: campus initiatives, event ops, liaison between students and administration.</p>
         </div>
       </div>
       <div class="ach-item">
@@ -2240,7 +2339,7 @@ bootLines.forEach(line => {
 setTimeout(() => document.getElementById('boot').classList.add('done'), 1500);
 
 /* ─────────────────────────────────────── */
-/*  STATUS BAR — local time                */
+/*  STATUS BAR: local time                */
 /* ─────────────────────────────────────── */
 function updateTime() {
   const d = new Date();
@@ -2252,7 +2351,7 @@ function updateTime() {
 updateTime(); setInterval(updateTime, 1000);
 
 /* ─────────────────────────────────────── */
-/*  STREAM CONSOLE — fake-but-real events  */
+/*  STREAM CONSOLE: fake-but-real events  */
 /* ─────────────────────────────────────── */
 (() => {
   const feed = document.getElementById('stream-feed');
@@ -2323,7 +2422,7 @@ updateTime(); setInterval(updateTime, 1000);
     }
   }, 90);
 
-  // scroll & hover hooks — visitor events tied to real DOM
+  // scroll & hover hooks: visitor events tied to real DOM
   let lastScrollEvt = 0;
   window.addEventListener('scroll', () => {
     const now = Date.now();
@@ -2332,7 +2431,7 @@ updateTime(); setInterval(updateTime, 1000);
 })();
 
 /* ─────────────────────────────────────── */
-/*  ACTIVATION WIDGET — pressure ladder    */
+/*  ACTIVATION WIDGET: pressure ladder    */
 /* ─────────────────────────────────────── */
 (() => {
   const layerData = [
@@ -2353,8 +2452,8 @@ updateTime(); setInterval(updateTime, 1000);
 
   const signals = [
     { txt: 'stable · model holding original position', cls: '' },
-    { txt: 'first divergence — cosine sim dropping in L17/19', cls: 'warn' },
-    { txt: 'predictive layers diverging — flip probable within 2 turns', cls: 'warn' },
+    { txt: 'first divergence: cosine sim dropping in L17/19', cls: 'warn' },
+    { txt: 'predictive layers diverging: flip probable within 2 turns', cls: 'warn' },
     { txt: 'L28 saturating · capitulation imminent', cls: 'crit' },
     { txt: 'flip · model has capitulated to pressure', cls: 'crit' },
   ];
@@ -2440,7 +2539,7 @@ const cmdkQueryResult = document.getElementById('cmdk-query-result');
 const commands = [
   { g:'jump to', kw: ['skills','stack','tools','tech','lineage'], label: 'Show skills', desc: 'toolkit grouped by area', action: () => goto('#skills') },
   { g:'jump to', kw: ['project','projects','work','build','code'], label: 'Show all projects', desc: '6 builds, instrumented', action: () => goto('#projects') },
-  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL 2027 — sycophancy', action: () => goto('#research') },
+  { g:'jump to', kw: ['research','paper','sycophancy','llm','interp','acl'], label: 'Open research deep-dive', desc: 'ACL Jan 2027 · sycophancy', action: () => goto('#research') },
   { g:'jump to', kw: ['experience','xp','work history','hpe','role','teaching','ta'], label: 'Show experience log', desc: 'TA + 3 years at HPE', action: () => goto('#experience') },
   { g:'jump to', kw: ['contact','email','reach','hire','full time','fulltime','fte','new grad','hiring'], label: 'Contact channels', desc: 'email, linkedin, github', action: () => goto('#contact') },
 
@@ -2454,7 +2553,7 @@ const commands = [
   { g:'external', kw: ['linkedin','li'], label: 'Open LinkedIn', desc: '/in/us1610', action: () => window.open('https://linkedin.com/in/us1610','_blank') },
 
   { g:'utility', kw: ['resume','cv','pdf','download'], label: 'Open resume', desc: 'PDF · latest version', action: () => window.open('resume.pdf','_blank') },
-  { g:'utility', kw: ['help','?'], label: 'Help — what can I query?', desc: 'show examples', action: () => showHelp() },
+  { g:'utility', kw: ['help','?'], label: 'Help: what can I query?', desc: 'show examples', action: () => showHelp() },
 ];
 
 const projectData = {
@@ -2531,7 +2630,7 @@ function renderResults(q) {
   // Filter commands
   const matches = commands.filter(c => c.kw.some(k => k.includes(q)) || c.label.toLowerCase().includes(q));
   if (!matches.length) {
-    cmdkResults.innerHTML = `<div class="cmdk-group"><div class="cmdk-row dim"><span class="ico">∅</span><span style="color:var(--txt-3)">no match — try <span style="color:var(--acc)">SELECT * FROM projects</span></span></div></div>`;
+    cmdkResults.innerHTML = `<div class="cmdk-group"><div class="cmdk-row dim"><span class="ico">∅</span><span style="color:var(--txt-3)">no match. try <span style="color:var(--acc)">SELECT * FROM projects</span></span></div></div>`;
     return;
   }
   cmdkResults.innerHTML = matches.map(c => `<div class="cmdk-row" data-cmd="${commands.indexOf(c)}"><span class="ico">▸</span><span>${c.label}</span><span class="desc">${c.desc}</span></div>`).join('');
@@ -2579,7 +2678,7 @@ function runQuery(q) {
     cmdkQueryResult.innerHTML = `
       <div class="qr-head">▸ ${escapedQ}</div>
       <div class="qr-meta">0 rows${whereSummary}</div>
-      <div class="qr-row dim">— no matching projects —</div>
+      <div class="qr-row dim">no matching projects</div>
     `;
     return;
   }
@@ -2589,7 +2688,7 @@ function runQuery(q) {
       let v;
       if (c === 'name') v = name;
       else if (Array.isArray(data[c])) v = data[c].join(', ');
-      else v = data[c] || '—';
+      else v = data[c] || '-';
       return `<div class="qr-field"><span class="qr-k">${c}</span><span class="qr-v">${v}</span></div>`;
     }).join('');
     return `<div class="qr-row"><div class="qr-name">▸ ${name}</div>${fields}</div>`;
@@ -2690,7 +2789,7 @@ window.openCmdk = openCmdk;
 window.closeCmdk = closeCmdk;
 
 /* ─────────────────────────────────────── */
-/*  MOTIVATION MODAL — per-project story   */
+/*  MOTIVATION MODAL: per-project story   */
 /* ─────────────────────────────────────── */
 (() => {
   const GH = 'https://github.com/utkarsh1610-s/';
@@ -2699,25 +2798,25 @@ window.closeCmdk = closeCmdk;
       repo: 'Hindsight',
       eyebrow: 'data engineering · point-in-time warehouse',
       title: 'Hindsight',
-      hook: 'Every financial database rewrites history. I wanted one that remembers what was actually known — and when.',
+      hook: 'Every financial database rewrites history. I wanted one that remembers what was actually known, and when.',
       stats: [['5.58 GB','raw SEC filings'],['907K','material revisions surfaced'],['20.6M','keys · one open interval each'],['10.8%','companies with a corrected input']],
       secs: [
         ['Why I built it', `
-          <p>In February 2022, AT&amp;T reported 2021 revenue of <b>$168.9B</b>. A year later, after spinning off WarnerMedia, it restated the same year as <b>$134.0B</b>. Nobody lied — accounting rules require it. But every financial database today shows only the second number; the original is gone.</p>
-          <p>That quietly breaks every backtest. Test a strategy on corrected data and you're asking <i>"what would I have picked if I could see two years into the future?"</i> Worse, the companies that get restated are disproportionately the ones a profitability screen selects. Compustat and FactSet sell expensive point-in-time products to fix this. I wanted to build a free one from public SEC data — and measure how large the bias really is.</p>`],
+          <p>In February 2022, AT&amp;T reported 2021 revenue of <b>$168.9B</b>. A year later, after spinning off WarnerMedia, it restated the same year as <b>$134.0B</b>. Nobody lied; accounting rules require it. But every financial database today shows only the second number; the original is gone.</p>
+          <p>That quietly breaks every backtest. Test a strategy on corrected data and you're asking <i>"what would I have picked if I could see two years into the future?"</i> Worse, the companies that get restated are disproportionately the ones a profitability screen selects. Compustat and FactSet sell expensive point-in-time products to fix this. I wanted to build a free one from public SEC data and measure how large the bias really is.</p>`],
         ['Three times the data nearly lied to me', `
           <ul>
             <li><b>"Half of all facts get restated."</b> First pass said 51%. A missing <code>segments</code> key was comparing company totals against business-unit line items. Fixing it: 51% → 6%, impossible sign flips 2,179 → 78.</li>
             <li><b>"Revenue only covers 37% of companies."</b> A 2018 accounting change split revenue across four tags. A concept-mapping layer took coverage to 69% and removed a fake coverage cliff mid-window.</li>
-            <li><b>"Restatements are declining since 2024."</b> They aren't — recent filings just haven't had time to be corrected. The test window stops at 2024Q1 for this reason.</li>
+            <li><b>"Restatements are declining since 2024."</b> They aren't. Recent filings just haven't had time to be corrected. The test window stops at 2024Q1 for this reason.</li>
           </ul>`],
         ['How I know it\'s right', `
-          <p>The six filing-precedence rules live as plain Python, unit-tested on hand-built rows in two seconds. The Spark pipeline implements the same rules over 22M rows — and the main test <b>asserts the two agree</b> on 300 sampled keys with revisions. Six structural invariants (no overlaps, exactly one open interval per key, no gaps, intervals start at filing acceptance…) run on the full table.</p>
+          <p>The six filing-precedence rules live as plain Python, unit-tested on hand-built rows in two seconds. The Spark pipeline implements the same rules over 22M rows, and the main test <b>asserts the two agree</b> on 300 sampled keys with revisions. Six structural invariants (no overlaps, exactly one open interval per key, no gaps, intervals start at filing acceptance…) run on the full table.</p>
           <p>Both layers caught real bugs: a zero-width interval from two filings accepted in the same second, and a 10-Q reporting revenue under two tags that invented a revision which never happened.</p>`],
         ['Design calls', `
           <ul>
-            <li><b>Bronze keeps everything</b> — every opinion is applied downstream, so changing one is a query edit, not a 5.58 GB re-download.</li>
-            <li><b>Quarantine ≠ exclusion.</b> Broken data is quarantined; valid-but-out-of-scope data is excluded. Separating them dropped the quarantine rate from useless to 0.001% — low enough that a spike now means something.</li>
+            <li><b>Bronze keeps everything</b>: every opinion is applied downstream, so changing one is a query edit, not a 5.58 GB re-download.</li>
+            <li><b>Quarantine ≠ exclusion.</b> Broken data is quarantined; valid-but-out-of-scope data is excluded. Separating them dropped the quarantine rate from useless to 0.001%, low enough that a spike now means something.</li>
             <li><b>Liquid clustering on (cik, ddate)</b> instead of period partitioning, because a 2026 filing writes rows dated 2019. No rewrite amplification on late-arriving data.</li>
           </ul>`],
       ],
@@ -2728,57 +2827,57 @@ window.closeCmdk = closeCmdk;
       repo: 'marketpulse',
       eyebrow: 'data engineering · real-time streaming',
       title: 'MarketPulse',
-      hook: 'An anomaly flagged an hour late is a footnote. I wanted the full real-time path — broker to dashboard — inside a one-minute budget.',
+      hook: 'An anomaly flagged an hour late is a footnote. I wanted the full real-time path, broker to dashboard, inside a one-minute budget.',
       stats: [['<60s','event → Gold latency'],['~3,900','events per market day'],['0.3%','false-positive rate at z > 3'],['$0','free-tier cloud cost']],
       secs: [
         ['Why I built it', `
           <p>Market surveillance is fundamentally a streaming problem: volume surges, flash moves and circular trading only matter while they're happening. Batch pipelines answer yesterday's questions.</p>
-          <p>I wanted to build every stage of a production streaming stack myself — managed Kafka, stateful stream processing, a transactional lakehouse, a warehouse, tested transformations, and a public dashboard — on free-tier cloud, and hold the whole chain to a sub-minute latency budget.</p>`],
+          <p>I wanted to build every stage of a production streaming stack myself: managed Kafka, stateful stream processing, a transactional lakehouse, a warehouse, tested transformations, and a public dashboard, all on free-tier cloud, and hold the whole chain to a sub-minute latency budget.</p>`],
         ['What it detects', `
           <ul>
-            <li><b>Volume spike</b> — <code>z = (vol − μ₂₀) / σ₂₀ &gt; 3.0</code> against a 20-window rolling baseline per ticker; confidence scales with z.</li>
-            <li><b>Price deviation</b> — intra-minute range above <code>2%</code> of VWAP: volatility bursts and algorithmic swings.</li>
-            <li><b>Wash signal</b> — volume above <code>1.5×</code> baseline while price moves less than <code>0.1%</code>: heavy trading that goes nowhere, a classic circular-trading pattern.</li>
+            <li><b>Volume spike</b>: <code>z = (vol − μ₂₀) / σ₂₀ &gt; 3.0</code> against a 20-window rolling baseline per ticker; confidence scales with z.</li>
+            <li><b>Price deviation</b>: intra-minute range above <code>2%</code> of VWAP: volatility bursts and algorithmic swings.</li>
+            <li><b>Wash signal</b>: volume above <code>1.5×</code> baseline while price moves less than <code>0.1%</code>: heavy trading that goes nowhere, a classic circular-trading pattern.</li>
           </ul>`],
         ['How it flows', `
           <p>Trade events for AAPL, NVDA, TSLA, SPY and AMD → <b>Aiven Kafka</b> (SSL/TLS, keyed by ticker to preserve per-instrument ordering) → three <b>Spark Structured Streaming</b> jobs in Docker: a Bronze writer for raw ticks, a Silver aggregator building 1-minute tumbling VWAP windows, and a Gold detector that writes only anomalies → <b>Delta Lake on GCS</b> with checkpoints → <b>BigQuery</b> → three <b>dbt</b> models → a live <b>Streamlit</b> feed.</p>`],
         ['Design calls', `
           <ul>
-            <li><b>Delta + checkpointing</b> so a crashed job restarts exactly where it stopped — no double-counted windows.</li>
+            <li><b>Delta + checkpointing</b> so a crashed job restarts exactly where it stopped, with no double-counted windows.</li>
             <li><b>Gold stores anomalies only</b>, keeping the warehouse under 1 MB and every dashboard query instant.</li>
-            <li><b>A <code>ticker_health</code> model with a freshness SLA</b> — the pipeline reports when a feed goes quiet, not just when it fires.</li>
+            <li><b>A <code>ticker_health</code> model with a freshness SLA</b>: the pipeline reports when a feed goes quiet, not just when it fires.</li>
             <li><b>8 dbt tests</b> (not-null, uniqueness) gate every model before it reaches the dashboard.</li>
           </ul>`],
       ],
-      quote: 'Real-time isn\'t a feature you add later — latency, ordering and fault tolerance have to be designed in from the first message.',
+      quote: 'Real-time isn\'t a feature you add later. Latency, ordering and fault tolerance have to be designed in from the first message.',
     },
 
     'Sycophancy Detection': {
       repo: 'Sycophancy-Detection-CustomDataset',
       eyebrow: 'nlp · interpretability research',
       title: 'Before the model caves',
-      hook: 'LLMs abandon correct answers when users simply push back. I wanted to see whether the decision is visible inside the model — turns before it happens.',
+      hook: 'LLMs abandon correct answers when users simply push back. I wanted to see whether the decision is visible inside the model, turns before it happens.',
       stats: [['5','open-weight LLMs'],['0.596–0.636','zero-shot peak AUC'],['+6.6 pp','nonlinear over linear'],['3–4','turns of early warning']],
       secs: [
         ['Why I built it', `
-          <p>Sycophancy is usually measured at the output: did the model flip or not? But a model that drops a correct answer under nothing more than <i>persistence</i> — no new evidence — is a reliability and alignment problem, and by the time you see the flip it's too late.</p>
+          <p>Sycophancy is usually measured at the output: did the model flip or not? But a model that drops a correct answer under nothing more than <i>persistence</i>, with no new evidence, is a reliability and alignment problem, and by the time you see the flip it's too late.</p>
           <p>My question was mechanistic: <b>does the model's internal state shift before it capitulates?</b> If it does, capitulation becomes something you can detect, monitor, and eventually prevent.</p>`],
         ['How I studied it', `
           <ul>
-            <li>Extended <b>SYCON-Bench</b> with a <b>monotonically escalating pressure schedule</b> — each turn applies strictly stronger disagreement — and true multi-turn dialogue with full history.</li>
+            <li>Extended <b>SYCON-Bench</b> with a <b>monotonically escalating pressure schedule</b> (each turn applies strictly stronger disagreement), plus true multi-turn dialogue with full history.</li>
             <li>Three question categories (base, critical, false-presupposition) that test different resistance mechanisms.</li>
             <li>Five models: DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B, Llama-3.1-8B, Qwen3.5-9B and Gemma-2-9B. Layer-wise hidden states extracted at every turn on V100 GPUs via SLURM.</li>
             <li>Flips labelled both by keyword rules and an LLM-as-judge, then compared.</li>
           </ul>`],
         ['What I found', `
           <ul>
-            <li><b>Early cosine disruption predicts eventual flips.</b> The similarity between Turn 0 and Turn 1 hidden states predicts capitulation across all four probed models — with no classifier training at all.</li>
+            <li><b>Early cosine disruption predicts eventual flips.</b> The similarity between Turn 0 and Turn 1 hidden states predicts capitulation across all four probed models, with no classifier training at all.</li>
             <li><b>The signal is model-specific.</b> Predictive layers differ by architecture, and probes fail to transfer even between models of the same family.</li>
             <li><b>Pre-flip geometry is nonlinear.</b> Linear probes fail at every layer; nonlinear classifiers beat them by 6.6 pp on average, and near-zero Fisher ratios confirm there's no separating hyperplane.</li>
             <li><b>Activation magnitude builds up.</b> L2 norm rises monotonically over 3–4 pressure turns before the flip in three of four models.</li>
           </ul>`],
       ],
-      quote: 'The model starts to give way internally long before it says so — which means capitulation can be caught before it reaches the user.',
+      quote: 'The model starts to give way internally long before it says so, which means capitulation can be caught before it reaches the user.',
     },
 
     'SoundStream': {
@@ -2789,20 +2888,20 @@ window.closeCmdk = closeCmdk;
       stats: [['35.7M','chart-position facts'],['252K','unique artists'],['~22 min','full pipeline run'],['2017–21','time range']],
       secs: [
         ['Why I built it', `
-          <p>I wanted a batch pipeline at a scale where naive approaches start to break — tens of millions of rows, mixed formats, malformed dates, duplicates — and to model it the way it would really be consumed: a <b>star schema</b> behind a <b>daily, orchestrated DAG</b>, not a pile of notebooks.</p>
+          <p>I wanted a batch pipeline at a scale where naive approaches start to break (tens of millions of rows, mixed formats, malformed dates, duplicates) and to model it the way it would really be consumed: a <b>star schema</b> behind a <b>daily, orchestrated DAG</b>, not a pile of notebooks.</p>
           <p>Music data was the perfect stress test: chart positions, audio features and listening history come from different systems with no shared key you can trust.</p>`],
         ['The sources', `
           <ul>
-            <li><b>Spotify Charts</b> — 26M daily chart positions across 70+ countries.</li>
-            <li><b>Spotify Songs</b> — 1.2M tracks with audio features (danceability, energy, tempo…).</li>
-            <li><b>Last.fm</b> — 19M user listening events.</li>
+            <li><b>Spotify Charts</b>: 26M daily chart positions across 70+ countries.</li>
+            <li><b>Spotify Songs</b>: 1.2M tracks with audio features (danceability, energy, tempo…).</li>
+            <li><b>Last.fm</b>: 19M user listening events.</li>
           </ul>`],
         ['How it\'s built', `
           <ul>
-            <li><b>Bronze (PySpark)</b> — explicit schemas instead of inference, CSV/TSV converted to Parquet (60% smaller), partitioned by region/year/month, with ingestion metadata on every row.</li>
-            <li><b>Silver (PySpark)</b> — <code>try_to_date</code> for malformed dates, 5,043 duplicate chart rows removed, null handling, and a charts ↔ audio-features join at a 36.7% match rate.</li>
-            <li><b>Gold (dbt + DuckDB)</b> — <code>dim_tracks</code> (1.2M), <code>dim_artists</code> (252K), <code>fct_chart_positions</code> (35.7M) and <code>fct_user_listens</code> (19.1M).</li>
-            <li><b>Airflow</b> — a daily DAG: bronze_ingestion → silver_transformation → gold_dbt_run.</li>
+            <li><b>Bronze (PySpark)</b>: explicit schemas instead of inference, CSV/TSV converted to Parquet (60% smaller), partitioned by region/year/month, with ingestion metadata on every row.</li>
+            <li><b>Silver (PySpark)</b>: <code>try_to_date</code> for malformed dates, 5,043 duplicate chart rows removed, null handling, and a charts ↔ audio-features join at a 36.7% match rate.</li>
+            <li><b>Gold (dbt + DuckDB)</b>: <code>dim_tracks</code> (1.2M), <code>dim_artists</code> (252K), <code>fct_chart_positions</code> (35.7M) and <code>fct_user_listens</code> (19.1M).</li>
+            <li><b>Airflow</b>: a daily DAG: bronze_ingestion → silver_transformation → gold_dbt_run.</li>
           </ul>`],
         ['What I took away', `
           <ul>
@@ -2818,18 +2917,18 @@ window.closeCmdk = closeCmdk;
       repo: 'Verifiable-Input-Risk-Model-with-Counterfactual-A-B-Testing',
       eyebrow: 'data science · lending strategy',
       title: 'Credit Risk Strategy Engine',
-      hook: 'Rigid lending rules are safe but wasteful. I wanted a glass-box model that finds the good borrowers they reject — and explains every decision.',
+      hook: 'Rigid lending rules are safe but wasteful. I wanted a glass-box model that finds the good borrowers they reject and explains every decision.',
       stats: [['3,593','applicants rejected by the hard rule'],['1,245','of them actually low-risk'],['68 → 75%','approval rate'],['15.2 → 12.1%','default rate']],
       secs: [
         ['Why I built it', `
-          <p>Lenders run on hard rules like <i>"reject anyone with debt-to-income above 25%."</i> They're safe, but they turn away borrowers who fail one metric and are strong everywhere else. Machine learning can find those borrowers — but black-box models can't be explained to a regulator, and models that trust self-reported data invite fraud.</p>
+          <p>Lenders run on hard rules like <i>"reject anyone with debt-to-income above 25%."</i> They're safe, but they turn away borrowers who fail one metric and are strong everywhere else. Machine learning can find those borrowers, but black-box models can't be explained to a regulator, and models that trust self-reported data invite fraud.</p>
           <p>So I set three constraints: use <b>only verifiable bureau data</b>, let a model find <b>compensating factors</b>, and generate a <b>legal reason code</b> for every decline.</p>`],
         ['The evidence chain', `
           <ul>
-            <li><b>t-test:</b> borrowers above 25% DTI default 60% more often (16.2% vs 10.1%) — the rule isn't wrong, just blunt.</li>
+            <li><b>t-test:</b> borrowers above 25% DTI default 60% more often (16.2% vs 10.1%). The rule isn't wrong, just blunt.</li>
             <li><b>z-test:</b> verified-income borrowers default 3.4% less. <b>Chi-square:</b> debt consolidation (12.3%) is far safer than small business (18.7%).</li>
-            <li><b>Kaplan-Meier:</b> 70% of eventual defaults show distress within the first 12 months — an early-warning window.</li>
-            <li><b>Champion / challenger:</b> the hard rule rejected 3,593 test applicants; gradient boosting showed <b>35% of them were low-risk</b> (e.g. high DTI offset by a credit score above 750) — <b>$7.8M</b> in recoverable loan volume.</li>
+            <li><b>Kaplan-Meier:</b> 70% of eventual defaults show distress within the first 12 months, an early-warning window.</li>
+            <li><b>Champion / challenger:</b> the hard rule rejected 3,593 test applicants; gradient boosting showed <b>35% of them were low-risk</b> (e.g. high DTI offset by a credit score above 750), worth <b>$7.8M</b> in recoverable loan volume.</li>
           </ul>`],
         ['Design calls', `
           <ul>
@@ -2839,7 +2938,7 @@ window.closeCmdk = closeCmdk;
             <li>Net profit margin 4.2% → 4.8%; loss given default $8,200 → $7,100.</li>
           </ul>`],
       ],
-      quote: 'The best model isn\'t the most accurate one — it\'s the one a business can trust, a regulator can audit, and a fraudster can\'t game.',
+      quote: 'The best model isn\'t the most accurate one. It\'s the one a business can trust, a regulator can audit, and a fraudster can\'t game.',
     },
 
     'Stock Portfolio Manager': {
@@ -2850,18 +2949,18 @@ window.closeCmdk = closeCmdk;
       stats: [['13','stored procedures'],['8','tables in 3NF'],['45','live tickers · 6 sectors'],['15','REST endpoints']],
       secs: [
         ['Why I built it', `
-          <p>Financial data is where database theory stops being academic. If buying a stock debits cash but fails before recording the holding, the books no longer balance. I wanted to push integrity <b>down into the database</b> — atomic procedures, constraints and triggers — so that no client, however buggy, could leave it in an invalid state.</p>
+          <p>Financial data is where database theory stops being academic. If buying a stock debits cash but fails before recording the holding, the books no longer balance. I wanted to push integrity <b>down into the database</b>: atomic procedures, constraints and triggers, so that no client, however buggy, could leave it in an invalid state.</p>
           <p>Then I put a live market-data feed and two independent front-ends on top, to prove the core held up under real use.</p>`],
         ['How it\'s built', `
           <ul>
-            <li><b>MySQL 8 core</b> — 8 normalised tables, 13 stored procedures, 4 views and a trigger that credits dividends automatically.</li>
-            <li><b>Atomic trades</b> — every buy or sell runs inside one procedure with explicit <code>BEGIN / COMMIT / ROLLBACK</code>: validate funds, update holdings, update balance, append an immutable transaction — all or nothing.</li>
-            <li><b>Live prices</b> — a background service refreshes 45 tickers from Finnhub every 2 minutes, spaced to stay inside the 60-calls/minute free tier, with retries and graceful degradation.</li>
-            <li><b>Two interfaces, one source of truth</b> — a 21-operation CLI and a React 18 + Material-UI web app over a Flask REST API, both calling the same procedures.</li>
+            <li><b>MySQL 8 core</b>: 8 normalised tables, 13 stored procedures, 4 views and a trigger that credits dividends automatically.</li>
+            <li><b>Atomic trades</b>: every buy or sell runs inside one procedure with explicit <code>BEGIN / COMMIT / ROLLBACK</code>: validate funds, update holdings, update balance, append an immutable transaction. All or nothing.</li>
+            <li><b>Live prices</b>: a background service refreshes 45 tickers from Finnhub every 2 minutes, spaced to stay inside the 60-calls/minute free tier, with retries and graceful degradation.</li>
+            <li><b>Two interfaces, one source of truth</b>: a 21-operation CLI and a React 18 + Material-UI web app over a Flask REST API, both calling the same procedures.</li>
           </ul>`],
         ['Design calls', `
           <ul>
-            <li><code>DECIMAL(10,2)</code> for every amount — no floating-point drift in money.</li>
+            <li><code>DECIMAL(10,2)</code> for every amount, so there's no floating-point drift in money.</li>
             <li>Composite keys for state tables (holdings, watchlist); surrogate keys for event tables (transactions, dividends).</li>
             <li>bcrypt-hashed credentials and a full activity audit log.</li>
             <li>~4,700 lines across SQL, Python and React, built in about 70 hours.</li>
@@ -2919,5 +3018,6 @@ window.closeCmdk = closeCmdk;
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 </script>
+<script src="glass.js"></script>
 </body>
 </html>

@@ -1,0 +1,231 @@
+/* ───────────── DARK GLASS THEME: PURE GRAPHITE ─────────────
+   Active when <html data-theme="dark">. Layered over glass.css; toggled by glass.js.
+   No hue: black, greys, white accent. Gloss is a touch stronger so the glass still reads. */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --glass:        rgba(255,255,255,0.045);
+  --glass-strong: rgba(255,255,255,0.08);
+  --glass-soft:   rgba(255,255,255,0.035);
+  --glass-edge:   rgba(255,255,255,0.12);
+  --glass-rim:    rgba(255,255,255,0.08);
+  --glass-blur:   blur(24px) saturate(120%);
+  --glass-sheen:  linear-gradient(135deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.025) 45%, rgba(255,255,255,0) 100%);
+  --glass-shine:  linear-gradient(180deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0) 30%);
+  --glass-shadow:
+    0 1px 1px rgba(0,0,0,0.4),
+    0 20px 50px -12px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+
+  --bg:       #0b0b0c;
+  --bg-1:     rgba(255,255,255,0.04);
+  --bg-2:     rgba(255,255,255,0.07);
+  --bg-3:     rgba(255,255,255,0.14);
+  --line:     rgba(255,255,255,0.07);
+  --line-2:   rgba(255,255,255,0.12);
+  --line-hot: rgba(255,255,255,0.28);
+
+  --txt:   #f4f4f5;
+  --txt-2: #b4b4bb;
+  --txt-3: #8b8b93;
+  --txt-4: #5f5f67;
+
+  /* accent is brightness, not hue */
+  --acc:      #fafafa;
+  --acc-dim:  rgba(255,255,255,0.07);
+  --acc-mid:  rgba(255,255,255,0.22);
+  --acc2:     #c9c2b4;
+  --acc2-dim: rgba(201,194,180,0.12);
+  --crimson:  #e0938d;
+  --violet:   #b39dfa;
+
+  background: linear-gradient(160deg, #0a0a0b 0%, #0b0b0c 50%, #0d0d0f 100%);
+  background-attachment: fixed;
+}
+
+/* soft grey light pools: just enough shape behind the glass */
+html[data-theme="dark"] body::before { opacity: 0.5; }
+html[data-theme="dark"] body::after {
+  background:
+    radial-gradient(ellipse 40% 36% at 8% 10%,  rgba(150,150,160,0.22) 0, transparent 70%),
+    radial-gradient(ellipse 36% 42% at 94% 30%, rgba(120,120,130,0.20) 0, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 55% 55%, rgba(255,255,255,0.06) 0, transparent 70%),
+    radial-gradient(ellipse 38% 30% at 85% 95%, rgba(110,110,118,0.18) 0, transparent 70%),
+    radial-gradient(ellipse 34% 32% at 12% 88%, rgba(130,130,140,0.16) 0, transparent 70%);
+}
+
+/* chrome */
+html[data-theme="dark"] .statusbar { background: rgba(10,10,11,0.6); }
+html[data-theme="dark"] nav.topnav { background: rgba(10,10,11,0.6); box-shadow: 0 6px 24px -10px rgba(0,0,0,0.6); }
+html[data-theme="dark"] .boot { background: #0a0a0b; }
+
+/* nested surfaces */
+html[data-theme="dark"] :is(.console-header, .proj-stats, .proj-vis, .exp-stats, .exp-scope,
+  .mot-stat, .sk-chip, .chip, .aw-row .bar, .aw-control .pressure-bar button) {
+  border-color: var(--glass-edge);
+}
+html[data-theme="dark"] :is(.proj-stats, .exp-stats, .proj-vis, .mot-stat) {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+html[data-theme="dark"] .console-header { background: rgba(255,255,255,0.04); }
+html[data-theme="dark"] .console-body::before { background: linear-gradient(180deg, rgba(14,14,16,0.7), transparent); }
+html[data-theme="dark"] .console-body::after  { background: linear-gradient(0deg,  rgba(14,14,16,0.7), transparent); }
+html[data-theme="dark"] .proj-vis,
+html[data-theme="dark"] .proj[data-tint] .proj-vis { background: rgba(255,255,255,0.03); border-color: var(--glass-edge); }
+html[data-theme="dark"] .proj[data-tint] .proj-stats { border-color: var(--glass-edge); }
+html[data-theme="dark"] :is(.sk-chip:hover, .chip.hi) { border-color: var(--acc-mid); }
+/* logos are drawn on white: keep them on a light tile */
+html[data-theme="dark"] .exp-logo { background: rgba(255,255,255,0.92); border-color: var(--glass-edge); }
+
+/* charts are authored for light backgrounds: invert lightness, keep hue */
+html[data-theme="dark"] .proj-vis > * { filter: invert(0.9) hue-rotate(180deg) saturate(1.15); }
+
+/* gloss, toned for dark */
+html[data-theme="dark"] :is(.console, .skills-wrap, .proj, .activation-widget, .bring,
+  .exp-log, .edu-card, .ach-card, .contact-channels)::before {
+  background: linear-gradient(150deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.10) 25%,
+    rgba(255,255,255,0) 50%,
+    rgba(255,255,255,0.06) 85%,
+    rgba(255,255,255,0.18) 100%);
+}
+html[data-theme="dark"] .proj::after {
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,0.09), rgba(255,255,255,0) 45%);
+}
+html[data-theme="dark"] .proj:hover {
+  border-color: rgba(255,255,255,0.2);
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.3),
+    0 28px 60px -14px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.14);
+}
+
+/* buttons */
+html[data-theme="dark"] .btn-primary {
+  background: linear-gradient(180deg, #ffffff, #e4e4e7);
+  color: #0b0b0c;
+  box-shadow: 0 8px 24px -10px rgba(255,255,255,0.25), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+html[data-theme="dark"] .btn-primary:hover { background: linear-gradient(180deg, #ffffff, #d4d4d8); }
+html[data-theme="dark"] .btn-ghost { box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+html[data-theme="dark"] nav.topnav .links a.cta { box-shadow: 0 4px 16px -6px rgba(255,255,255,0.25); }
+html[data-theme="dark"] nav.topnav .links a.cta:hover { background: #d4d4d8; color: #0b0b0c; }
+html[data-theme="dark"] .eyebrow { box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+html[data-theme="dark"] .hero-photo { box-shadow: 0 16px 40px -12px rgba(0,0,0,0.7); }
+
+/* hard-coded accent colours in the base styles, lifted for dark */
+html[data-theme="dark"] .evt .lvl.flow { color: #9fb2c6; }
+html[data-theme="dark"] .evt .lvl.evnt { color: var(--violet); }
+html[data-theme="dark"] .proj-meta .badge.ds { background: rgba(255,255,255,0.05); color: #b8c3cf; border-color: rgba(255,255,255,0.14); }
+html[data-theme="dark"] .proj-meta .badge.ml { background: rgba(255,255,255,0.05); color: var(--violet); border-color: rgba(255,255,255,0.14); }
+html[data-theme="dark"] .research-text .paper-meta .tag { background: rgba(255,255,255,0.06); color: var(--violet); }
+html[data-theme="dark"] .research-text h3 .it { color: var(--violet); }
+html[data-theme="dark"] .research-text .key-finding { background: rgba(255,255,255,0.03); border-left-color: var(--violet); }
+html[data-theme="dark"] .research-text .key-finding .lbl { color: var(--violet); }
+html[data-theme="dark"] .aw-control .pressure-bar button.active { background: rgba(255,255,255,0.10); border-color: var(--violet); color: var(--violet); }
+
+/* modals */
+html[data-theme="dark"] :is(.mot-overlay, .cmdk) { background: rgba(2,4,10,0.55); }
+html[data-theme="dark"] :is(.mot-panel, .cmdk-box) {
+  background: rgba(18,18,20,0.95);
+  border-color: var(--glass-edge);
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+html[data-theme="dark"] .mot-head { background: rgba(255,255,255,0.03); }
+
+/* ───────────── DATA COLOUR ─────────────
+   Chrome stays grey; colour only marks information. One hue per track, used everywhere:
+   de = blue, ml = violet, ds = teal. */
+html[data-theme="dark"] .proj[data-track="de"] { --cat: 110,168,254; }
+html[data-theme="dark"] .proj[data-track="ml"] { --cat: 179,157,250; }
+html[data-theme="dark"] .proj[data-track="ds"] { --cat: 79,209,197; }
+
+html[data-theme="dark"] .proj[data-track] .proj-meta .badge {
+  background: rgba(var(--cat),0.12);
+  color: rgb(var(--cat));
+  border-color: rgba(var(--cat),0.32);
+}
+html[data-theme="dark"] .proj[data-track] .proj-stats .ps .v { color: rgb(var(--cat)); }
+
+/* card lights up in its track colour on hover */
+html[data-theme="dark"] .proj[data-track]:hover::before {
+  background: linear-gradient(150deg,
+    rgba(var(--cat),0.75) 0%,
+    rgba(var(--cat),0.18) 25%,
+    rgba(255,255,255,0) 50%,
+    rgba(var(--cat),0.10) 85%,
+    rgba(var(--cat),0.35) 100%);
+}
+html[data-theme="dark"] .proj[data-track]::after {
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--cat),0.13), rgba(var(--cat),0) 45%);
+}
+html[data-theme="dark"] .proj[data-track]:hover {
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.4),
+    0 28px 60px -14px rgba(0,0,0,0.8),
+    0 0 40px -18px rgba(var(--cat),0.45),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+/* what I bring: one hue per pillar (de matches the de project track) */
+html[data-theme="dark"] .bring[data-pillar="de"]    { --pc: 110,168,254; }
+html[data-theme="dark"] .bring[data-pillar="test"]  { --pc: 90,209,154; }
+html[data-theme="dark"] .bring[data-pillar="mlops"] { --pc: 242,181,92; }
+
+/* status: live pulses green, everything else is a quiet grey dot */
+html[data-theme="dark"] .proj-meta .status .dot { background: var(--txt-4); animation: none; }
+html[data-theme="dark"] .proj-meta .status.is-live { color: #6fdc9c; }
+html[data-theme="dark"] .proj-meta .status.is-live .dot {
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74,222,128,0.7);
+  animation: pulse 2s infinite;
+}
+
+/* stream console: muted terminal log colours */
+html[data-theme="dark"] .evt .lvl.info { color: #7aa7ff; }
+html[data-theme="dark"] .evt .lvl.ok   { color: #5ad19a; }
+html[data-theme="dark"] .evt .lvl.warn { color: #f2b55c; }
+html[data-theme="dark"] .evt .lvl.flow { color: #67c6e3; }
+html[data-theme="dark"] .evt .lvl.evnt { color: var(--violet); }
+html[data-theme="dark"] .console-status .pulse { background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.6); }
+
+/* research widget: the activations are the result: show them as data */
+html[data-theme="dark"] .aw-row.hi .lname,
+html[data-theme="dark"] .aw-row.hi .val { color: var(--violet); }
+html[data-theme="dark"] .aw-row.hi .bar .fill { background: linear-gradient(90deg, rgba(179,157,250,0.25), var(--violet)); }
+html[data-theme="dark"] .aw-row.dominant .lname,
+html[data-theme="dark"] .aw-row.dominant .val { color: #f87171; }
+html[data-theme="dark"] .aw-row.dominant .bar .fill { background: linear-gradient(90deg, rgba(248,113,113,0.2), #f87171); }
+html[data-theme="dark"] .aw-footer .signal.warn { color: #f2b55c; }
+html[data-theme="dark"] .aw-footer .signal.crit { color: #f87171; }
+
+/* ───────────── THEME SWITCH (both themes) ───────────── */
+.theme-switch {
+  position: fixed; right: 18px; bottom: 18px;
+  z-index: 95;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--glass-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.theme-switch:hover { transform: translateY(-1px); border-color: var(--acc-mid); }
+.theme-switch:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.theme-switch .ts-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: linear-gradient(90deg, #eef0f8 50%, #0b0b0c 50%);
+  border: 1px solid var(--line-2);
+  transition: transform 0.35s ease;
+}
+html[data-theme="dark"] .theme-switch .ts-dot { transform: rotate(180deg); }
+@media (max-width: 720px) {
+  .theme-switch { right: 12px; bottom: 12px; width: 38px; height: 38px; }
+}
